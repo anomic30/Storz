@@ -1,4 +1,33 @@
-*{
+@font-face {
+  font-family: PolySans Bulky;
+  src: url("./assets/fonts/PolySans\ Bulky.ttf")
+}
+
+@font-face {
+  font-family: PolySans Median;
+  src: url("./assets/fonts/PolySans\ Median.ttf")
+}
+
+@font-face {
+  font-family: PolySans Neutral;
+  src: url("./assets/fonts/PolySans\ Neutral.ttf")
+}
+
+@font-face {
+  font-family: PolySans Slim;
+  src: url("./assets/fonts/PolySans\ Slim.ttf")
+}
+
+:root {
+  --primary-color: #00C39A;
+  --primary-color-dark: #019978;
+  --secondary-color: #00ffa8;
+  --font-size-lg: 20px;
+  --font-size-md: 16px;
+  --font-size-sm: 13px;
+}
+
+* {
   margin: 0;
   padding: 0;
 }
@@ -11,4 +40,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #121916;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+button {
+  transition: 0.3s;
+}
+
+button:hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0px 1px 20px 2px rgba(8, 222, 149, 0.55);
+}
+
+button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 1px 20px 2px rgba(8, 222, 149, 0.55);
 }
