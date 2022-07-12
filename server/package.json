@@ -9,8 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@magic-sdk/admin": "^1.4.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "nodemon": "^2.0.19"
+    "express-fileupload": "^1.4.0",
+    "ipfs-http-client": "^56.0.3",
+    "jscrypt": "^1.1.1",
+    "mongoose": "^6.4.0",
+    "uuid": "^8.3.2"
   }
 }
