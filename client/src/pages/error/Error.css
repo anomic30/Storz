@@ -1,0 +1,60 @@
+.Error-con{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background-image: url("../../assets/images/eclipse.png");
+    background-color: #121916;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #C8C8C8;
+    font-family: PolySans Neutral;
+    font-size: var(--font-size-lg);
+}
+
+.goback-btn{
+    max-width: 180px;
+    text-transform:uppercase;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 0.6rem 1.5rem;
+    background-color: var(--primary-color);
+    text-align: center;
+    font-size: var(--font-size-lg);
+    color: white;
+    margin: 0px auto;
+}
+
+.error-sub{
+    max-width: 800px;
+    text-align: center;
+}
+
+.go-back{
+    color: var(--primary-color);
+}
+.go-back:hover{
+   cursor: pointer;
+}
+
+.login-storz{
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -40px;
+}
+
+.login-storz p{
+    font-family: PolySans Median;
+    color: white;
+    font-size: 20px;
+}
+
+.login-storz a{
+    text-decoration: none;
+    text-align: center;
+}
