@@ -1,0 +1,9 @@
+.Main{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background-image: url("../../assets/images/eclipse.png");
+    background-color: #121916;
+    background-position: center;
+    background-size: cover;
+}

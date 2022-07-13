@@ -1,0 +1,73 @@
+.Navbar{
+    font-family: PolySans Neutral;
+    width: 100%;
+}
+
+.navbar-content{
+    padding: 10px;
+    max-width: 1064px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px auto;
+}
+
+.logo-box, .link-box{
+    padding: 2% 0;
+}
+
+.logo-box{
+    display: flex;
+    color: white;
+    align-items: center;
+    font-size: var(--font-size-lg);
+    gap: 5px;
+    transition: 0.2s;
+}
+
+.logo-box:hover{
+    cursor: pointer;
+}
+
+.logo-box img{
+    width: 30px;
+    height: 30px;
+}
+
+
+.link-box{
+    display: flex;
+    gap: 20px;
+    border-right: 1px solid #C8C8C8;
+}
+
+.link-box a{
+    text-decoration: none;
+}
+
+.link-con, .logout-btn{
+    display: flex;
+    align-items: center;
+}
+
+.logout-btn img{
+    height: 28px;
+    width: 28px;
+    margin-left: 10px;
+}
+
+.logout-btn:hover{
+    cursor: pointer;
+}
+
+.right-con{
+    font-size: var(--font-size-lg);
+    display: flex;
+    align-items: center;
+    color: #C8C8C8;
+}
+
+/* Ipad */
+
+@media screen and (max-width: 820px) {
+    
+}
