@@ -3,12 +3,17 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user')
 const { v4: uuidv4 } = require('uuid');
+const multer = require('multer');
+const { Magic } = require('@magic-sdk/admin');
+const path = require('path');
 const authMiddleware = require('./middlewares/authMiddleware');
+const { Web3Storage, getFilesFromPath } = require('web3.storage')
 const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync } = require('fs');
 require('dotenv').config();
 const jscrypt = require('jscrypt');
 const { create } = require("ipfs-http-client");
 const fileUpload = require('express-fileupload');
+const { allowedNodeEnvironmentFlags } = require('process');
 
 async function ipfsClient() {
     const ipfs = create(
@@ -29,14 +34,27 @@ const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(fileUpload());
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './private')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({ storage: storage });
 
 //connection to DB
 
-const dburl = process.env.DB_URL;
+const dburl = 'mongodb+srv://storz:storz4321@storz.js4i1.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(dburl).then(() => { console.log('Connected to StorzDB') })
     .catch((err) => {
         console.log(err)
     })
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to Storz API v1.0!');
@@ -44,7 +62,7 @@ app.get('/', (req, res) => {
 
 app.post("/test", authMiddleware, (req, res) => {
     return res.status(200).json("User can use secure APIs");
-});
+})
 
 app.post('/api/user/login', async (req, res) => {
     try {
@@ -109,6 +127,45 @@ app.post('/api/user/create', authMiddleware, async (req, res) => {
         }
     }
 })
+
+
+//old upload file route
+// app.post("/uploadFiles", authMiddleware, upload.any('file'), async (req, res) => {
+//     const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
+//     const fileNameArr = req.files.map(file => file.filename);
+//     const storage = new Web3Storage({ token: apiToken });
+//     try {
+
+//         //iterate fileNameArr
+//         for (let i = 0; i < fileNameArr.length; i++) {
+//             jscrypt.encryptFile(
+//                 `./private/${fileNameArr[i]}`,
+//                 `./uploads/${fileNameArr[i]}`,
+//                 "aes256",
+//                 "storz123",
+//                 655000,
+//                 (isDone) => { if (isDone === true) { console.log(fileNameArr[i] + ' is encrypted successfully!'); } });
+//         }
+
+//         const files = await getFilesFromPath('./uploads');
+//         const rootCid = await storage.put(files);
+
+//         console.log("Files successfully uploaded with CID: " + rootCid);
+
+//         await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: { cid: rootCid, public: false } } });
+
+
+//         readdirSync('./private').forEach(f => {
+//             if (fileNameArr.includes(f)) {
+//                 rmSync(`./private/${f}`);
+//             }
+//         });
+
+//         return res.status(200).json({ message: "File uploaded successfully", cid: rootCid });
+//     } catch (error) {
+//         return res.status(500).json({ error: error.message });
+//     }
+// })
 
 const addFile = async (fileName, filePath) => {
     const file = readFileSync(filePath);
@@ -191,7 +248,7 @@ app.post("/api/upload", authMiddleware, async (req, res) => {
                     );
                 } catch (error) {
                     console.log(error);
-                    return res.status(500).json({ error: error.message });
+                    return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
                 }
 
                 // unlink(encryptedPath, (err) => {
@@ -204,7 +261,7 @@ app.post("/api/upload", authMiddleware, async (req, res) => {
         }
         return res.status(200).json({ message: "Files uploaded successfully", uploadList: uploadList });
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
     }
 })
 
@@ -343,6 +400,7 @@ app.get("/api/download/:cid", async (req, res) => {
         return res.status(500).json({ error: err.message });
     }
 })
+
 
 app.patch("/api/user/makePublic/:cid", authMiddleware, async (req, res) => {
     const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));

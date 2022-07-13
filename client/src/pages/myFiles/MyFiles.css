@@ -36,7 +36,7 @@
     font-weight: 100;
     font-size: var(--font-size-lg);
     font-family: PolySans Slim;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     text-align: left;
     height: 22px;
     border-bottom: 2px solid #999999;
