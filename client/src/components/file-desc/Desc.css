@@ -1,0 +1,245 @@
+.large-description{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.butter-bar{
+    padding-left: 2%;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1064px;
+    color:white;
+    font-size: var(--font-size-lg);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2%;
+}
+
+.butter-bar #back:hover{
+    cursor: pointer;
+}
+
+.glass-desc-con{
+    width: 100%;
+    height: 100%;
+    max-width: 1064px;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:40px;
+}
+
+.glass-file-desc{
+    margin-top: 3rem;
+    width: 100%;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    font-size: var(--font-size-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-name{
+    font-family:PolySans Neutral;
+    font-size: 30px;
+    color: white;
+}
+
+
+.gen-link{
+    color: var(--secondary-color);
+    font-family: PolySans Slim;
+    font-size: 18px;
+}
+
+.verify-ipfs{
+    max-width: 150px;
+    color: white;
+    font-family: PolySans Slim;
+    font-size: 18px;
+}
+
+
+.glass-img-con{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+
+.glass-file-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.outline-con{
+    max-width: 865px;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;
+    background-color:none;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+}
+
+.outline-head{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    display:flex;
+    align-items: center;
+    color: var(--secondary-color);
+    font-size: 30px;
+    font-family: PolySans Neutral;
+    justify-content: space-between;
+}
+
+.outline-desc{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-family: PolySans Slim;
+    border-top: 2px solid var(--secondary-color);
+}
+
+.keys{
+    color:#C2C2C2;
+    margin: 15px;
+}
+
+.key-desc{
+    color:white;
+    margin: 15px 0px;
+}
+
+.key-desclink:hover{
+    cursor: pointer;
+}
+.key-desclink{
+    color: var(--secondary-color);
+}
+
+.logo-align{
+    display:flex;
+}
+
+.img-link{
+    display: flex;
+    gap: 10px;
+}
+.img-link-con{
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    gap: 14px;
+}
+
+/* .img-link img{
+    margin-top:8px;
+} */
+
+.img-link p{
+    margin-top: 8px;
+}
+
+.outline-head button{
+    border-radius: 6px;
+    padding: 0.6rem ;
+    width: 40px;
+    height: 40px;
+    background-color: var(--secondary-color);
+    text-align: center;
+    border: none;
+    font-size: var(--font-size-lg);
+    color: black;
+    font-family: PolySans Neutral;
+    transition: 0.2s;
+    margin-left: 10px;
+}
+
+.outline-head img{
+    width: 20px;
+    height: 20px;
+}
+
+.links-container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gen-link a{
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.share-con .link-con {
+    margin-top: 5px;
+    display: flex;
+    border: 1px solid white;
+    padding: 2px 5px;
+    border-radius: 10px;
+    height: 40px;
+    width: 70%;
+}
+
+
+.link-con .link {
+    height: 30px;
+    width: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: var(--font-size-md);
+    font-family: PolySans Slim;
+    background: none;
+    border: 1px solid white;
+    outline: none;
+    border-radius: 4px;
+    color: var(--secondary-color);
+}
+
+.link-con img {
+    width: 30px;
+    height: 30px;
+    margin-right: -2px;
+    transition: 0.3s;
+}
+
+.link-con img:active {
+    transform: scale(0.9)
+}
+
+.link-con img:hover {
+    cursor: pointer;
+}
+
+.toast-button{
+    width: 60px;
+    height: 30px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: rgb(0, 0, 0);
+    font-family: PolySans Neutral;
+    font-size: 15px;
+}
+
+.toast-button:hover{
+    box-shadow: none;
+}

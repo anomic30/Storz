@@ -15,6 +15,7 @@ function AnimatedRoutes() {
                 <Route path="/app" element={<Main />}>
                     <Route path="/app/home" element={<Home />} />
                     <Route path="/app/myFiles" element={<MyFiles />} />
+                    <Route path="/app/myFiles/desc" element={<Desc />} />
                 </Route>
             </Routes>
         </AnimatePresence>
