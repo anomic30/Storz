@@ -1,0 +1,231 @@
+.Home {
+    width: 90%;
+    min-height: 90vh;
+    /* max-width: 1064px; */
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.gradient-triangle {
+    mix-blend-mode: lighten;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation-name: floating;
+    animation-duration: 3.1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.glass-triangle {
+    position: absolute;
+    left: 100px;
+    bottom: 150px;
+    backdrop-filter: blur(1px);
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(15px, 0px);
+    }
+
+    100% {
+        transform: translate(-0, 0px);
+    }
+}
+
+.right-gradient-triangle {
+    mix-blend-mode: lighten;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    animation-name: floating;
+    animation-duration: 3.1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+
+}
+
+.right-glass-triangle {
+    position: absolute;
+    top: 240px;
+    right: 150px;
+    backdrop-filter: blur(1px);
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floatingg {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    50% {
+        transform: translate(15px, 0px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+.home-header p {
+    font-family: PolySans Median;
+    font-size: 40px;
+    color: white;
+}
+
+.Home .home-header span {
+    transition: 0.3s ease-in-out;
+    color: var(--secondary-color);
+}
+
+.home-desc {
+    color: #C3C3C3;
+    font-family: PolySans Neutral;
+    font-size: var(--font-size-lg);
+    margin-top: 5px;
+    text-align: center;
+}
+
+.home-header {
+    width: 100%;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upload-box-con {
+    margin-top: 5rem;
+    min-height: 282px;
+    height: auto;
+    width: 384px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 5px 5px;
+    box-sizing: border-box;
+}
+
+.upload-box {
+    min-height: 280px;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 2% 2%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-size: var(--font-size-lg);
+    font-family: PolySans Median;
+    color: white;
+    border: 3px dashed var(--secondary-color);
+    border-radius: 10px;
+    border-spacing: 20px;
+}
+
+.upload-box:hover {
+    cursor: pointer;
+}
+
+
+.glass-row-con {
+    width: 100%;
+    margin-top: 5px;
+
+}
+
+.glass-row {
+    width: 100%;
+    height: auto;
+
+    margin-top: 8px;
+    border-radius: 8px;
+    padding: 2px;
+    padding-left: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.13);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.glass-file-name {
+    max-width: 60%;
+
+}
+
+.glass-row .right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.glass-row .right .cross {
+    margin-left: 10px;
+    background-image: url('../../assets/icons/cross.png');
+    background-size: cover;
+    transition: 0.2s;
+}
+
+.glass-row .right .cross:active {
+    transform: scale(0.5);
+}
+
+.upload-btn {
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 0.6rem 1.5rem;
+    background-color: var(--primary-color);
+    text-align: center;
+    font-size: var(--font-size-lg);
+    color: white;
+    font-family: PolySans Neutral;
+    transition: 0.2s;
+}
+
+.upload-btn:hover {
+    cursor: pointer;
+}
+
+.upload-btn:active {
+    background-color: var(--primary-color-dark);
+}
+
+@media screen and (max-width: 1350px ){
+    .gradient-triangle{
+        display: none;
+    }
+    .glass-triangle{
+        display: none;
+    }
+    .right-gradient-triangle{
+        display: none;
+    }
+    .right-glass-triangle{
+        display: none;
+    }
+}
