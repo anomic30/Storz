@@ -29,7 +29,7 @@ function Navbar() {
     }
 
     const testApi = async () => {
-        Axios.post("http://localhost:8080/test", {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then((res) => {
+        Axios.post(`${process.env.REACT_APP_SERVER_URL}/test`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then((res) => {
             alert(res.data);
         }).catch((err) => {
             alert(err);

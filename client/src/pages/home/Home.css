@@ -229,3 +229,22 @@
         display: none;
     }
 }
+
+@media screen and (max-width: 450px){
+    .upload-box-con{
+        min-height: 0px;
+        width: 80%
+    }
+    .upload-box{
+        height: 150px;
+        min-height: 230px;
+    }
+
+    .upload-success-con img{
+        width: 100%;
+    }
+
+    .upload-spinner-con img{
+        width: 100%;
+    }
+}

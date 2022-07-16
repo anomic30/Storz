@@ -6,7 +6,6 @@ import cross from '../../assets/icons/cross.png'
 import uploading_spinner from '../../assets/images/encryption.gif'
 import success_spinner from '../../assets/images/success.gif'
 import Axios from 'axios';
-import Cookies from 'universal-cookie';
 import { formatBytes } from '../../utils/formatBytes';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
@@ -19,14 +18,11 @@ import toast, { Toaster } from 'react-hot-toast';
 
 function Home() {
   const userName = window.localStorage.getItem('userName');
-  const cookie = new Cookies();
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [showDesc, setShowDesc] = useState(false);
  
-
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles);
@@ -50,7 +46,7 @@ function Home() {
     // console.log(formData);
 
     //upload files to server
-    Axios.post(`http://localhost:8080/api/upload`, formData, {
+    Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': 'Bearer ' + window.localStorage.getItem("didToken")
@@ -96,7 +92,7 @@ function Home() {
         </p>
         <div className='home-desc'>
           {isUploading ? "Uploading your files to our IPFS network..."
-            : success || showDesc ? "All your files have been encrypted and uploaded to our IPFS network successfully!"
+            : success ? "All your files have been encrypted and uploaded to our IPFS network successfully!"
               : "Upload your files securely to our IPFS network"}
         </div>
       </div>

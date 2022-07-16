@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './MyFiles.css'
-// import {Link} from 'react-router-dom'
 import search_icon from '../../assets/icons/search.png'
-import Desc from '../../components/file-desc/Desc'
 import Axios from 'axios'
 import Cookies from 'universal-cookie';
 import Tippy from '@tippyjs/react'
@@ -20,16 +18,14 @@ const tableHeaders = [
 
 function MyFiles() {
   const navigate = useNavigate();
-  const cookie = new Cookies();
-  const [id, setId] = useState("desc");
-  const [descrip, setDescrip] = useState(false);
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [owner, setOwner] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
-    Axios.post('http://localhost:8080/api/user/files', {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
+    Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/files`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
       console.log(res.data.files);
       setOwner(res.data.owner);
       setFiles(res.data.files);
@@ -56,7 +52,7 @@ function MyFiles() {
         <div className="search-con">
           <div className="search-inp">
             <img src={search_icon} alt="" />
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search" onChange={(e)=>setSearch(e.target.value)}/>
           </div>
         </div>
         {isLoading ?
@@ -74,7 +70,9 @@ function MyFiles() {
                   </tr>
                 </thead>
                 <tbody>
-                  {files.length > 0 && files.map((val, idx) => {
+                  {files.length > 0 && files.filter(val => {
+                    return val.file_name.toLowerCase().includes(search.toLowerCase());
+                  }).map((val, idx) => {
                     return <tr className='file-row' key={idx} onClick={() => navigate("/app/myFiles/desc", { state: { val, owner } })}>
                       <td><img src={file_icon} alt="" /></td>
                       <td id='first-col'>{val.file_name ? val.file_name : "test.png"}</td>

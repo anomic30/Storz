@@ -135,6 +135,14 @@
     text-decoration: none;
     text-align: center;
 }
+footer {
+    position: fixed;
+    text-align: center;
+    font-family: PolySans Neutral;
+    color: rgb(206, 206, 206);
+    bottom: 10px;
+    width: 100%;
+  }
 
 
 /* media for mobile  */

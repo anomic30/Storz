@@ -6,14 +6,12 @@ import user_icon from '../../assets/icons/user.png'
 import { UserContext } from '../../utils/UserContext'
 import { useNavigate } from 'react-router-dom'
 import { magic } from '../../utils/magic';
-import Cookies from 'universal-cookie';
 import app_logo from '../../assets/icons/app-logo.png'
 import Axios from 'axios';
 import { motion } from 'framer-motion'
 
 function Signin() {
   const navigate = useNavigate();
-  const cookie = new Cookies();
 
   const [disabled, setDisabled] = useState(false);
   const [email, setEmail] = useState("");
@@ -51,13 +49,13 @@ function Signin() {
         let newDidToken = await magic.user.getIdToken({ lifespan: 24 * 60 * 60 * 7 });
         window.localStorage.setItem("didToken", newDidToken);
         // cookie.set("didToken", newDidToken);
-        await Axios.post('http://localhost:8080/api/user/create', { magic_id: userMetadata.issuer, user_name: userName }, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then((res) => {
+        await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/create`, { magic_id: userMetadata.issuer, user_name: userName }, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then((res) => {
           console.log(res.data);
         }).catch((err) => {
           console.log(err);
         })
 
-        await Axios.get(`http://localhost:8080/api/user/getName/${userMetadata.issuer}`).then(res => {
+        await Axios.get(`${process.env.REACT_APP_SERVER_URL}/api/user/getName/${userMetadata.issuer}`).then(res => {
           window.localStorage.setItem("userName", res.data.user_name);  
         })
 

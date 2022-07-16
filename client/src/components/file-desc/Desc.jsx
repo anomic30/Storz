@@ -38,7 +38,7 @@ function Desc() {
   }
 
   function makePublic() {
-    Axios.patch(`http://localhost:8080/api/user/makePublic/${file?.cid}`, {state: !showPublicUrl}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
+    Axios.patch(`${process.env.REACT_APP_SERVER_URL}/api/user/makePublic/${file?.cid}`, {state: !showPublicUrl}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
       console.log(res.data.message);
       // alert(res.data.message);
       toast(res.data.message, {
@@ -86,7 +86,7 @@ function Desc() {
 
   function deleteFile(t) {
     toast.dismiss(t.id);
-    Axios.patch(`http://localhost:8080/api/user/deleteFile/${file?.cid}`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
+    Axios.patch(`${process.env.REACT_APP_SERVER_URL}/api/user/deleteFile/${file?.cid}`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
       console.log(res.data.message);
       toast(res.data.message, {
         icon: '✅',
@@ -129,7 +129,7 @@ function Desc() {
 
     Axios({
       method: "get",
-      url: `http://localhost:8080/api/download/secure/${file?.cid}/${window.localStorage.getItem("didToken")}`,
+      url: `${process.env.REACT_APP_SERVER_URL}/api/download/secure/${file?.cid}/${window.localStorage.getItem("didToken")}`,
       responseType: "arraybuffer"
     })
       .then((response) => {
@@ -175,9 +175,9 @@ function Desc() {
               <div className='links-container'>
                 {showPublicUrl ?
                   <div className="link-con">
-                    <input readOnly className="link" value={`http://localhost:8080/api/download/${file?.cid}`} />
+                    <input readOnly className="link" value={`${process.env.REACT_APP_SERVER_URL}/api/download/${file?.cid}`} />
 
-                    <CopyToClipboard text={`http://localhost:8080/api/download/${file?.cid}`}>
+                    <CopyToClipboard text={`${process.env.REACT_APP_SERVER_URL}/api/download/${file?.cid}`}>
                       
                         {(copied ? <img src={copy_icon_solid} alt="copied" /> :
                           <img src={copy_icon} id="copy" alt="not copied" onClick={() => copi()} />)}

@@ -3,17 +3,14 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const User = require('./models/user')
 const { v4: uuidv4 } = require('uuid');
-const multer = require('multer');
 const { Magic } = require('@magic-sdk/admin');
 const path = require('path');
 const authMiddleware = require('./middlewares/authMiddleware');
-const { Web3Storage, getFilesFromPath } = require('web3.storage')
 const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync } = require('fs');
 require('dotenv').config();
 const jscrypt = require('jscrypt');
 const { create } = require("ipfs-http-client");
 const fileUpload = require('express-fileupload');
-const { allowedNodeEnvironmentFlags } = require('process');
 
 async function ipfsClient() {
     const ipfs = create(
@@ -26,7 +23,6 @@ async function ipfsClient() {
     return ipfs;
 }
 
-const apiToken = process.env.WEB3_STORAGE_TOKEN
 
 const app = express();
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
@@ -35,17 +31,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './private')
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname))
-    }
-})
-
-const upload = multer({ storage: storage });
 
 //connection to DB
 
@@ -448,7 +433,8 @@ app.get("/api/user/getName/:id", async (req, res) => {
     }
 })
 
+const PORT = process.env.PORT || 8080;
 
-app.listen(8080, () => {
-    console.log('Server is running on port 8080');
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 })
