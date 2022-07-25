@@ -121,6 +121,7 @@
 }
 
 .key-desc{
+    word-break: break-all;
     color:white;
     margin: 15px 0px;
 }
@@ -242,4 +243,19 @@
 
 .toast-button:hover{
     box-shadow: none;
+}
+
+@media screen and (max-width: 450px){
+    .glass-file-desc{
+        box-sizing: border-box;
+    }
+    .file-actions{
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .glass-file-desc{
+        box-sizing: border-box;
+    }
 }

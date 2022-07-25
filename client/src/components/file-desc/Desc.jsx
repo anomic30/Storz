@@ -198,7 +198,7 @@ function Desc() {
         <div className="outline-con">
           <div className="outline-head">
             <div>File Information</div>
-            <div>
+            <div className='file-actions'>
               <Tippy content="Share">
                 <button onClick={() => makePublic()}> <img src={share_icon} alt="" /> </button>
               </Tippy>
@@ -213,19 +213,19 @@ function Desc() {
           <div className="outline-desc">
             <div className="outline-desc-key">
               <p className="keys">
-                Name :
+                Name:
               </p>
               <p className="keys">
-                Owner :
+                Owner:
               </p>
               <p className="keys">
-                Created :
+                Created:
               </p>
               <p className="keys">
-                Size :
+                Size:
               </p>
               <p className="keys">
-                CID :
+                CID:
               </p>
 
             </div>
@@ -237,7 +237,7 @@ function Desc() {
                 {owner}
               </p>
               <p className="key-desc">
-                {file?.file_creationDate}
+                {file?.file_creationDate.substring(0, 10)}
               </p>
               <p className="key-desc">
                 {formatBytes(file?.file_size)}

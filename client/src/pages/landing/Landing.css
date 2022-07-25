@@ -71,7 +71,7 @@
 .sign-up-btn {
     padding: 0px 10px;
     height: 46px;
-    width: auto;
+    width: 120px;
     font-size: 20px;
     font-family: PolySans Median;
     display: flex;
@@ -80,7 +80,7 @@
     border-radius: 10px;
     z-index: 2;
     color: black;
-    background-color: white;
+    background-color: var(--secondary-color);
     transition: 0.3s;
     z-index: 3;
 }

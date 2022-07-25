@@ -79,8 +79,7 @@ function Home() {
   return (
     <motion.div className='Home' initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-
-      transition={{ duration: 0.5 }}>
+      transition={{ duration: 0.2 }}>
       <Toaster/>
       <img src={gradient_triangle} alt="" className='gradient-triangle' />
       <img src={glass_triangle} alt="" className='glass-triangle' />
@@ -111,7 +110,6 @@ function Home() {
                 <div className="size">
                   {formatBytes(file.size)}
                 </div>
-                <img src="" alt="" />
                 <img src={cross} alt="Delete" className="cross" onClick={() => handleDelete(idx)} />
               </div>
             </div>

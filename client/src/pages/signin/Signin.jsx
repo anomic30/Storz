@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import './Signin.css'
 import signin_gradient from '../../assets/images/signin-gradient.png'
 import email_icon from '../../assets/icons/email.png'
@@ -9,9 +9,12 @@ import { magic } from '../../utils/magic';
 import app_logo from '../../assets/icons/app-logo.png'
 import Axios from 'axios';
 import { motion } from 'framer-motion'
+import loadingg from "../../assets/images/loadingg.svg"
+import toast, { Toaster } from 'react-hot-toast';
 
 function Signin() {
   const navigate = useNavigate();
+  const inpRef = useRef(null);
 
   const [disabled, setDisabled] = useState(false);
   const [email, setEmail] = useState("");
@@ -25,8 +28,31 @@ function Signin() {
 
 
   const handleLogin = async () => {
+    
     try {
       setDisabled(true); // disable login button to prevent multiple emails from being triggered
+
+      if (!newUser) {
+        const check = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/check`, { email });
+        console.log(check.data.message)
+        if (check.data.message === "user_not_found") {
+          toast((t) => (
+            <span>
+              Please Sign Up first!
+            </span>
+          ), {
+            icon: '⚠️',
+            style: {
+              borderRadius: '5px',
+              background: '#333',
+              color: '#c8c8c8',
+            },
+          });
+          inpRef.current.value = "";
+          setDisabled(false);
+          return;
+        }
+      }
 
       // Trigger Magic link to be sent to user
       let didToken = await magic.auth.loginWithMagicLink({
@@ -49,14 +75,14 @@ function Signin() {
         let newDidToken = await magic.user.getIdToken({ lifespan: 24 * 60 * 60 * 7 });
         window.localStorage.setItem("didToken", newDidToken);
         // cookie.set("didToken", newDidToken);
-        await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/create`, { magic_id: userMetadata.issuer, user_name: userName }, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then((res) => {
+        await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/create`, { magic_id: userMetadata.issuer, user_name: userName, email: email }, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then((res) => {
           console.log(res.data);
         }).catch((err) => {
           console.log(err);
         })
 
         await Axios.get(`${process.env.REACT_APP_SERVER_URL}/api/user/getName/${userMetadata.issuer}`).then(res => {
-          window.localStorage.setItem("userName", res.data.user_name);  
+          window.localStorage.setItem("userName", res.data.user_name);
         })
 
         console.log(userMetadata);
@@ -73,13 +99,14 @@ function Signin() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 1 }}>
+      transition={{ duration: 0.2 }}>
+      <Toaster />
       <img src={signin_gradient} alt="" className='signin-gradient' />
       <div className='login-storz'>
-        <a href="/">
+        <div onClick={() => navigate("/")}>
           <img id="app-logo" src={app_logo} alt="" />
           <p>Storz</p>
-        </a>
+        </div>
       </div>
 
       {(!newUser) ? <>
@@ -88,9 +115,12 @@ function Signin() {
             <h2>Login</h2>
             <p>Login with your email</p>
           </div>
+
+          {disabled && <img src={loadingg} alt='Loading' className='loadingg' />}
+
           <div className="inp-box">
             <img src={email_icon} alt="" />
-            <input type="text" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
+            <input ref={inpRef} type="text" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
           </div>
 
           {!disabled && <div className="signin-btn" onClick={handleLogin}>Login</div>}
@@ -108,7 +138,7 @@ function Signin() {
           </div>
           <div className="inp-box">
             <img src={email_icon} alt="" />
-            <input type="text" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
+            <input type="text" defaultValue={email} placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
           </div>
           <br />
           {!disabled && <div className="signin-btn" onClick={handleLogin}>Sign Up</div>}

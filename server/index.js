@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const { Magic } = require('@magic-sdk/admin');
 const path = require('path');
 const authMiddleware = require('./middlewares/authMiddleware');
-const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync } = require('fs');
+const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync, unlinkSync } = require('fs');
 require('dotenv').config();
 const jscrypt = require('jscrypt');
 const { create } = require("ipfs-http-client");
@@ -49,6 +49,20 @@ app.post("/test", authMiddleware, (req, res) => {
     return res.status(200).json("User can use secure APIs");
 })
 
+app.post('/api/user/check', async (req, res) => {
+    const email = req.body.email;
+    const user = await User.findOne({ email: email });
+    if (user) {
+        return res.status(200).json({
+            message: "user_found"
+        });
+    } else {
+        return res.status(200).json({
+            message: "user_not_found"
+        });
+    }
+})
+
 app.post('/api/user/login', async (req, res) => {
     try {
         console.log("called")
@@ -65,8 +79,9 @@ app.post('/api/user/login', async (req, res) => {
 app.post('/api/user/create', authMiddleware, async (req, res) => {
     const magic_id = req.body.magic_id;
     const user_name = req.body.user_name;
+    const email = req.body.email;
 
-    if (!user_name || !magic_id) {
+    if (!user_name || !magic_id || !email) {
         return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -77,6 +92,7 @@ app.post('/api/user/create', authMiddleware, async (req, res) => {
         const encryption_key = uuidv4();
         const user = new User({
             magic_id: magic_id,
+            email: email,
             user_name: user_name,
             encryption_key: encryption_key,
             files: []
@@ -99,6 +115,7 @@ app.post('/api/user/create', authMiddleware, async (req, res) => {
                 const encryption_key = uuidv4();
                 const user = new User({
                     magic_id: magic_id,
+                    email: email,
                     user_name: user_name,
                     encryption_key: encryption_key,
                     files: []
@@ -186,9 +203,9 @@ app.post("/api/upload", authMiddleware, async (req, res) => {
                     console.log(err);
                     return res.status(500).json({ error: err.message });
                 }
-
+                
+                console.log("encrypting file started");
                 try {
-                    console.log("encrypting file started");
                     jscrypt.encryptFile(
                         filePath,
                         encryptedPath,
@@ -212,7 +229,7 @@ app.post("/api/upload", authMiddleware, async (req, res) => {
                                 };
                                 uploadList.push(upData);
                                 await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: upData } });
-                                
+
                                 unlink(filePath, (err) => {
                                     if (err) {
                                         console.log(err);
@@ -223,7 +240,7 @@ app.post("/api/upload", authMiddleware, async (req, res) => {
                                     if (err) {
                                         console.log(err);
                                     }
-                                    console.log(filePath + ' is deleted!');
+                                    console.log(encryptedPath + ' is deleted!');
                                 })
                             }
                             else {
@@ -235,13 +252,6 @@ app.post("/api/upload", authMiddleware, async (req, res) => {
                     console.log(error);
                     return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
                 }
-
-                // unlink(encryptedPath, (err) => {
-                //     if (err) {
-                //         console.log(err);
-                //     }
-                //     console.log(fileName + ' is deleted!');
-                // })
             })
         }
         return res.status(200).json({ message: "Files uploaded successfully", uploadList: uploadList });
@@ -284,9 +294,9 @@ app.get("/api/download/secure/:cid/:auth", async (req, res) => {
         const file = await User.findOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { encryption_key: 1 }).select({ files: { $elemMatch: { cid: cid } } });
         if (file) {
             const fileName = file.files[0].file_name;
-            const encryptedPath = './encrypted/' + fileName;
+            const encryptedPath = './private/' + fileName;
             const decryptedPath = './public/' + fileName;
-            await getFile(cid, encryptedPath).then(() => {
+            await getFile(cid, encryptedPath).then(async() => {
                 try {
                     jscrypt.decryptFile(
                         encryptedPath,
@@ -300,19 +310,23 @@ app.get("/api/download/secure/:cid/:auth", async (req, res) => {
                                 console.log("Sending files to the user");
                                 //send the file to the client
                                 res.sendFile(decryptedPath, { root: __dirname });
-                                
-                                // unlink(encryptedPath, (err) => {
-                                //     if (err) {
-                                //         console.log(err);
-                                //     }
-                                //     console.log(encryptedPath + ' is deleted!');
-                                // })
-                                // unlink(decryptedPath, (err) => {
-                                //     if (err) {
-                                //         console.log(err);
-                                //     }
-                                //     console.log(decryptedPath + ' is deleted!');
-                                // })
+
+                                setTimeout(() => {
+                                    unlink(decryptedPath, (err) => {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                        console.log(decryptedPath + ' is deleted!');
+                                    })
+
+                                    unlink(encryptedPath, (err) => {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                        console.log(encryptedPath + ' is deleted!');
+                                    })
+                                }, 2 * 60 * 1000)
+
                             }
                             else {
                                 console.log("File decryption in progress...");
@@ -340,7 +354,7 @@ app.get("/api/download/:cid", async (req, res) => {
             const fileName = file.files[0].file_name;
             const encryptedPath = './encrypted/' + fileName;
             const decryptedPath = './public/' + fileName;
-            await getFile(cid, encryptedPath).then(() => {
+            await getFile(cid, encryptedPath).then(async() => {
                 try {
                     jscrypt.decryptFile(
                         encryptedPath,
@@ -355,18 +369,21 @@ app.get("/api/download/:cid", async (req, res) => {
                                 //send the file to the client
                                 res.sendFile(decryptedPath, { root: __dirname });
 
-                                // unlink(encryptedPath, (err) => {
-                                //     if (err) {
-                                //         console.log(err);
-                                //     }
-                                //     console.log(encryptedPath + ' is deleted!');
-                                // })
-                                // unlink(decryptedPath, (err) => {
-                                //     if (err) {
-                                //         console.log(err);
-                                //     }
-                                //     console.log(decryptedPath + ' is deleted!');
-                                // })
+                                setTimeout(() => {
+                                    unlink(decryptedPath, (err) => {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                        console.log(decryptedPath + ' is deleted!');
+                                    })
+
+                                    unlink(encryptedPath, (err) => {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                        console.log(encryptedPath + ' is deleted!');
+                                    })
+                                }, 2 * 60 * 1000)
                             }
                             else {
                                 console.log("File decryption in progress...");
@@ -415,7 +432,7 @@ app.patch("/api/user/deleteFile/:cid", authMiddleware, async (req, res) => {
         await User.updateOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { $pull: { files: { cid: cid } } });
         return res.status(200).json({ message: "File deleted successfully!" });
     } catch (err) {
-        return res.status(500).json({ error: err.message, message: "File deletion failed!"});
+        return res.status(500).json({ error: err.message, message: "File deletion failed!" });
     }
 })
 

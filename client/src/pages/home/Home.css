@@ -158,7 +158,6 @@
 .glass-row {
     width: 100%;
     height: auto;
-
     margin-top: 8px;
     border-radius: 8px;
     padding: 2px;
@@ -181,11 +180,12 @@
 
 .glass-row .right {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 2px;
 }
 
 .glass-row .right .cross {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     background-image: url('../../assets/icons/cross.png');
     background-size: cover;
     transition: 0.2s;
@@ -196,15 +196,24 @@
 }
 
 .upload-btn {
-    margin-top: 20px;
+    margin: auto;
     border-radius: 10px;
     padding: 0.6rem 1.5rem;
+    width: 200px;
     background-color: var(--secondary-color);
     text-align: center;
     font-size: var(--font-size-lg);
-    color: white;
-    font-family: PolySans Neutral;
+    color: #121916;
+    font-family: PolySans Median;
     transition: 0.2s;
+}
+
+.upload-success-con{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .upload-btn:hover {
@@ -231,6 +240,12 @@
 }
 
 @media screen and (max-width: 450px){
+    .home-header p{
+        font-size: 24px;
+    }
+    .home-desc{
+        font-size: 18px;
+    }
     .upload-box-con{
         min-height: 0px;
         width: 80%

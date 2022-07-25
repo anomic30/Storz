@@ -36,6 +36,7 @@
     padding: 1% 2%;
     box-sizing: border-box;
     justify-content: space-around;
+    align-items: center;
 }
 
 .signin-box h2{
@@ -51,13 +52,15 @@
 }
 
 .inp-box{
+    width: 100%;
     display: flex;
     align-items: center;
     outline: 1px solid var(--primary-color);
     padding: 2px 5px;
     border-radius: 10px;
     height:40px;
-    margin-top: 20px;
+    margin-top: 10px;
+    box-sizing: border-box;
 }
 
 .inp-box input{
@@ -81,8 +84,8 @@
     border-radius: 12px;
     font-size: 24px;
     color: black;
-    font-family: PolySans Neutral;
-    transition: 0.3s;
+    font-family: PolySans Median;
+    transition: 0.3s ease-out;
 }
 
 .signin-btn:active{
@@ -131,8 +134,7 @@
     font-size: 20px;
 }
 
-.login-storz a{
-    text-decoration: none;
+.login-storz{
     text-align: center;
 }
 footer {
@@ -148,8 +150,25 @@ footer {
 /* media for mobile  */
 
 @media screen and (max-width: 600px) {
+    .signin-con{
+        max-height: 100vh;
+    }
    .signin-box{
-    max-width: 90%;
-    height: 40%;
+        max-width: 90%;
+        height: auto;
    }
+   #box-mid{
+    margin-top: 30px;
+   }
+
+   .inp-box{
+    width: 95%;
+    margin-top: 20px;
+   }
+   .signin-btn{
+    width: 95%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+   }
+  
 }

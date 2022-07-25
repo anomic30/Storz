@@ -38,10 +38,9 @@ function MyFiles() {
 
   return (
     <motion.div className='MyFiles'
-    initial={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      
-      transition={{ duration: 0.5 }}>
+      transition={{ duration: 0.2 }}>
       <div>
         <div className="file-header">
           <p>
@@ -52,7 +51,7 @@ function MyFiles() {
         <div className="search-con">
           <div className="search-inp">
             <img src={search_icon} alt="" />
-            <input type="text" placeholder="Search" onChange={(e)=>setSearch(e.target.value)}/>
+            <input type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
           </div>
         </div>
         {isLoading ?
@@ -77,7 +76,7 @@ function MyFiles() {
                       <td><img src={file_icon} alt="" /></td>
                       <td id='first-col'>{val.file_name ? val.file_name : "test.png"}</td>
                       <td>{val.public ? <Tippy content="Public" placement='left'><img className="visible" src={eye_icon} alt="public" /></Tippy> : ''}</td>
-                      <td>{val.file_size? formatBytes(val.file_size) : "69"}</td>
+                      <td>{val.file_size ? formatBytes(val.file_size) : "69"}</td>
                       <td>{val.file_creationDate ? val.file_creationDate.substring(0, 10) : "2045/08/30"}</td>
                     </tr>
                   })}

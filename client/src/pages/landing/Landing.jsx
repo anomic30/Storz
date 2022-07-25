@@ -31,7 +31,7 @@ function Landing() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5 }}>
+        transition={{ duration: 0.2 }}>
             <img src={rings} alt="" className='rings' />
             <img src={landing_gradient} alt="" className='landing-gradient' />
             <img src={feature_gradient} alt="" className='landing-center' />
