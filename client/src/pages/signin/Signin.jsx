@@ -28,7 +28,21 @@ function Signin() {
 
 
   const handleLogin = async () => {
-    
+    if (email==="") {
+      toast((t) => (
+        <span>
+          Please fill all the fields!
+        </span>
+      ), {
+        icon: '❌',
+        style: {
+          borderRadius: '5px',
+          background: '#333',
+          color: '#c8c8c8',
+        },
+      });
+      return;
+    }
     try {
       setDisabled(true); // disable login button to prevent multiple emails from being triggered
 
