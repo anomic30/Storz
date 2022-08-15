@@ -346,7 +346,7 @@ app.get("/api/download/secure/:cid/:auth", async (req, res) => {
                 }
             })
         } else {
-            return res.status(200).sendFile("./private/hacker.png", { root: __dirname });
+            return res.status(200).sendFile("./private/rickroll.gif", { root: __dirname });
         }
     } catch (err) {
         return res.status(500).json({ error: err.message });
@@ -403,7 +403,7 @@ app.get("/api/download/:cid", async (req, res) => {
                 }
             })
         } else {
-            return res.status(200).sendFile("./private/hacker.png", { root: __dirname });
+            return res.status(200).sendFile("./private/rickroll.gif", { root: __dirname });
         }
     } catch (err) {
         return res.status(500).json({ error: err.message });

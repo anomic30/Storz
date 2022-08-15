@@ -15,7 +15,7 @@
 ## 💁 About The Project
 
 <a href="https://storz-test.pages.dev/" target="_blank">
-    <img src="https://user-images.githubusercontent.com/63467479/184536217-e661273e-8c0b-49df-9914-f72a48db9000.png" alt="Project Banner">
+    <img src="https://user-images.githubusercontent.com/63467479/184687815-c14ae141-f0a7-4c1a-b907-c2f823407758.png" alt="Project Banner">
 </a>
 <br>
 
@@ -56,34 +56,34 @@ Here is a sneak peek of the application and it's visuals 😍:
 <table>
     <tr>
         <td colspan="2">
-            <img src="https://user-images.githubusercontent.com/63467479/184532110-ff4627c2-a94c-4e3b-85b3-3a28da8e0be3.png" alt="Dashboard Page" />
+            <img src="https://user-images.githubusercontent.com/63467479/184687795-c794e77d-c24c-4ea0-8a68-b701d6e970eb.png" alt="Dashboard Page" />
             <br />
             <p align="center">Landing Page</p>
         </td>
     </tr>
     <tr>
         <td width="50%">
-            <img src="https://user-images.githubusercontent.com/63467479/184532499-7b2db43e-9585-4705-b477-b0f9f6196ebf.png" alt="Login Screen" />
+            <img src="https://user-images.githubusercontent.com/63467479/184688016-909c4d23-b51d-4082-a748-14b4fad97f71.png" />
             <br />
             <p align="center">Login</p></td>
         <td width="50%">
-            <img src="https://user-images.githubusercontent.com/63467479/184532607-42daa62c-bd66-4b89-9004-d0baf668bbbd.png" alt="Dashboard" />
+            <img src="https://user-images.githubusercontent.com/63467479/184687806-94dd6a38-2174-44e5-9e40-8f00e51e0e02.png" />
             <br />
             <p align="center">Home Page</p></td>
     </tr>
     <tr>
         <td width="50%">
-            <img src="https://user-images.githubusercontent.com/63467479/184532671-ded6c74a-1dea-4f1c-be98-7fafdac3d582.png" alt="Account Page" />
+            <img src="https://user-images.githubusercontent.com/63467479/184687813-62c1b27e-46de-42da-97ee-e0df4feea526.png" />
             <br />
             <p align="center">My Files</p></td>
         <td width="50%">
-            <img src="https://user-images.githubusercontent.com/63467479/184532684-8c128016-b14d-4b08-9299-0e501c8cccee.png" alt="Reset Password Screen" />
+            <img src="https://user-images.githubusercontent.com/63467479/184687810-42e14eec-4ebb-426f-9c81-74d294ddd564.png" />
             <br />
             <p align="center">File Description</p></td>
     </tr>
     <tr>
         <td colspan="2">
-            <img src="https://user-images.githubusercontent.com/63467479/184532562-53b4af97-73df-4db9-be39-fe19af453d7c.png" alt="Features" />
+            <img src="https://user-images.githubusercontent.com/63467479/184687804-d1890a0d-a040-4666-b01e-01b9506ab5fa.png" />
             <br />
             <p align="center">Features</p>
         </td>
@@ -162,7 +162,7 @@ Distributed under the MIT License. See [`LICENSE.md`](LICENSE.md) for more infor
 # ⚡ Our Team
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/63467479/184535066-7db0942a-71c8-4ffe-9370-6bc5cadf7e07.png" width="90%"/>
+<img src="https://user-images.githubusercontent.com/63467479/184687819-00b0d401-7687-4406-8bbb-420cda84e4c3.png" width="95%"/>
 </div>
 
 
