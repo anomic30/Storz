@@ -12,6 +12,7 @@ import sheild_gif from '../../assets/images/security.gif'
 import cube_gif from '../../assets/images/fragments.gif'
 import landing_left from '../../assets/images/landing-left.png'
 import landing_right from '../../assets/images/landing-right.png'
+import globe from '../../assets/images/new-globe.png'
 import map from '../../assets/images/map.png'
 import discord_logo from '../../assets/icons/discord.png'
 import { motion } from 'framer-motion'
@@ -63,6 +64,7 @@ function Landing() {
                     </div>
                 </div>
                 <div className="right-con">
+                    <img src={globe} alt="Globe" />
                 </div>
             </div>
 

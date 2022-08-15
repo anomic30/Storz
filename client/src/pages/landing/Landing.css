@@ -52,9 +52,14 @@
     margin-top: -30px;
 }
 
-.landing-con .right-con {
-    z-index: 2;
-    width: 40%;
+.hero-con .right-con{
+    z-index: 0;
+    width: 35%;
+}
+
+.hero-con .right-con img{
+    width: 100%;
+    border-radius: 100%;
 }
 
 .landing-navbar {
@@ -176,7 +181,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 
 .left-con {
     z-index: 2;
-    width: 60%;
+    width: 75%;
     color: white;
     box-sizing: border-box;
     /* margin-top: -30px; */
@@ -592,5 +597,11 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
         height: 40px;
     }
 
+}
+
+@media screen and (max-width: 1320px){
+    .hero-con .right-con img{
+        display: none;
+    }
 }
 

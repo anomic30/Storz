@@ -27,7 +27,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
 
-**Storz** is a fully-decentralized, open source, usable-design-focued, storage application that is built to replace current storage providers in the market. 
+**Storz** is a fully-decentralized, open source, usable-design-focused, storage application that is built to replace current storage providers in the market. 
 
 **Features of our application**:
 
