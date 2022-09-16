@@ -116,7 +116,7 @@ Follow these steps to get started
 
 ```bash
 # Clone the repository
-git clone https://github.com/Sneakad/Storz.git
+git clone https://github.com/anomic30/Storz.git
 # Enter into the frontend directory
 cd Storz/client
 # Install the dependencies
