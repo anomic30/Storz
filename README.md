@@ -7,7 +7,7 @@
     <img src="https://user-images.githubusercontent.com/63467479/184531915-9a37c1d8-3e2f-43f6-930a-0e483fc72ed3.png" alt="Project Banner" height="100">
   </a>
     <h1>Storz</h1>
-    <p>🏆 Winner of Decentalized Storage Infrastructure & Community Choice Award of Web3 Infinity Hackathon 2022 organized by Protocol Labs, Filecoin Foundation & Force Web3 Community 🌐.</p>
+    <p>🏆 Winner of Decentralized Storage Infrastructure & Community Choice Award of Web3 Infinity Hackathon 2022 organized by Protocol Labs, Filecoin Foundation & Force Web3 Community 🌐.</p>
 </div>
 
 <!-- ABOUT THE PROJECT -->
@@ -151,11 +151,24 @@ Here's a diagram explaining exactly how everything fits into place
 
 </div>
 
-<!-- LICENSE -->
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-# 📄 License
+<!-- CONTRIBUTION -->
 
-Distributed under the MIT License. See [`LICENSE.md`](LICENSE.md) for more information.
+# 🤝🏻 Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+⚠️ Also, refer to [`CONTRIBUTING.md`](CONTRIBUTING.md) 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -165,6 +178,15 @@ Distributed under the MIT License. See [`LICENSE.md`](LICENSE.md) for more infor
 <img src="https://user-images.githubusercontent.com/63467479/184687819-00b0d401-7687-4406-8bbb-420cda84e4c3.png" width="95%"/>
 </div>
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+# 🛡️ License
+
+Distributed under the MIT License. See [`LICENSE.md`](LICENSE.md) for more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 # 🥰 Endnote
 
