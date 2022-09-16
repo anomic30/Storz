@@ -7,7 +7,7 @@
     <img src="https://user-images.githubusercontent.com/63467479/184531915-9a37c1d8-3e2f-43f6-930a-0e483fc72ed3.png" alt="Project Banner" height="100">
   </a>
     <h1>Storz</h1>
-  
+    <p>🏆 Winner of Decentalized Storage Infrastructure & Community Choice Award of Web3 Infinity Hackathon 2022 organized by Protocol Labs, Filecoin Foundation & Force Web3 Community 🌐.</p>
 </div>
 
 <!-- ABOUT THE PROJECT -->
