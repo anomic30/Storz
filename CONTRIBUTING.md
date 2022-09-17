@@ -5,7 +5,7 @@
 
 # Welcome to Hacktoberfest !!!
 
-Hello coders! this year, we are proud to open-source our hackathon project. We welcome everyone to join our quest and contribute in this next-gen web3 project. Join our [Discord]("https://discord.gg/Z9hbT8RGNG") server for all the latest updates regarding the contributions
+Hello coders! this year, we are proud to open-source our hackathon project. We welcome everyone to join our quest and contribute in this next-gen web3 project. Join our [Discord](https://discord.gg/Z9hbT8RGNG) server for all the latest updates regarding the contributions
 
 
 ### Also, get yourself free goodies after a successful pull/merge request!
@@ -165,6 +165,6 @@ At this point, you are ready to make a pull request to the original repository �
 
 You should navigate to your forked repository, and press the “New pull request” button on your left-hand side of the page. 
 
-Don't forget to join our [Discord]("https://discord.gg/Z9hbT8RGNG") server as we will be posting important updates regarding the contributions. Have fun and make new friends in the server and happy coding to everyone!
+Don't forget to join our [Discord](https://discord.gg/Z9hbT8RGNG) server as we will be posting important updates regarding the contributions. Have fun and make new friends in the server and happy coding to everyone!
 
 # Hurray!! You just got closer to complete your hacktoberfest challenge.
