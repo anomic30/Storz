@@ -4,13 +4,19 @@ const mongoose = require('mongoose');
 const User = require('./models/user')
 const { v4: uuidv4 } = require('uuid');
 const { Magic } = require('@magic-sdk/admin');
-const path = require('path');
 const authMiddleware = require('./middlewares/authMiddleware');
 const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync, unlinkSync } = require('fs');
 require('dotenv').config();
 const jscrypt = require('jscrypt');
 const { create } = require("ipfs-http-client");
 const fileUpload = require('express-fileupload');
+
+
+/*
+    Connection to the INFURA IPFS node
+    Get the secret keys from the INFURA IPFS dashboard
+    Website link: https://infura.io/product/ipfs
+*/
 
 const projectId = process.env.INFURA_PROJECT_ID;
 const projectSecret = process.env.INFURA_PROJECT_SECRET;
@@ -30,7 +36,9 @@ async function ipfsClient() {
     return ipfs;
 }
 
-
+/*
+    Initializing express server
+*/
 const app = express();
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
@@ -39,9 +47,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
-//connection to DB
+/*
+    Connection to the MongoDB instance. Currently access is available to everyone for development.
+*/
 
-const dburl = 'mongodb+srv://storz:storz4321@storz.js4i1.mongodb.net/?retryWrites=true&w=majority'
+const dburl = process.env.MONGODB_URI;
 mongoose.connect(dburl).then(() => { console.log('Connected to StorzDB') })
     .catch((err) => {
         console.log(err)
@@ -346,7 +356,7 @@ app.get("/api/download/secure/:cid/:auth", async (req, res) => {
                 }
             })
         } else {
-            return res.status(200).sendFile("./private/rickroll.gif", { root: __dirname });
+            return res.status(200).sendFile("./private/hacker.png", { root: __dirname });
         }
     } catch (err) {
         return res.status(500).json({ error: err.message });
@@ -403,7 +413,7 @@ app.get("/api/download/:cid", async (req, res) => {
                 }
             })
         } else {
-            return res.status(200).sendFile("./private/rickroll.gif", { root: __dirname });
+            return res.status(200).sendFile("./private/hacker.png", { root: __dirname });
         }
     } catch (err) {
         return res.status(500).json({ error: err.message });

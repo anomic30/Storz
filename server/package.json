@@ -19,9 +19,7 @@
     "ipfs-http-client": "^56.0.3",
     "jscrypt": "^1.1.1",
     "mongoose": "^6.4.0",
-    "multer": "^1.4.5-lts.1",
-    "uuid": "^8.3.2",
-    "web3.storage": "^4.3.0"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
