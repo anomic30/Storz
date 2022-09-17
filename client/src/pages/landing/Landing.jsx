@@ -57,7 +57,7 @@ function Landing() {
                             <span>Use Now </span>
                         </div>
                         <div className="join-btn landing-btn">
-                        <a href="https://discord.gg/eMaEFEBbfN" className='join-link'  target="_blank" rel='noreferrer'>
+                        <a href="https://discord.gg/Z9hbT8RGNG" className='join-link'  target="_blank" rel='noreferrer'>
                         Join Us  
                         </a>
                         </div>
@@ -99,7 +99,7 @@ function Landing() {
                 <h1>Join Our Community!</h1>
                 <p >Help us on our quest to make this product even better.</p>
                 <div className="use-btn landing-btn">
-                    <span> <a href="https://discord.gg/eMaEFEBbfN" className='join-link-b'  target="_blank" rel='noreferrer'>
+                    <span> <a href="https://discord.gg/Z9hbT8RGNG" className='join-link-b'  target="_blank" rel='noreferrer'>
                         Join Us  
                         </a></span>
                 </div>
@@ -112,7 +112,7 @@ function Landing() {
                         <img src={app_logo} alt="" />
                     </div>
                     <p>©2022 Storz</p>
-                    <a href="https://discord.gg/eMaEFEBbfN" className='join-link'  target="_blank" rel='noreferrer'><img className='disc' src={discord_logo} alt="" /></a>
+                    <a href="https://discord.gg/Z9hbT8RGNG" className='join-link'  target="_blank" rel='noreferrer'><img className='disc' src={discord_logo} alt="" /></a>
                     
             </div>
         </motion.div>
