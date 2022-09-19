@@ -1,11 +1,11 @@
 
 # Steps to get the API keys
 
-We are using Infura's IPFS API and dedicated gateway to connect seamlessly and reliably to the IPFS network. Therefore we need the required API keys from their website.
+We are using [Infura's IPFS API](https://docs.infura.io/infura/networks/ipfs) and its dedicated gateway to connect seamlessly and reliably to the IPFS network. Therefore we need the required API keys from their website.
 
 Lets grab the API keys...
 
-### 1. Sign-up and log in to [infura.io]("https://infura.io/"). After logging in, go to your dashboard.  
+### 1. Sign-up and log in to [infura.io](https://infura.io/). After logging in, go to your dashboard.  
 <img src="https://user-images.githubusercontent.com/63467479/190861769-991597fb-ed03-4138-ba84-ea7cc6397b2a.png">
 
 ### 2. Click on the Create New Key button on the top right corner. Choose IPFS as network and provide a name to your key.
@@ -21,7 +21,7 @@ Lets grab the API keys...
 mongodb+srv://storz-dev:hacktoberfest@cluster0.pvq1ns2.mongodb.net/?retryWrites=true&w=majority
 ```
 
-Also, you are free to create your own MongoDB server if required.
+Also, you are free to create your own [MongoDB server](https://www.mongodb.com/atlas/database) if required.
 
 </br>
 
