@@ -7,8 +7,19 @@
     <img src="https://user-images.githubusercontent.com/63467479/184531915-9a37c1d8-3e2f-43f6-930a-0e483fc72ed3.png" alt="Project Banner" height="100">
   </a>
     <h1>Storz</h1>
-    <p>🏆 Winner of Decentralized Storage Infrastructure & Community Choice Award of Web3 Infinity Hackathon 2022 organized by Protocol Labs, Filecoin Foundation & Force Web3 Community 🌐.</p>
+    <p > Winner of Decentralized Storage Infrastructure & Community Choice Award of Web3 Infinity Hackathon 2022 organized by Protocol Labs, Filecoin Foundation & Force Web3 Community.</p>
 </div>
+
+<br>
+
+<!-- Hacktoberfest 2022 -->
+
+
+## ![Logo](https://user-images.githubusercontent.com/72182438/190960356-25d52729-7111-4584-ab76-2009fdcb212d.svg)       Hacktoberfest 2022
+
+#### For Hacktoberfest contribution please read the [CONTRIBUTING.md](CONTRIBUTING.md) and join our [Discord](https://discord.gg/Z9hbT8RGNG) server.
+
+<br>
 
 <!-- ABOUT THE PROJECT -->
 
@@ -96,7 +107,7 @@ Here is a sneak peek of the application and it's visuals 😍:
 
 <!-- GETTING STARTED -->
 
-# ✅ Quick Start Guide
+## ✅ Quick Start Guide
 
 To get started with having your own instance of Storz, follow the steps described in the following section
 
@@ -127,8 +138,7 @@ cd Storz/server
 npm install
 ```
 ### ⚠️ Important!
-In order to use this for your own purpose, you need the API keys.
-For the passwordless authentication, grab the API keys from [Magic](https://magic.link/). For the IPFS, grab the required API keys from [Infura](https://infura.io/product/ipfs) and for the MongoDB, create a [MongoDB](https://www.mongodb.com/atlas/database) Atlas server and setup the env variables accordingly.
+In order to get the API keys check out [client/README.md](./client/README.md) & [server/README.md](./server/README.md) 
 
 ### Starting the application
 
@@ -142,7 +152,7 @@ npm run build
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-# 📐 How it works
+## 📐 How it works
 
 Here's a diagram explaining exactly how everything fits into place
 
@@ -155,7 +165,7 @@ Here's a diagram explaining exactly how everything fits into place
 
 <!-- CONTRIBUTION -->
 
-# 🤝🏻 Contributing
+## 🤝🏻 Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -172,7 +182,7 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-# ⚡ Our Team
+## 🧑🏽‍💻 Maintainers
 
 <div align="center">
 <img src="https://user-images.githubusercontent.com/63467479/184687819-00b0d401-7687-4406-8bbb-420cda84e4c3.png" width="95%"/>
@@ -182,13 +192,13 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- LICENSE -->
 
-# 🛡️ License
+## 🛡️ License
 
 Distributed under the MIT License. See [`LICENSE.md`](LICENSE.md) for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-# 🥰 Endnote
+## 🥰 Endnote
 
 Just one last thing, if you have reached this far, why not consider giving a star to the repo. This keeps us going, and we love to see that people like our projects, and motivates us to make more of these. With that, thank you loads 😊🥰
 
