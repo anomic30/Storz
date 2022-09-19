@@ -1,11 +1,11 @@
 
 # Steps to get the API keys
 
-We are using [magic.link]("https://magic.link/") to authenticate our users. It is a password-less authentication method which is secure, seamless, scalable & future-proof. It is also decentralized which is perfect for authenticating users in web3 apps.
+We are using [magic.link](https://magic.link/) to authenticate our users. It is a password-less authentication method which is secure, seamless, scalable & future-proof. It is also decentralized which is perfect for authenticating users in web3 apps.
 
 Lets grab the API keys...
 
-### 1. Sign-up and log in to [magic.link]("https://magic.link/"). After logging in, you will be welcome with this screen. Create an app name of your choice.  
+### 1. Sign-up and log in to [magic.link](https://magic.link/). After logging in, you will be welcome with this screen. Create an app name of your choice.  
 <img src="https://user-images.githubusercontent.com/63467479/190847260-6d9c4b86-87ff-48ac-b301-c002eb1f07fa.png">
 
 ### 2. Click on Start with Auth. 
@@ -18,7 +18,7 @@ Lets grab the API keys...
 
 </br>
 
-This project was bootstrapped with [Create React App]("https://github.com/facebook/create-react-app").
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
