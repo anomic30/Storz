@@ -19,7 +19,6 @@
 
 #### For Hacktoberfest contribution please read the [CONTRIBUTING.md](CONTRIBUTING.md) and join our [Discord](https://discord.gg/Z9hbT8RGNG) server.
 
-<br>
 
 <!-- ABOUT THE PROJECT -->
 
@@ -184,8 +183,14 @@ Don't forget to give the project a star! Thanks again!
 
 ## 🧑🏽‍💻 Maintainers
 
-<div align="center">
-<img src="https://user-images.githubusercontent.com/63467479/184687819-00b0d401-7687-4406-8bbb-420cda84e4c3.png" width="95%"/>
+<div align="center" display="flex">
+<a href="https://github.com/anomic30">
+<img src="https://user-images.githubusercontent.com/72182438/190963370-f9ce9b2c-7300-45a0-aa31-18911ed93802.png" width="45%"/>
+</a>
+<a href="https://github.com/Sneakad">
+<img src="https://user-images.githubusercontent.com/72182438/190963366-e349a51c-64c2-4fb8-8293-d0d213f55db5.png" width="45%" />
+</a>
+
 </div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
