@@ -37,7 +37,7 @@ You can get your own fork/copy of this project [Storz](https://github.com/anomic
 ### 4. Ready, Steady, Go... :
 
 Once you have completed these steps, you are ready to start contributing
-by checking our `issues` tab and creating [pull requests](https://github.com/shivaylamba/Hacktoberfest/pulls).
+by checking our [issues tab](https://github.com/anomic30/Storz/issues) and creating [pull requests](https://github.com/anomic30/Storz/pulls).
 
 
 # Steps to make changes and contribute using GIT!
