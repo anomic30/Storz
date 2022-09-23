@@ -25,6 +25,10 @@ Also, you are free to create your own [MongoDB server](https://www.mongodb.com/a
 
 </br>
 
+### ⚠️ If you don't have a credit card and unable to generate the API keys from Infura, join our [Discord](https://discord.gg/Z9hbT8RGNG) and DM an admin to get the keys.
+
+</br>
+
 ## Available Scripts
 
 In the project directory, you can run:
