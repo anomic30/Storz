@@ -1,13 +1,4 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const User = require('./models/user')
-const { v4: uuidv4 } = require('uuid');
-const { Magic } = require('@magic-sdk/admin');
-const authMiddleware = require('./middlewares/authMiddleware');
-const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync, unlinkSync } = require('fs');
-require('dotenv').config();
-const jscrypt = require('jscrypt');
+const cookieParser = require("cookie-parser");
 const { create } = require("ipfs-http-client");
 const fileUpload = require('express-fileupload');
 
@@ -44,6 +35,7 @@ const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
