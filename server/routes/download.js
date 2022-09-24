@@ -1,6 +1,32 @@
 const router = require("express").Router();
 const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync, unlinkSync } = require('fs');
 const jscrypt = require('jscrypt');
+const { Magic } = require('@magic-sdk/admin');
+const User = require('../models/user')
+const { create } = require("ipfs-http-client");
+const path = require('path')
+
+const magic = new Magic(process.env.MAGIC_SECRET_KEY);
+
+const projectId = process.env.INFURA_PROJECT_ID;
+const projectSecret = process.env.INFURA_PROJECT_SECRET;
+const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+
+async function ipfsClient() {
+    const ipfs = await create(
+        {
+            host: "ipfs.infura.io",
+            port: 5001,
+            protocol: "https",
+            headers: {
+                authorization: auth,
+            },
+        }
+    );
+    return ipfs;
+}
+
 async function getFile(cid, encryptedPath) {
     const ipfs = await ipfsClient();
     const asyncitr = ipfs.cat(cid);
@@ -25,8 +51,8 @@ router.get("/api/download/secure/:cid/:auth", async (req, res) => {
         const file = await User.findOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { encryption_key: 1 }).select({ files: { $elemMatch: { cid: cid } } });
         if (file) {
             const fileName = file.files[0].file_name;
-            const encryptedPath = './private/' + fileName;
-            const decryptedPath = './public/' + fileName;
+            const encryptedPath = '../server/private/' + fileName;
+            const decryptedPath = '../server/public/' + fileName;
             await getFile(cid, encryptedPath).then(async() => {
                 try {
                     jscrypt.decryptFile(
@@ -40,7 +66,7 @@ router.get("/api/download/secure/:cid/:auth", async (req, res) => {
                                 console.log(fileName + ' is decrypted successfully!');
                                 console.log("Sending files to the user");
                                 //send the file to the client
-                                res.sendFile(decryptedPath, { root: __dirname });
+                                res.sendFile(path.resolve(decryptedPath));
 
                                 setTimeout(() => {
                                     unlink(decryptedPath, (err) => {
@@ -83,8 +109,8 @@ router.get("/api/download/:cid", async (req, res) => {
         const file = await User.findOne({ files: { $elemMatch: { cid: cid, public: true } } }, { encryption_key: 1 }).select({ files: { $elemMatch: { cid: cid, public: true } } });
         if (file) {
             const fileName = file.files[0].file_name;
-            const encryptedPath = './encrypted/' + fileName;
-            const decryptedPath = './public/' + fileName;
+            const encryptedPath = '../server/encrypted/' + fileName;
+            const decryptedPath = '../server/public/' + fileName;
             await getFile(cid, encryptedPath).then(async() => {
                 try {
                     jscrypt.decryptFile(
@@ -98,7 +124,7 @@ router.get("/api/download/:cid", async (req, res) => {
                                 console.log(fileName + ' is decrypted successfully!');
                                 console.log("Sending files to the user");
                                 //send the file to the client
-                                res.sendFile(decryptedPath, { root: __dirname });
+                                res.sendFile(path.resolve(decryptedPath));
 
                                 setTimeout(() => {
                                     unlink(decryptedPath, (err) => {

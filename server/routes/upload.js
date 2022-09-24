@@ -57,8 +57,8 @@ router.post("/api/upload", authMiddleware, async (req, res) => {
         for (let file of files) {
             // const file = files[i];
             const fileName = file.name;
-            const filePath = './private/' + fileName;
-            const encryptedPath = '../encrypted/' + fileName;
+            const filePath = '../server/private/' + fileName;
+            const encryptedPath = '../server/encrypted/' + fileName;
 
             file.mv(filePath, async (err) => {
                 if (err) {
