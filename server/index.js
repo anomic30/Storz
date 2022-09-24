@@ -277,8 +277,10 @@ app.post("/api/upload", authMiddleware, async (req, res) => {
     }
 })
 
-app.post("/api/user/files", authMiddleware, async (req, res) => {
-    const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
+app.get("/api/user/files", authMiddleware, async (req, res) => {
+  const metadata = await magic.users.getMetadataByToken(
+    req.headers.authorization.substring(7)
+  );
     const magic_id = metadata.issuer;
     const user = await User.findOne({ magic_id: magic_id });
     if (!user) {
