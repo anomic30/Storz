@@ -25,7 +25,13 @@ function MyFiles() {
 
   useEffect(() => {
     setIsLoading(true);
-    Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/files`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
+    Axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/api/user/files`,
+      {
+        withCredentials:true
+      }
+    )
+      .then((res) => {
       console.log(res.data.files);
       setOwner(res.data.owner);
       setFiles(res.data.files);
