@@ -185,9 +185,13 @@ const addFile = async (fileName, filePath) => {
     return fileAdded;
 }
 
-app.post("/api/upload", authMiddleware, async (req, res) => {
-    const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
-    const user = await User.findOne({ magic_id: metadata.issuer }, { encryption_key: 1 });
+app.post("/api/upload", authenticate, async (req, res) => {
+  const { didToken } = req.cookies;
+  const metadata = await magic.users.getMetadataByToken(didToken);
+  const user = await User.findOne(
+    { magic_id: metadata.issuer },
+    { encryption_key: 1 }
+  );
     console.log(user);
     if (metadata.issuer === "") {
         return res.status(500).json({ error: "User is not authenticated" });
