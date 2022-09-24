@@ -1,7 +1,7 @@
 const { Magic } = require("@magic-sdk/admin");
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
-const authMiddleware = async (req, res, next) => {
+const authenticate = async (req, res, next) => {
   console.log("Auth middleware 2 called");
   try {
     const { didToken } = req.cookies;
@@ -12,4 +12,4 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+module.exports = authenticate;
