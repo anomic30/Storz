@@ -14,4 +14,9 @@ module.exports = class User {
   static async count() {
     return await UserModel.count();
   }
+
+  static async updateOne(fieldFilter = {}, updates = {}) {
+    return await UserModel.UpdateOne(fieldFilter, updates);
+  }
+
 }
