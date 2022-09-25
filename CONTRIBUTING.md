@@ -5,7 +5,7 @@
 
 # Welcome to Hacktoberfest !!!
 
-Hello coders! this year, we are proud to open-source our hackathon project. We welcome everyone to join our quest and contribute in this next-gen web3 project. Join our [Discord](https://discord.gg/Z9hbT8RGNG) server for all the latest updates regarding the contributions
+Hello coders! this year, we are proud to open-source our hackathon project. We welcome everyone to join our quest and contribute in this next-gen web3 project. Join our [Discord](https://discord.gg/Z9hbT8RGNG) server for all the latest updates regarding the contributions.
 
 
 ### Also, get yourself free goodies after a successful pull/merge request!
@@ -38,6 +38,8 @@ You can get your own fork/copy of this project [Storz](https://github.com/anomic
 
 Once you have completed these steps, you are ready to start contributing
 by checking our [issues tab](https://github.com/anomic30/Storz/issues) and creating [pull requests](https://github.com/anomic30/Storz/pulls).
+
+### For no-code/low-code contributions, we would soon update you all in our [Discord](https://discord.gg/Z9hbT8RGNG) server.
 
 
 # Steps to make changes and contribute using GIT!
