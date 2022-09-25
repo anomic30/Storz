@@ -1,4 +1,4 @@
-const { createWriteStream, unlink } = require('fs');
+const { createWriteStream, unlink, readFileSync } = require('fs');
 const jscrypt = require('jscrypt');
 const { Magic } = require('@magic-sdk/admin');
 const { create } = require("ipfs-http-client");
@@ -47,6 +47,7 @@ const addFile = async (fileName, filePath) => {
     const file = readFileSync(filePath);
     const ipfs = await ipfsClient();
     const fileAdded = await ipfs.add({ path: fileName, content: file });
+    console.log(fileAdded)
     return fileAdded;
 }
 
@@ -60,7 +61,7 @@ module.exports = class DownloadController{
         const magic_id = metadata.issuer;
     
         try {
-            const file = await User.findOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { encryption_key: 1 }).select({ files: { $elemMatch: { cid: cid } } });
+            const file = await User.findOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { encryption_key: 1 }).select({ files: { $elemMatch: { cid: cid } } }); 
             if (file) {
                 const fileName = file.files[0].file_name;
                 const encryptedPath = '../server/private/' + fileName;
@@ -175,7 +176,7 @@ module.exports = class DownloadController{
     static async upload(req, res){
         const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
         const user = await User.findOne({ magic_id: metadata.issuer }, { encryption_key: 1 });
-        console.log(user);
+        // console.log(user);
         if (metadata.issuer === "") {
             return res.status(500).json({ error: "User is not authenticated" });
         }
@@ -190,6 +191,7 @@ module.exports = class DownloadController{
             //iterate req.files and move it to test folder
             for (let file of files) {
                 // const file = files[i];
+                
                 const fileName = file.name;
                 const filePath = '../server/private/' + fileName;
                 const encryptedPath = '../server/encrypted/' + fileName;
@@ -215,7 +217,6 @@ module.exports = class DownloadController{
                                     console.log("Adding files to IFPS in next step")
                                     const fileAdded = await addFile(fileName, encryptedPath);
                                     console.log(fileAdded);
-    
                                     let upData = {
                                         file_name: fileAdded.path,
                                         public: false,
@@ -224,8 +225,8 @@ module.exports = class DownloadController{
                                         file_size: fileAdded.size
                                     };
                                     uploadList.push(upData);
-                                    await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: upData } });
-    
+                                    let uupd = await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: upData } });
+                                        console.log(uupd);
                                     unlink(filePath, (err) => {
                                         if (err) {
                                             console.log(err);
