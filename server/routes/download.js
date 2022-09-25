@@ -1,9 +1,9 @@
 const router = require("express").Router();
 
-const {DownloadController} = require('../controllers')
+const {FileController} = require('../controllers')
 
-router.get("/api/download/secure/:cid/:auth", DownloadController.secureDownload)
+router.get("/api/download/secure/:cid/:auth", FileController.secureDownload)
 
-router.get("/api/download/:cid", DownloadController.download)
+router.get("/api/download/:cid", FileController.download)
 
 module.exports = router
