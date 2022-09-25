@@ -87,9 +87,9 @@ function Signin() {
         let userMetadata = await magic.user.getMetadata();
         await setUser(userMetadata);
         let newDidToken = await magic.user.getIdToken({ lifespan: 24 * 60 * 60 * 7 });
-        window.localStorage.setItem("didToken", newDidToken);
+        // window.localStorage.setItem("didToken", newDidToken);
         // cookie.set("didToken", newDidToken);
-        await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/create`, { magic_id: userMetadata.issuer, user_name: userName, email: email }, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then((res) => {
+        await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/create`, { magic_id: userMetadata.issuer, user_name: userName, email: email }, { headers: { Authorization: 'Bearer ' + newDidToken } }).then((res) => {
           console.log(res.data);
         }).catch((err) => {
           console.log(err);
