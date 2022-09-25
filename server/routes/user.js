@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const authMiddleware = require("../middlewares/authMiddleware");
+const authenticate=require("../middlewares/authenticate")
 const User = require('../models/user')
 const { Magic } = require('@magic-sdk/admin');
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
@@ -19,7 +20,7 @@ router.post('/api/user/check', async (req, res) => {
 })
 
 
-router.post("/api/user/files", authMiddleware, async (req, res) => {
+router.post("/api/user/files", authenticate, async (req, res) => {
     const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
     const magic_id = metadata.issuer;
     const user = await User.findOne({ magic_id: magic_id });
