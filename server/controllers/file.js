@@ -61,7 +61,7 @@ module.exports = class DownloadController{
         const magic_id = metadata.issuer;
     
         try {
-            const file = await User.findOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { encryption_key: 1 }).select({ files: { $elemMatch: { cid: cid } } }); 
+            const file = await User.findOneBySelection({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { encryption_key: 1 }, { files: { $elemMatch: { cid: cid } } }); 
             if (file) {
                 const fileName = file.files[0].file_name;
                 const encryptedPath = '../server/private/' + fileName;
@@ -119,7 +119,7 @@ module.exports = class DownloadController{
     static async download(req, res){
         const cid = req.params.cid;
         try {
-            const file = await User.findOne({ files: { $elemMatch: { cid: cid, public: true } } }, { encryption_key: 1 }).select({ files: { $elemMatch: { cid: cid, public: true } } });
+            const file = await User.findOneBySelection({ files: { $elemMatch: { cid: cid, public: true } } }, { encryption_key: 1 }, { files: { $elemMatch: { cid: cid, public: true } } });
             if (file) {
                 const fileName = file.files[0].file_name;
                 const encryptedPath = '../server/encrypted/' + fileName;
@@ -225,8 +225,7 @@ module.exports = class DownloadController{
                                         file_size: fileAdded.size
                                     };
                                     uploadList.push(upData);
-                                    let uupd = await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: upData } });
-                                        console.log(uupd);
+                                    await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: upData } });  
                                     unlink(filePath, (err) => {
                                         if (err) {
                                             console.log(err);

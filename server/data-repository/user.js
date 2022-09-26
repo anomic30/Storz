@@ -2,7 +2,7 @@ const UserModel = require('../models/user')
 
 module.exports = class User {
 
-  static async findOne(fields = {}, sort = { _id: 1 }) {
+  static async findOne(fields = {}, sort = { magic_id: 1 }) {
     return UserModel.findOne(fields).sort(sort);
   }
 
@@ -18,5 +18,8 @@ module.exports = class User {
   static async updateOne(fieldFilter = {}, updates = {}) {
     return UserModel.UpdateOne(fieldFilter, updates);
   }
-
+  
+  static async findOneBySelection(fieldFilter = {}, sort={}, selectOption={}){
+    return UserModel.FindOne(fieldFilter, sort).select(selectOption);
+  }
 }
