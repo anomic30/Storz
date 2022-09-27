@@ -6,6 +6,8 @@ const User = require('../models/user')
 const { create } = require("ipfs-http-client");
 const path = require('path')
 
+const {decryptFile} = require('../utils/storzcrypt')
+
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
 const projectId = process.env.INFURA_PROJECT_ID;
@@ -111,47 +113,85 @@ router.get("/api/download/:cid", async (req, res) => {
             const fileName = file.files[0].file_name;
             const encryptedPath = '../server/encrypted/' + fileName;
             const decryptedPath = '../server/public/' + fileName;
-            await getFile(cid, encryptedPath).then(async() => {
-                try {
-                    jscrypt.decryptFile(
-                        encryptedPath,
-                        decryptedPath,
-                        "aes256",
-                        file.encryption_key,
-                        655000,
-                        (isDone) => {
-                            if (isDone === true) {
-                                console.log(fileName + ' is decrypted successfully!');
-                                console.log("Sending files to the user");
-                                //send the file to the client
-                                res.sendFile(path.resolve(decryptedPath));
+            
+            await getFile(cir, encryptedPath).then(async () => {
+                await decryptFile(
+                    encryptedPath,
+                    decryptedPath,
+                    "aes256",
+                    file.encryption_key,
+                    655000,
+                    (isDone) => {
+                        if (isDone === true) {
+                            console.log(fileName + ' is decrypted successfully!');
+                            console.log("Sending files to the user");
+                            //send the file to the client
+                            res.sendFile(path.resolve(decryptedPath));
 
-                                setTimeout(() => {
-                                    unlink(decryptedPath, (err) => {
-                                        if (err) {
-                                            console.log(err);
-                                        }
-                                        console.log(decryptedPath + ' is deleted!');
-                                    })
+                            setTimeout(() => {
+                                unlink(decryptedPath, (err) => {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                    console.log(decryptedPath + ' is deleted!');
+                                })
 
-                                    unlink(encryptedPath, (err) => {
-                                        if (err) {
-                                            console.log(err);
-                                        }
-                                        console.log(encryptedPath + ' is deleted!');
-                                    })
-                                }, 2 * 60 * 1000)
-                            }
-                            else {
-                                console.log("File decryption in progress...");
-                            }
+                                unlink(encryptedPath, (err) => {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                    console.log(encryptedPath + ' is deleted!');
+                                })
+                            }, 2 * 60 * 1000)
                         }
-                    )
-                } catch (err) {
-                    console.log(err);
-                    return res.status(500).json({ error: err.message });
-                }
+                        else {
+                            console.log("File decryption in progress...");
+                        }
+                    }
+                )
             })
+            
+            // await getFile(cid, encryptedPath).then(async() => {
+            //     try {
+            //         jscrypt.decryptFile(
+            //             encryptedPath,
+            //             decryptedPath,
+            //             "aes256",
+            //             file.encryption_key,
+            //             655000,
+            //             (isDone) => {
+            //                 if (isDone === true) {
+            //                     console.log(fileName + ' is decrypted successfully!');
+            //                     console.log("Sending files to the user");
+            //                     //send the file to the client
+            //                     res.sendFile(path.resolve(decryptedPath));
+
+            //                     setTimeout(() => {
+            //                         unlink(decryptedPath, (err) => {
+            //                             if (err) {
+            //                                 console.log(err);
+            //                             }
+            //                             console.log(decryptedPath + ' is deleted!');
+            //                         })
+
+            //                         unlink(encryptedPath, (err) => {
+            //                             if (err) {
+            //                                 console.log(err);
+            //                             }
+            //                             console.log(encryptedPath + ' is deleted!');
+            //                         })
+            //                     }, 2 * 60 * 1000)
+            //                 }
+            //                 else {
+            //                     console.log("File decryption in progress...");
+            //                 }
+            //             }
+            //         )
+            //     } catch (err) {
+            //         console.log(err);
+            //         return res.status(500).json({ error: err.message });
+            //     }
+            // })
         } else {
             return res.status(200).sendFile("../private/hacker.png", { root: __dirname });
         }
