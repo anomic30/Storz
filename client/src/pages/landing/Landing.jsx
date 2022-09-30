@@ -27,6 +27,10 @@ function Landing() {
         Aos.init({duration:1000})
     },[]);
 
+    const handleOnMouseOver = event => {
+        event.target.style.cursor = 'default'
+    }
+
     return (
         <motion.div className='landing-con' 
         initial={{ opacity: 0 }}
@@ -37,7 +41,7 @@ function Landing() {
             <img src={landing_gradient} alt="" className='landing-gradient' />
             <img src={feature_gradient} alt="" className='landing-center' />
             <div className="landing-navbar">
-                <div className="logo-box">
+                <div className="logo-box" onMouseOver={handleOnMouseOver}>
                     <img src={app_logo} alt="" />
                     <p>Storz</p>
                 </div>
