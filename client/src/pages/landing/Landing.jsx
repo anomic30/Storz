@@ -15,6 +15,7 @@ import landing_right from '../../assets/images/landing-right.png'
 import globe from '../../assets/images/new-globe.png'
 import map from '../../assets/images/map.png'
 import discord_logo from '../../assets/icons/discord.png'
+import github_logo from '../../assets/icons/github.svg'
 import { motion } from 'framer-motion'
 
 
@@ -111,8 +112,11 @@ function Landing() {
                     <div className='logo-box'>
                         <img src={app_logo} alt="" />
                     </div>
-                    <p>©2022 Storz</p>
-                    <a href="https://discord.gg/Z9hbT8RGNG" className='join-link'  target="_blank" rel='noreferrer'><img className='disc' src={discord_logo} alt="" /></a>
+                <p>©2022 Storz</p>
+                <div className='socials-con'>
+                    <a href="https://discord.gg/Z9hbT8RGNG" className='join-link' target="_blank" rel='noreferrer'><img className='disc' src={discord_logo} alt="Discord" /></a>
+                    <a href="https://github.com/anomic30/Storz" className='join-link'  target="_blank" rel='noreferrer'><img className='disc' src={github_logo} alt="GitHub" /></a>
+                </div>
                     
             </div>
         </motion.div>
