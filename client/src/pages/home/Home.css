@@ -175,7 +175,7 @@
 
 .glass-file-name {
     max-width: 60%;
-
+    overflow-wrap: break-word;
 }
 
 .glass-row .right {
