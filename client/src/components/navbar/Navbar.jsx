@@ -37,6 +37,7 @@ function Navbar() {
     }
 
     return (
+        <nav>
         <div className='Navbar'>
             <div className="navbar-content">
                 <div className="logo-box" onClick={() => { navigate('/') }}>
@@ -69,6 +70,7 @@ function Navbar() {
                 </div>
             </div>
         </div>
+    </nav>
     )
 }
 
