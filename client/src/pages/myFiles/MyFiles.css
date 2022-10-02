@@ -70,10 +70,6 @@
     width: 70%;
 }
 
-#size-col {
-	text-align: center;
-}
-
 tbody img{
     width: 20px;
     height: 20px;
@@ -177,8 +173,8 @@ tbody .visible{
 	.table-con tbody tr td:nth-child(1) {
 		display: none;
 	}
-	.table-con thead tr th:nth-child(2) {
-		padding-left: 0;
+	.table-con thead tr th {
+		padding-left: 0.2rem;
 	}
     .first-col{
         width: 30%;
