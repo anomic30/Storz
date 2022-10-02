@@ -50,6 +50,10 @@
     color: white;
 }
 
+.table-con tbody * {
+    white-space: nowrap;
+}
+
 .table-con tbody tr{
     font-family: PolySans Slim;
     height:45px;
