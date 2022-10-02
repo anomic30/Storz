@@ -14,9 +14,7 @@ Lets grab the API keys...
 ### 3. Now copy the publishable API Key and paste it inside the .env file of the client folder. You will also need the secret key for the server later. 
 <img src="https://user-images.githubusercontent.com/63467479/190847663-e7a8544f-abda-4d9f-a7e1-40dd6633e636.png">
 
-### 4. Add the publishable API key to the .env file of the client folder.
-
-### 5. Rename the .env.example file to .env.
+### 4. Rename the .env.example file to .env.
 
 ## Available Scripts
 
