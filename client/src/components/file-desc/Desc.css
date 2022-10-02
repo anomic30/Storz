@@ -254,8 +254,32 @@
     }
 }
 
+@media  screen and (max-width: 515px) {
+    .file-actions{
+        display: grid;
+        gap: 1rem
+    }
+}
+
+@media  screen and (max-width: 880px) {
+    .glass-file-desc{
+        box-sizing: border-box;
+        max-width: 80%;
+    }
+    .outline-con{
+        max-width: 80%;                                                                         
+    }
+}
+
 @media screen and (max-width: 1000px){
     .glass-file-desc{
         box-sizing: border-box;
+    }
+
+}
+
+@media screen and (max-width: 1440px) {
+    .file-name{
+        word-break: break-all;
     }
 }
