@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './MyFiles.css'
 import search_icon from '../../assets/icons/search.png'
 import Axios from 'axios'
-import Cookies from 'universal-cookie';
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import file_icon from '../../assets/icons/file-icons/normal-file.png'
@@ -74,10 +73,10 @@ function MyFiles() {
                     return val.file_name.toLowerCase().includes(search.toLowerCase());
                   }).map((val, idx) => {
                     return <tr className='file-row' key={idx} onClick={() => navigate("/app/myFiles/desc", { state: { val, owner } })}>
-                      <td><img src={file_icon} alt="" /></td>
+                      <td><img src={file_icon} alt="file-marker" /></td>
                       <td id='first-col'>{val.file_name ? val.file_name : "test.png"}</td>
                       <td>{val.public ? <Tippy content="Public" placement='left'><img className="visible" src={eye_icon} alt="public" /></Tippy> : ''}</td>
-                      <td>{val.file_size ? formatBytes(val.file_size) : "69"}</td>
+                      <td id='size-col'>{val.file_size ? formatBytes(val.file_size) : "69"}</td>
                       <td>{val.file_creationDate ? formatDates(val.file_creationDate) : "2045/08/30"}</td>
                     </tr>
                   })}

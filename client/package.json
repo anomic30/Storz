@@ -9,6 +9,7 @@
     "@tippyjs/react": "^4.2.6",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
+    "dotenv": "^16.0.3",
     "file-saver": "^2.0.5",
     "framer-motion": "^6.4.3",
     "magic-sdk": "^8.1.1",

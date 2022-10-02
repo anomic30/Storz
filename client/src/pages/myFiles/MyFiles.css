@@ -24,8 +24,10 @@
 }
 
 .table-glass{
+	box-sizing: border-box;
     width: 800px;
     padding: 30px;
+	margin: 0 1rem;
     border-radius: 1rem;
     background-color: rgba(255, 255, 255, 0.13);
     backdrop-filter: blur(10px);
@@ -41,11 +43,15 @@
     text-align: left;
     height: 22px;
     border-bottom: 2px solid #999999;
-    padding-bottom: 6px;
+    padding: 0 1rem 6px 1rem;
 }
 
 .table-con tbody{
     color: white;
+}
+
+.table-con tbody * {
+    white-space: nowrap;
 }
 
 .table-con tbody tr{
@@ -55,6 +61,7 @@
 }
 
 .table-con tbody tr td{
+	padding: 0 1rem;
     font-size: var(--font-size-md);
     border-bottom: 1px solid #999999 !important;
 }
@@ -147,11 +154,28 @@ tbody .visible{
 
 @media screen and (max-width: 800px) {
     .tablr-con{
-        width: 100%;
+        width: calc(100% - 2rem);
+		text-overflow: ellipsis;
     }
+	.tablr-con th {
+		font-size: var(--font-size-md);
+	}
     .table-glass{
         margin: 20px;
     }
+	.table-con tbody * {
+		font-size: var(--font-size-sm) !important;
+	}
+	.table-con tbody tr td {
+		padding: 0px 0.2rem;
+	}
+	.table-con thead tr th:nth-child(1),
+	.table-con tbody tr td:nth-child(1) {
+		display: none;
+	}
+	.table-con thead tr th {
+		padding-left: 0.2rem;
+	}
     .first-col{
         width: 30%;
     }
