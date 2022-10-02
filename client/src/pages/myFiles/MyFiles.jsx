@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './MyFiles.css'
 import search_icon from '../../assets/icons/search.png'
 import Axios from 'axios'
-import Cookies from 'universal-cookie';
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import file_icon from '../../assets/icons/file-icons/normal-file.png'
