@@ -144,7 +144,22 @@ tbody .visible{
     cursor: pointer;
 }
 
-
+.pagignation{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    cursor: pointer;
+}
+.li{
+    margin: 0 5px;
+}
+.active-page{
+    color: beige;
+}
 @media screen and (max-width: 800px) {
     .tablr-con{
         width: 100%;

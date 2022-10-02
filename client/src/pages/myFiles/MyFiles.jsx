@@ -11,6 +11,7 @@ import eye_icon from '../../assets/icons/eye.png'
 import { useNavigate } from 'react-router-dom'
 import { formatBytes } from '../../utils/formatBytes'
 import { formatDates } from '../../utils/formatDates';
+import ReactPaginate from "react-paginate";
 import { motion } from 'framer-motion'
 
 const tableHeaders = [
@@ -18,11 +19,10 @@ const tableHeaders = [
 ]
 
 function MyFiles() {
-  const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [owner, setOwner] = useState("");
   const [search, setSearch] = useState("");
+  const [owner, setOwner] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -35,7 +35,7 @@ function MyFiles() {
       setIsLoading(false);
       console.log(err);
     })
-  }, [])
+  }, []);
 
   return (
     <motion.div className='MyFiles'
@@ -59,34 +59,73 @@ function MyFiles() {
           <div className='spinner-con'>
             <img src={spinner} alt="Loading..." />
           </div> :
-          <div className="table-con">
-            <div className="table-glass">
-              <table>
-                <thead>
-                  <tr >
-                    {tableHeaders.map((val, idx) => {
-                      return <th className='file-row' key={idx}>{val}</th>
-                    })}
-                  </tr>
-                </thead>
-                <tbody>
-                  {files.length > 0 && files.filter(val => {
-                    return val.file_name.toLowerCase().includes(search.toLowerCase());
-                  }).map((val, idx) => {
-                    return <tr className='file-row' key={idx} onClick={() => navigate("/app/myFiles/desc", { state: { val, owner } })}>
-                      <td><img src={file_icon} alt="" /></td>
-                      <td id='first-col'>{val.file_name ? val.file_name : "test.png"}</td>
-                      <td>{val.public ? <Tippy content="Public" placement='left'><img className="visible" src={eye_icon} alt="public" /></Tippy> : ''}</td>
-                      <td>{val.file_size ? formatBytes(val.file_size) : "69"}</td>
-                      <td>{val.file_creationDate ? formatDates(val.file_creationDate) : "2045/08/30"}</td>
-                    </tr>
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>}
+         <PagignatedFiles 
+            files={files} 
+            owner={owner} 
+            search={search} 
+            itemsPerPage={2}
+          />
+        }
       </div>
     </motion.div>)
 }
+const PagignatedFiles=({files,owner,search,itemsPerPage})=>{
+  
+  const navigate = useNavigate();
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(files.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(files.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage]);
 
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % files.length;
+    setItemOffset(newOffset);
+  };
+  return (
+      <div className="table-con">
+        <div className="table-glass">
+            <table>
+                <thead>
+                    <tr >
+                      {tableHeaders.map((val, idx) => {
+                        return <th className='file-row' key={idx}>{val}</th>
+                      })}
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentItems.length > 0 && currentItems.filter(val => {
+                      return val.file_name.toLowerCase().includes(search.toLowerCase());
+                    }).map((val, idx) => {
+                      return (
+                        <tr className='file-row' key={idx} onClick={() => navigate("/app/myFiles/desc", { state: { val, owner } })}>
+                            <td><img src={file_icon} alt="" /></td>
+                            <td id='first-col'>{val.file_name ? val.file_name : "test.png"}</td>
+                            <td>{val.public ? <Tippy content="Public" placement='left'><img className="visible" src={eye_icon} alt="public" /></Tippy> : ''}</td>
+                            <td>{val.file_size ? formatBytes(val.file_size) : "69"}</td>
+                            <td>{val.file_creationDate ? formatDates(val.file_creationDate) : "2045/08/30"}</td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+            </table>
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={files.length}
+              pageCount={pageCount}
+              previousLabel="<"
+              renderOnZeroPageCount={null}
+              className="pagignation"
+              pageClassName="li"
+              activeClassName="active-page"
+            />
+        </div>
+    </div>
+  );
+}
 export default MyFiles
