@@ -37,38 +37,40 @@ function Navbar() {
     }
 
     return (
-        <div className='Navbar'>
-            <div className="navbar-content">
-                <div className="logo-box" onClick={() => { navigate('/') }}>
-                    <img src={app_logo} alt="" />
-                    <p>Storz</p>
-                </div>
-                <div className="right-con">
-                    <div className="link-box">
-                        <div className="link-con">
-                            {/* <img src={home_icon} alt="" /> */}
-                            <NavLink to="/app/home" style={({ isActive }) => ({
-                                color: isActive ? '#FFFFFF' : '#C8C8C8',
-                            })}>Home</NavLink>
-                        </div>
-                        <div className="link-con">
-                            {/* <img src={files_icon} alt="" /> */}
-                            <NavLink to="/app/myFiles" style={({ isActive }) => ({
-                                color: isActive ? '#FFFFFF' : '#C8C8C8',
-                            })}>Files</NavLink>
-                        </div>
-                        <div></div>
+        <nav>
+            <div className='Navbar'>
+                <div className="navbar-content">
+                    <div className="logo-box" onClick={() => { navigate('/') }}>
+                        <img src={app_logo} alt="" />
+                        <p>Storz</p>
                     </div>
-                    {/* <button onClick={testApi}>Test API</button> */}
-                    <Tippy content="Logout" placement='right'>
-                    <div className="logout-btn" onClick={logout}>
-                        <img src={logout_icon} alt="" />
-                    </div>
-                    </Tippy>
+                    <div className="right-con">
+                        <div className="link-box">
+                            <div className="link-con">
+                                {/* <img src={home_icon} alt="" /> */}
+                                <NavLink to="/app/home" style={({ isActive }) => ({
+                                    color: isActive ? '#FFFFFF' : '#C8C8C8',
+                                })}>Home</NavLink>
+                            </div>
+                            <div className="link-con">
+                                {/* <img src={files_icon} alt="" /> */}
+                                <NavLink to="/app/myFiles" style={({ isActive }) => ({
+                                    color: isActive ? '#FFFFFF' : '#C8C8C8',
+                                })}>Files</NavLink>
+                            </div>
+                            <div></div>
+                        </div>
+                        {/* <button onClick={testApi}>Test API</button> */}
+                        <Tippy content="Logout" placement='right'>
+                        <div className="logout-btn" onClick={logout}>
+                            <img src={logout_icon} alt="" />
+                        </div>
+                        </Tippy>
                     
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
     )
 }
 
