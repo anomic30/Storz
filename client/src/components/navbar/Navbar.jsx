@@ -13,11 +13,10 @@ import Axios from "axios";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
-function Navbar() {
+function Navbar({ setLogoutModal, logoutModal }) {
   const navigate = useNavigate();
   const cookie = new Cookies();
 
-  const [logoutModal, setLogoutModal] = useState(false);
   const [user, setUser] = useContext(UserContext);
 
   const logout = () => {
@@ -27,11 +26,11 @@ function Navbar() {
       // cookie.remove("didToken");
       navigate("/");
     });
+    setLogoutModal(false);
   };
 
   const logoutPopup = () => {
     setLogoutModal(true);
-    document.body.style.opacity = 0.9
   };
 
   const cancelLogout = () => {
@@ -59,7 +58,7 @@ function Navbar() {
   return (
     <nav>
       <div className="Navbar">
-        <div className="navbar-content">
+        <div className={`navbar-content ${logoutModal ? "bg-blur" : ""}`}>
           <div
             className="logo-box"
             onClick={() => {
@@ -103,9 +102,7 @@ function Navbar() {
             </Tippy>
           </div>
         </div>
-        <div
-          className={`${logoutModal ? "logout" : "hide"}`}
-        >
+        <div className={`${logoutModal ? "logout" : "hide"}`}>
           <p>Are you sure you want to log out?</p>
           <div>
             <button className="cancel_button" onClick={cancelLogout}>
@@ -118,7 +115,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navbar;

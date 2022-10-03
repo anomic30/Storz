@@ -224,6 +224,14 @@
     background-color: var(--primary-color-dark);
 }
 
+.bg-blur {
+    opacity: 0.4;
+}
+
+.bg-opaque{
+    opacity: 1;
+}
+
 @media screen and (max-width: 1350px ){
     .gradient-triangle{
         display: none;

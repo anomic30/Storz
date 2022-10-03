@@ -16,7 +16,7 @@ const tableHeaders = [
   '', 'Name', '', 'Size', 'Date'
 ]
 
-function MyFiles() {
+function MyFiles({logoutModal}) {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,9 +37,7 @@ function MyFiles() {
   }, [])
 
   return (
-    <motion.div className='MyFiles'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+    <motion.div className={`MyFiles ${logoutModal ? 'bg-blur':'bg-opaque'}`}
       transition={{ duration: 0.2 }}>
       <div>
         <div className="file-header">

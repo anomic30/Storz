@@ -72,7 +72,7 @@
 
 .logout {
     position: fixed;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: 200px;
@@ -83,7 +83,7 @@
     justify-content: space-between;
     align-items: center;
     background:
-    linear-gradient(rgb(6, 6, 6) 0 0) padding-box,
+    linear-gradient(rgb(32, 31, 31) 0 0) padding-box,
     linear-gradient(to right, #00939c, #00ffa8) border-box;
     border: 2px solid transparent;
     border-radius: 10px;
@@ -115,12 +115,12 @@
     width: 105px;
     height: 40px;
     background:
-    linear-gradient(rgb(6, 6, 6) 0 0) padding-box,    
+    linear-gradient(rgb(32,31,31) 0 0) padding-box,    
     linear-gradient(to right, #00939c, #00ffa8) border-box;
     border: 1.5px solid transparent;
     border-radius: 3px;
     display: inline-block;
-    font-weight: 600;
+    font-weight: 750;
     word-spacing: 0px;
 }
 
@@ -131,7 +131,7 @@
     width: 105px;
     color: #999;
     height: 40px;
-    background-color: black;
+    background-color: rgb(32, 31, 31);
     font-weight: 600;
 }
 
