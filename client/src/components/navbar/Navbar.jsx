@@ -27,17 +27,15 @@ function Navbar() {
       // cookie.remove("didToken");
       navigate("/");
     });
-    document.body.style.opacity = 1;
   };
 
   const logoutPopup = () => {
     setLogoutModal(true);
-    document.body.style.opacity = 0.5;
+    document.body.style.opacity = 0.9
   };
 
   const cancelLogout = () => {
     setLogoutModal(false);
-    document.body.style.opacity = 1;
   };
 
   const testApi = async () => {
@@ -107,9 +105,8 @@ function Navbar() {
         </div>
         <div
           className={`${logoutModal ? "logout" : "hide"}`}
-          style={{ opacity: 1 }}
         >
-          <p>Are you sure you want to logout?</p>
+          <p>Are you sure you want to log out?</p>
           <div>
             <button className="cancel_button" onClick={cancelLogout}>
               CANCEL

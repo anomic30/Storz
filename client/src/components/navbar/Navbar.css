@@ -75,12 +75,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 175px;
-    width: 400px;
+    height: 200px;
+    width: 450px;
     z-index: 999;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background:
     linear-gradient(rgb(6, 6, 6) 0 0) padding-box,
@@ -92,10 +92,11 @@
 .logout >p {
     color: azure;
     text-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
-    font-family: PolySans-Bulky;
+    font-family: PolySans Bulky;
     font-size: 24px;
     text-align: center;
     color: #fff;
+    padding-top: 30px;
 }
 
 .logout >div{
@@ -103,6 +104,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    padding-bottom: 25px;
 }
 
 .log-out_button {
@@ -111,13 +113,15 @@
     color:#00ffa8;
     font-size: 16px;
     width: 105px;
-    height: 30px;
+    height: 40px;
     background:
     linear-gradient(rgb(6, 6, 6) 0 0) padding-box,    
     linear-gradient(to right, #00939c, #00ffa8) border-box;
     border: 1.5px solid transparent;
     border-radius: 3px;
     display: inline-block;
+    font-weight: 600;
+    word-spacing: 0px;
 }
 
 .cancel_button {
@@ -126,8 +130,9 @@
     font-size: 16px;
     width: 105px;
     color: #999;
-    height: 30px;
+    height: 40px;
     background-color: black;
+    font-weight: 600;
 }
 
 /* Ipad */
@@ -142,15 +147,10 @@
         font-size: 16px;
     }
 
-    .cancel_button {
+    .cancel_button,.log-out_button {
         font-size: 10px;
         width: 75px;
-        height: 20px;
-    }
-
-    .log-out_button {
-        font-size: 10px;
-        width: 75px;
-        height: 20px;
+        height: 25px;
+        border-radius: 5px;
     }
 }
