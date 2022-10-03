@@ -122,6 +122,8 @@ const PagignatedFiles=({files,owner,search,itemsPerPage})=>{
               className="pagignation"
               pageClassName="li"
               activeClassName="active-page"
+              previousClassName='prevarrow'
+              nextClassName='nxtarrow'
             />
         </div>
     </div>
