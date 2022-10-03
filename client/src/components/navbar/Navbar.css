@@ -66,8 +66,91 @@
     color: #C8C8C8;
 }
 
+.hide {
+    display: none;
+}
+
+.logout {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 175px;
+    width: 400px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background:
+    linear-gradient(rgb(6, 6, 6) 0 0) padding-box,
+    linear-gradient(to right, #00939c, #00ffa8) border-box;
+    border: 2px solid transparent;
+    border-radius: 10px;
+}
+
+.logout >p {
+    color: azure;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+    font-family: PolySans-Bulky;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+}
+
+.logout >div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.log-out_button {
+    align-items: center;
+    border-radius: 8px !important;
+    color:#00ffa8;
+    font-size: 16px;
+    width: 105px;
+    height: 30px;
+    background:
+    linear-gradient(rgb(6, 6, 6) 0 0) padding-box,    
+    linear-gradient(to right, #00939c, #00ffa8) border-box;
+    border: 1.5px solid transparent;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.cancel_button {
+    border-radius: 8px;
+    border: solid 1.5px #999;
+    font-size: 16px;
+    width: 105px;
+    color: #999;
+    height: 30px;
+    background-color: black;
+}
+
 /* Ipad */
 
-@media screen and (max-width: 820px) {
-    
+@media screen and (max-width: 450px) {
+    .logout{
+       width: 280px;
+       height: 125px;
+    }
+
+    .logout >p{
+        font-size: 16px;
+    }
+
+    .cancel_button {
+        font-size: 10px;
+        width: 75px;
+        height: 20px;
+    }
+
+    .log-out_button {
+        font-size: 10px;
+        width: 75px;
+        height: 20px;
+    }
 }
