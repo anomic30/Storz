@@ -6,7 +6,8 @@ import { magic } from './utils/magic';
 import { useEffect, useState } from 'react';
 
 import Cookies from 'universal-cookie';
-import AnimatedRoutes from '../src/components/AnimatedRoutes'
+import AnimatedRoutes from '../src/components/AnimatedRoutes';
+import GoToTop from './pages/goToTop';
 
 function App() {
   const cookie = new Cookies();
@@ -38,6 +39,7 @@ function App() {
             <AnimatedRoutes/>
         </Router>
       </UserContext.Provider>
+      <GoToTop/>
     </div>
   );
 }
