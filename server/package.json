@@ -21,6 +21,8 @@
     "ipfs-http-client": "^56.0.3",
     "jscrypt": "^1.1.1",
     "mongoose": "^6.4.0",
+    "morgan": "^1.10.0",
+    "pino": "^8.6.1",
     "uuid": "^8.3.2",
     "xss-clean": "^0.1.1"
   },
