@@ -26,7 +26,8 @@
     "three": "^0.141.0",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
-    "web3.storage": "^4.3.0"
+    "web3.storage": "^4.3.0",
+    "winston": "^3.8.2"
   },
   "scripts": {
     "start": "react-scripts start",
