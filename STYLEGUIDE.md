@@ -18,6 +18,15 @@ Click [here](https://user-images.githubusercontent.com/72182438/193612772-cde3fb
 
 <br>
 
+## Typography
+
+Font-family - PolySans
+
+<img src="https://user-images.githubusercontent.com/72182438/193830524-61876b61-2bcb-4494-8dae-f8d140321372.png" alt="logo" width="70%">
+
+
+You can find it [here](./client/src/assets/fonts/)
+
 
 
 
