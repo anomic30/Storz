@@ -22,7 +22,7 @@
     cursor: pointer;
 }
 
-.butter-bar p{
+.butter-bar p:not(#back){
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
