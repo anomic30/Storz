@@ -22,6 +22,12 @@
     cursor: pointer;
 }
 
+.butter-bar p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .glass-desc-con{
     width: 100%;
     height: 100%;
@@ -53,6 +59,9 @@
     font-family:PolySans Neutral;
     font-size: 30px;
     color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -276,10 +285,4 @@
         box-sizing: border-box;
     }
 
-}
-
-@media screen and (max-width: 1440px) {
-    .file-name{
-        word-break: break-all;
-    }
 }
