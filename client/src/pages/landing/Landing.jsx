@@ -56,7 +56,7 @@ function Landing() {
     return (
         <>
         {isVisible && (
-        <div className="top-btn" onClick={goToBtn} style={mystyle}>
+        <div className="top-btn" onClick={goToBtn}>
           <FaArrowUp className="uparrow"></FaArrowUp>
           {/* <h1>Button here!!</h1> */}
         </div>
@@ -155,22 +155,5 @@ function Landing() {
         </>
     )
 }
-
-const mystyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-    fontSize: "2.4rem",
-    width: "5rem",
-    height: "5rem",
-    color: "#00ffa8",
-    backgroundColor: "black",
-    position: "fixed",
-    bottom: "4rem",
-    right: "4rem",
-    zIndex: "999",
-    borderRadius: "15px",
-  };
 
 export default Landing
