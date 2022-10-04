@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './Landing.css'
 import landing_gradient from '../../assets/images/landing-gradient2.png'
 import feature_gradient from '../../assets/images/landing-center.png'
@@ -23,21 +23,21 @@ import { motion } from 'framer-motion'
 function Landing() {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
-  
-    useEffect(()=>{
-        Aos.init({duration:1000})
-    },[]);
+
+    useEffect(() => {
+        Aos.init({ duration: 1000 })
+    }, []);
 
     const handleOnMouseOver = event => {
         event.target.style.cursor = 'default'
     }
 
     return (
-        <motion.div className='landing-con' 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}>
+        <motion.div className='landing-con'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}>
             <img src={rings} alt="" className='rings' />
             <img src={landing_gradient} alt="" className='landing-gradient' />
             <img src={feature_gradient} alt="" className='landing-center' />
@@ -62,9 +62,9 @@ function Landing() {
                             <span>Use Now </span>
                         </div>
                         <div className="join-btn landing-btn">
-                        <a href="https://discord.gg/Z9hbT8RGNG" className='join-link'  target="_blank" rel='noreferrer'>
-                        Join Us  
-                        </a>
+                            <a href="https://discord.gg/Z9hbT8RGNG" className='join-link' target="_blank" rel='noreferrer'>
+                                Join Us
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ function Landing() {
 
 
             <div className="feature-con"  >
-                <img className="feature-img" src={sheild_gif} alt="" data-aos="zoom-in"/>
+                <img className="feature-img" src={sheild_gif} alt="" data-aos="zoom-in" />
 
                 <div className="feature-desc" data-aos="fade-up">
                     <h1> <span>Privacy</span> First.</h1>
@@ -96,7 +96,7 @@ function Landing() {
                 </div>
 
                 <img src={feature_gradient} alt="" className='landing-center' id='hidden-gradient' />
-                <img className="feature-img" src={cube_gif} alt="" data-aos="zoom-in"/>
+                <img className="feature-img" src={cube_gif} alt="" data-aos="zoom-in" />
             </div>
 
 
@@ -104,24 +104,24 @@ function Landing() {
                 <h1>Join Our Community!</h1>
                 <p >Help us on our quest to make this product even better.</p>
                 <div className="use-btn landing-btn">
-                    <span> <a href="https://discord.gg/Z9hbT8RGNG" className='join-link-b'  target="_blank" rel='noreferrer'>
-                        Join Us  
-                        </a></span>
+                    <span> <a href="https://discord.gg/Z9hbT8RGNG" className='join-link-b' target="_blank" rel='noreferrer'>
+                        Join Us
+                    </a></span>
                 </div>
                 <img src={map} alt="" />
             </div>
 
 
             <div className="footer-con">
-                    <div className='logo-box'>
-                        <img src={app_logo} alt="" />
-                    </div>
+                <div className='logo-box'>
+                    <img src={app_logo} alt="" />
+                </div>
                 <p>©2022 Storz</p>
                 <div className='socials-con'>
                     <a href="https://discord.gg/Z9hbT8RGNG" className='join-link' target="_blank" rel='noreferrer'><img className='disc' src={discord_logo} alt="Discord" /></a>
-                    <a href="https://github.com/anomic30/Storz" className='join-link'  target="_blank" rel='noreferrer'><img className='disc' src={github_logo} alt="GitHub" /></a>
+                    <a href="https://github.com/anomic30/Storz" className='join-link' target="_blank" rel='noreferrer'><img className='disc' src={github_logo} alt="GitHub" /></a>
                 </div>
-                    
+
             </div>
         </motion.div>
     )
