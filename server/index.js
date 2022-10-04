@@ -9,7 +9,7 @@ const User = require('./routes/user')
 const Auth = require('./routes/auth')
 const Download = require('./routes/download')
 const Upload = require('./routes/upload')
-
+const limiter = require('./middlewares/rateLimiter');
 /*
     Initializing express server
 */
@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
+app.use(limiter);
 
 /*
     Connection to the MongoDB instance. Currently access is available to everyone for development.

@@ -11,14 +11,11 @@ Lets grab the API keys...
 ### 2. Click on Start with Auth. 
 <img src="https://user-images.githubusercontent.com/63467479/190847409-fc620ef2-b7ab-4759-9804-d3f2d86137b0.png">
 
-### 3. Now copy the publishable API Key and paste it inside the .env file of the client folder. You will also need the secret key for the server later. 
+### 3. Rename the .env.example file to .env
+
+### 4. Now copy the publishable API Key and paste it inside the .env file of the client folder. You will also need the secret key for the server later. 
 <img src="https://user-images.githubusercontent.com/63467479/190847663-e7a8544f-abda-4d9f-a7e1-40dd6633e636.png">
 
-
-
-</br>
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
