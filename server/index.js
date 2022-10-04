@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
 const {SanitizeMongoData , RemoveHTMLTags} = require('./middlewares/dataSantizationMiddleware')
+const AppError = require('./util/appError')
+const errorController = require('./controller/errorController')
 const Main = require('./routes/main')
 const Test = require('./routes/test')
 const User = require('./routes/user')
@@ -41,11 +43,19 @@ mongoose.connect(dburl).then(() => { console.log('Connected to StorzDB') })
 const PORT = process.env.PORT || 8080;
 
 app.use('/', Main)
-app.use(Test);
+app.use('/test', Test);
+app.use('/api/upload',Upload);
+app.use('/api/download', Download);
 app.use(User);
-app.use(Upload);
-app.use(Download);
 app.use(Auth);
+
+app.use('*' , (req, res, next)=>{
+    next( new AppError('could not find that route' , 404))
+})
+
+//Global error handler
+app.use( errorController)
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
