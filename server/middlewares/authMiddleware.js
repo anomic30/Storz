@@ -1,4 +1,5 @@
 const { Magic } = require('@magic-sdk/admin');
+const AppError = require('../util/appError');
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
 const authMiddleware = async (req, res, next) => {
@@ -8,7 +9,7 @@ const authMiddleware = async (req, res, next) => {
         await magic.token.validate(didToken);
         next();
     } catch (error) {
-        return res.status(401).json({ error: error.message });
+        return next( new AppError(error.message , 401));
     }
 }
 
