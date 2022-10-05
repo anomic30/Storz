@@ -1,7 +1,7 @@
 const authMiddleware = require("../middlewares/authMiddleware");
 const { Magic } = require('@magic-sdk/admin');
 const User = require('../models/user')
-const AppError = require('./../util/appError')
+const AppError = require('../config/appError.config')
 const router = require("express").Router();
 const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync, unlinkSync } = require('fs');
 

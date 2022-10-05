@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const authMiddleware = require("../middlewares/authMiddleware");
-const AppError = require('./../util/appError')
+const AppError = require('../config/appError.config')
 
 const { Magic } = require('@magic-sdk/admin');
 const { v4: uuidv4 } = require('uuid');

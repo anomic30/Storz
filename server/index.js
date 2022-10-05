@@ -1,11 +1,11 @@
+require('express-async-errors');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
 const {SanitizeMongoData , RemoveHTMLTags} = require('./middlewares/dataSantizationMiddleware')
-const AppError = require('./util/appError')
-const errorController = require('./controller/errorController')
+const AppError = require('./config/appError.config')
 const Main = require('./routes/main')
 const Test = require('./routes/test')
 const User = require('./routes/user')
@@ -15,7 +15,7 @@ const Upload = require('./routes/upload')
 const limiter = require('./middlewares/rateLimiter');
 const logger = require('pino')()
 const morgan = require('morgan')
-
+const errors = require('./middlewares/error.middleware')
 
 /*
     Initializing express server
@@ -56,12 +56,12 @@ app.use('/api/download', Download);
 app.use(User);
 app.use(Auth);
 
-app.use('*' , (req, res, next)=>{
-    next( new AppError('could not find that route' , 404))
+app.use('*' , (req, res)=>{
+  throw new AppError('Route does not exist', 404)
 })
 
 //Global error handler
-app.use( errorController)
+app.use(errors);
 
 app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`);

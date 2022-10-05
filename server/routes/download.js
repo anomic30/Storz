@@ -5,7 +5,7 @@ const { Magic } = require('@magic-sdk/admin');
 const User = require('../models/user')
 const { create } = require("ipfs-http-client");
 const path = require('path');
-const AppError = require("../util/appError");
+const AppError = require("../config/appError.config");
 
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
