@@ -25,6 +25,7 @@
     "morgan": "^1.10.0",
     "pino": "^8.6.1",
     "uuid": "^8.3.2",
+    "winston": "^3.8.2",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {

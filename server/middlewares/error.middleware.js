@@ -1,6 +1,6 @@
 
 // const logger = require('../config/logging.config')
-const logger = require('pino')()
+const logger = require('../config/logging.config')
 const { NODE_ENV } = process.env
 
 const _error = (error, req, res, next) => {
@@ -10,7 +10,7 @@ const _error = (error, req, res, next) => {
     req.originalUrl
 	}] [${req.get('User-Agent')}] `;
 
-	console.error('', error);
+	logger.error('', error);
 
   const status = error.statusCode || 500
   
