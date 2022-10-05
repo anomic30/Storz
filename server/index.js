@@ -3,6 +3,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
+const {SanitizeMongoData , RemoveHTMLTags} = require('./middlewares/dataSantizationMiddleware')
+const AppError = require('./util/appError')
+const errorController = require('./controller/errorController')
 const Main = require('./routes/main')
 const Test = require('./routes/test')
 const User = require('./routes/user')
@@ -18,8 +21,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(fileUpload());
+app.use(fileUpload()); 
 app.use(limiter);
+
+//Data sanitisation against NOSQL query injection and XSS
+
+app.use(SanitizeMongoData); // ->check out the req.body, req.param , req.query and remove the $ and .
+app.use(RemoveHTMLTags);    // -> remove the html tags from the input data
+
 
 /*
     Connection to the MongoDB instance. Currently access is available to everyone for development.
@@ -34,11 +43,19 @@ mongoose.connect(dburl).then(() => { console.log('Connected to StorzDB') })
 const PORT = process.env.PORT || 8080;
 
 app.use('/', Main)
-app.use(Test);
+app.use('/test', Test);
+app.use('/api/upload',Upload);
+app.use('/api/download', Download);
 app.use(User);
-app.use(Upload);
-app.use(Download);
 app.use(Auth);
+
+app.use('*' , (req, res, next)=>{
+    next( new AppError('could not find that route' , 404))
+})
+
+//Global error handler
+app.use( errorController)
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
