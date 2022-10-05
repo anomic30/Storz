@@ -13,11 +13,17 @@ module.exports = {
   rules: {
     'prettier/prettier': [
       'error',
+      // prettier rule for code formatting concerns
       {
         singleQuote: true,
         trailingComma: 'none',
-        endOfLine: 'lf'
+        endOfLine: 'lf',
+        printWidth: 100
       }
-    ]
+    ],
+    // eslint rules for code-quality concerns
+    'no-underscore-dangle': 'off'
   }
 };
+
+let name_age = "203"
