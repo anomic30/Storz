@@ -8,7 +8,7 @@
     max-width: 1064px;
     display: flex;
     justify-content: space-between;
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
 .logo-box, .link-box{
