@@ -17,8 +17,7 @@ module.exports = {
       {
         singleQuote: true,
         trailingComma: 'none',
-        endOfLine: 'lf',
-        printWidth: 100
+        endOfLine: 'lf'
       }
     ],
     // eslint rules for code-quality concerns
