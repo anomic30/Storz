@@ -57,7 +57,10 @@ router.post("/", authMiddleware, async (req, res, next) => {
         //iterate req.files and move it to test folder
         for (let file of files) {
             // const file = files[i];
-            const fileName = file.name;
+            let fileName = file.name.normalize('NFD').replace(/\p{Diacritic}/gu, "");
+            if(file.name !== fileName) {
+                fileName = Buffer.from(file.name, 'latin1').toString('utf8')
+            }
             const filePath = '../server/private/' + fileName;
             const encryptedPath = '../server/encrypted/' + fileName;
 
