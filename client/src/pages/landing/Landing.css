@@ -248,7 +248,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     justify-content: center;
     color: var(--secondary-color);
     font-family: PolySans Median;
-    background-color: none;
+    background-color: transparent;
     border: 2px solid #00FFA8;
     border-radius: 14px;
     font-family: PolySans Median;
