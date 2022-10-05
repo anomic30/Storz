@@ -25,5 +25,3 @@ module.exports = {
     'no-underscore-dangle': 'off'
   }
 };
-
-let name_age = "203"

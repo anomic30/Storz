@@ -7,8 +7,9 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npx eslint ./.eslintrc.js --fix",
-    "format": "npm run list && npx prettier --ignore-unknown --write ./.eslintrc.js"
+    "lint": "npx eslint . --fix",
+    "format": "npx prettier --ignore-unknown --write .",
+    "lint:format": "npm run lint && run format"
   },
   "author": "",
   "license": "ISC",
