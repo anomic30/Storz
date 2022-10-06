@@ -25,8 +25,6 @@ router.post("/api/user/files", authMiddleware, async (req, res) => {
     const user = await User.findOne({ magic_id: magic_id });
 
     if (!user) {
-        // throw new AppError("user_not_found" , 400) 
-            // we can also simply do this, instead of the above
         return res.status(400).send({
             success: false,
             message: 'user_not_found'
@@ -43,34 +41,49 @@ router.patch("/api/user/makePublic/:cid", authMiddleware, async (req, res) => {
     const cid = req.params.cid;
     const state = req.body.state;
     if (!magic_id || !cid) {
-        throw new AppError("Missing required fields" , 400);
+        return res.status(400).send({
+            success: false,
+            message: 'Missing required fields'
+        });
     }
 
     await User.updateOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { $set: { 'files.$.public': state } });
-    return res.status(200).json({ message: "File visibility updated successfully!" });
+    return res.status(200).json({ 
+        success: true,
+        message: "File visibility updated successfully!"
+     });
 });
 
 router.patch("/api/user/deleteFile/:cid", authMiddleware, async (req, res) => {
-    console.log("Delete route called!")
     const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
     const magic_id = metadata.issuer;
     const cid = req.params.cid;
-    if (!magic_id || !cid) {
-        return next( new AppError("Missing required fields" , 400));
 
+    if (!magic_id || !cid) {
+        return res.status(400).send({
+            success: false,
+            message: 'Missing required fields'
+        })
     }
-        await User.updateOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { $pull: { files: { cid: cid } } });
-        return res.status(200).json({ message: "File deleted successfully!" });
+
+    await User.updateOne({ magic_id: magic_id, files: { $elemMatch: { cid: cid } } }, { $pull: { files: { cid: cid } } });
+    return res.status(200).json({ success: true, message: "File deleted successfully!" });
 })
 
-router.get("/api/user/getName/:id", async (req, res, next) => {
+router.get("/api/user/getName/:id", async (req, res) => {
     const magic_id = req.params.id;
     if (!magic_id) {
-        throw new AppError("Missing required fields" , 400);
+        return res.status(400).send({
+            success: false,
+            message: 'Missing required fields'
+        })
     }
 
     const user = await User.findOne({ magic_id: magic_id }, { user_name: 1 });
 
+    // Changing below line to: res.status(200).send({ success: true, message: 'some message', data: user })
+    // would cause a breaking change ...
+    // this line was intentionally left this way until it is determined we are ready for the breaking change
     res.status(200).json(user);
 
 })

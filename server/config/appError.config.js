@@ -2,7 +2,7 @@
 class AppError extends Error {
 	constructor(message, statusCode = 500) {
 		super(message);
-		this.name = 'Stors';
+		this.name = 'Storz';
 		this.statusCode = statusCode;
 		// this.isOperational = true;
 		// this.date = new Date();
