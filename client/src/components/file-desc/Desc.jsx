@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Desc.css'
 import ipfs_logo from '../../assets/icons/ipfs.png'
 import diamond_logo from '../../assets/icons/diamond.png'
@@ -11,7 +11,6 @@ import Axios from 'axios'
 import Tippy from '@tippyjs/react'
 import 'tippy.js/dist/tippy.css'
 import { formatBytes } from '../../utils/formatBytes'
-import { saveAs } from 'file-saver';
 import { motion } from 'framer-motion'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import copy_icon from '../../assets/icons/copy.png'
