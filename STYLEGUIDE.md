@@ -27,7 +27,16 @@ Font-family - PolySans
 
 You can find it [here](./client/src/assets/fonts/)
 
+<br>
 
+## Colors
 
+<img src="https://user-images.githubusercontent.com/72182438/194390148-644edbe7-6821-4245-9852-6408c8f1ad1a.png" alt="logo" width="60%">
+
+| RGB  |HEX  | HSL |
+| :------------ |:---------------:| -----:|
+| rgb(0, 255, 168)     | #00FFA8        |   hsl(160,100,50)   |
+| rgb(18, 25, 22)      | #121916        |   hsl(154,16,8)     |
+| rgb(11, 112, 91)     | #0B705B        |   hsl(168,82,24)    |
 
 
