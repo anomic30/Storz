@@ -7,10 +7,11 @@ const { v4: uuidv4 } = require('uuid');
 const User = require('../models/user')
 
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
-router.post('/api/user/login', async (req, res, next) => {
+router.post('/api/user/login', async (req, res) => {
 
-    const didToken = req.headers.authorization.substring(7);
-    await magic.token.validate(didToken);
+    const didToken = req.headers?.authorization?.substring(7);
+    
+    magic.token.validate(didToken);
 
     return res.status(200).json({ authenticated: true });
 });

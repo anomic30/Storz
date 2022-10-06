@@ -10,11 +10,15 @@ router.post('/api/user/check', async (req, res) => {
     const user = await User.findOne({ email: email });
     if (user) {
         return res.status(200).json({
+            success: true,
             message: "user_found"
         });
     }
 
-    throw new AppError("user_not_found" , 200);
+    return res.status(404).send({
+        success: false,
+        message: 'user_not_found'
+    })
     
 })
 

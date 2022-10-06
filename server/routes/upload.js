@@ -39,12 +39,12 @@ const addFile = async (fileName, filePath) => {
     return fileAdded;
 }
 
-router.post("/", authMiddleware, async (req, res, next) => {
+router.post("/", authMiddleware, async (req, res) => {
     const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
     const user = await User.findOne({ magic_id: metadata.issuer }, { encryption_key: 1 });
     console.log(user);
     if (metadata.issuer === "") {
-        return res.status(500).json({ error: "User is not authenticated" });
+        return res.status(500).json({ success: false, error: "User is not authenticated" });
     }
     // console.log(req.files.files);
     let files = req.files.files;
@@ -52,80 +52,74 @@ router.post("/", authMiddleware, async (req, res, next) => {
     if (!Array.isArray(files)) {
         files = [files];
     }
-    try {
-        let uploadList = [];
-        //iterate req.files and move it to test folder
-        for (let file of files) {
-            // const file = files[i];
-            let fileName = file.name.normalize('NFD').replace(/\p{Diacritic}/gu, "");
-            if(file.name !== fileName) {
-                fileName = Buffer.from(file.name, 'latin1').toString('utf8')
-            }
-            const filePath = '../server/private/' + fileName;
-            const encryptedPath = '../server/encrypted/' + fileName;
-
-            file.mv(filePath, async (err) => {
-                if (err) {
-                    console.log(err);
-                    return res.status(500).json({ error: err.message });
-                }
-                
-                console.log("encrypting file started");
-                try {
-                    jscrypt.encryptFile(
-                        filePath,
-                        encryptedPath,
-                        "aes256",
-                        user.encryption_key,
-                        655000,
-                        async (isDone) => {
-                            if (isDone === true) {
-                                console.log(fileName + ' is encrypted successfully!');
-
-                                console.log("Adding files to IFPS in next step")
-                                const fileAdded = await addFile(fileName, encryptedPath);
-                                console.log(fileAdded);
-
-                                let upData = {
-                                    file_name: fileAdded.path,
-                                    public: false,
-                                    cid: fileAdded.cid,
-                                    file_creationDate: new Date().toISOString(),
-                                    file_size: fileAdded.size
-                                };
-                                uploadList.push(upData);
-                                await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: upData } });
-
-                                unlink(filePath, (err) => {
-                                    if (err) {
-                                        console.log(err);
-                                    }
-                                    console.log(filePath + ' is deleted!');
-                                })
-                                unlink(encryptedPath, (err) => {
-                                    if (err) {
-                                        console.log(err);
-                                    }
-                                    console.log(encryptedPath + ' is deleted!');
-                                })
-                            }
-                            else {
-                                console.log(fileName + ' is not encrypted!');
-                            }
-                        }
-                    );
-                } catch (error) {
-                    console.log(error);
-                    // return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
-                    return next( new AppError("Couldn't upload your files at this moment" , 500));
-                }
-            })
+    let uploadList = [];
+    //iterate req.files and move it to test folder
+    for (let file of files) {
+        // const file = files[i];
+        let fileName = file.name.normalize('NFD').replace(/\p{Diacritic}/gu, "");
+        if(file.name !== fileName) {
+            fileName = Buffer.from(file.name, 'latin1').toString('utf8')
         }
-        return res.status(200).json({ message: "Files uploaded successfully", uploadList: uploadList });
-    } catch (error) {
-        // return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
-        return next( new AppError("Couldn't upload your files at this moment" , 500));
+        const filePath = '../server/private/' + fileName;
+        const encryptedPath = '../server/encrypted/' + fileName;
+
+        file.mv(filePath, async (err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ error: err.message });
+            }
+            
+            console.log("encrypting file started");
+
+            // This encryptFile has occurred more than 2 two times, it can be extracted and be reused
+            jscrypt.encryptFile(
+                filePath,
+                encryptedPath,
+                "aes256",
+                user.encryption_key,
+                655000,
+                async (isDone) => {
+                    if (isDone === true) {
+                        console.log(fileName + ' is encrypted successfully!');
+
+                        console.log("Adding files to IFPS in next step")
+                        const fileAdded = await addFile(fileName, encryptedPath);
+                        console.log(fileAdded);
+
+                        let upData = {
+                            file_name: fileAdded.path,
+                            public: false,
+                            cid: fileAdded.cid,
+                            file_creationDate: new Date().toISOString(),
+                            file_size: fileAdded.size
+                        };
+                        uploadList.push(upData);
+
+                        await User.updateOne({ magic_id: metadata.issuer }, { $push: { files: upData } });
+
+                        unlink(filePath, (err) => {
+                            if (err) {
+                                console.log(err);
+                            }
+                            console.log(filePath + ' is deleted!');
+                        })
+                        unlink(encryptedPath, (err) => {
+                            if (err) {
+                                console.log(err);
+                            }
+                            console.log(encryptedPath + ' is deleted!');
+                        })
+                    }
+                    else {
+                        console.log(fileName + ' is not encrypted!');
+                    }
+                }
+            );
+        })
     }
+    // the pair uploadList: uploadList can be data: uploadList to follow same convention
+    return res.status(200).json({ message: "Files uploaded successfully", uploadList: uploadList });
+    
 })
 
 module.exports = router
