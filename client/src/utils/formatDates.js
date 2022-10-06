@@ -4,5 +4,6 @@ export const formatDates = (date) => {
     const month = dateObj.toLocaleString('default', { month: 'short' });
     const day = dateObj.getDate();
     const year = dateObj.getFullYear();
-    return `${day} ${month} ${year}`;
+    const time = dateObj.toLocaleTimeString()
+    return `${day} ${month} ${year} - ${time}`;
 };
