@@ -129,8 +129,17 @@
     margin: 15px;
 }
 
+.outline-desc-desc{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .key-desc{
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color:white;
     margin: 15px 0px;
 }
