@@ -17,7 +17,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import copy_icon from '../../assets/icons/copy.png'
 import copy_icon_solid from '../../assets/icons/copy-solid.png'
 import toast, { Toaster } from 'react-hot-toast';
-import { formatDates } from '../../utils/formatDates';
+import { formatDateAndTime } from '../../utils/formatDates';
 
 function Desc() {
   const navigate = useNavigate();
@@ -237,7 +237,7 @@ function Desc() {
                 {owner}
               </p>
               <p className="key-desc">
-                {formatDates(file?.file_creationDate)}
+                {formatDateAndTime(file?.file_creationDate)}
               </p>
               <p className="key-desc">
                 {formatBytes(file?.file_size)}

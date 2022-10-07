@@ -13,12 +13,17 @@ const Auth = require('./routes/auth')
 const Download = require('./routes/download')
 const Upload = require('./routes/upload')
 const limiter = require('./middlewares/rateLimiter');
+const logger = require('pino')()
+const morgan = require('morgan')
+
+
 /*
     Initializing express server
 */
 const app = express();
 
 app.use(cors());
+app.use(morgan('dev'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload()); 
@@ -35,9 +40,11 @@ app.use(RemoveHTMLTags);    // -> remove the html tags from the input data
 */
 
 const dburl = process.env.MONGODB_URI;
-mongoose.connect(dburl).then(() => { console.log('Connected to StorzDB') })
+mongoose.connect(dburl)
+    .then(() => { 
+        logger.info('Connected to StorzDB') })
     .catch((err) => {
-        console.log(err)
+        logger.error(err)
     })
 
 const PORT = process.env.PORT || 8080;
@@ -56,7 +63,6 @@ app.use('*' , (req, res, next)=>{
 //Global error handler
 app.use( errorController)
 
-
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    logger.info(`Server is running on port ${PORT}`);
 })

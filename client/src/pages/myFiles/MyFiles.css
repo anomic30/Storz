@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     max-width: 1064px;
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
 .search-box img{
@@ -20,7 +20,7 @@
 
 .table-con table{
     width: 100%;
-    border-spacing: 0px !important;
+    border-spacing: 0 !important;
 }
 
 .table-glass{
@@ -68,6 +68,9 @@
 
 #first-col{
     width: 70%;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
 }
 
 tbody img{
@@ -167,7 +170,7 @@ tbody .visible{
 		font-size: var(--font-size-sm) !important;
 	}
 	.table-con tbody tr td {
-		padding: 0px 0.2rem;
+		padding: 0 0.2rem;
 	}
 	.table-con thead tr th:nth-child(1),
 	.table-con tbody tr td:nth-child(1) {
