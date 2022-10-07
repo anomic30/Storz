@@ -237,7 +237,10 @@ function Desc() {
                 {owner}
               </p>
               <p className="key-desc">
-                {formatDateAndTime(file?.file_creationDate)}
+                {formatDateAndTime(file?.file_creationDate, { 
+                  dateStyle: 'medium',
+  	              timeStyle: 'medium'
+                })}
               </p>
               <p className="key-desc">
                 {formatBytes(file?.file_size)}
