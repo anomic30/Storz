@@ -2,7 +2,7 @@
     width: 90%;
     min-height: 90vh;
     /* max-width: 1064px; */
-    margin: 0px auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -175,7 +175,7 @@
 
 .glass-file-name {
     max-width: 60%;
-
+    overflow-wrap: break-word;
 }
 
 .glass-row .right {
@@ -247,7 +247,7 @@
         font-size: 18px;
     }
     .upload-box-con{
-        min-height: 0px;
+        min-height: 0;
         width: 80%
     }
     .upload-box{

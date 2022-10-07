@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
     overflow-y: hidden;
 }
 
@@ -16,8 +17,8 @@
     position: absolute;
     height: 1000px;
     width: auto;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     z-index: 1;
     transition: 0.5s;
 }
@@ -42,7 +43,7 @@
 
 .hero-con {
     box-sizing: border-box;
-    padding: 0px 15px;
+    padding: 0 15px;
     display: flex;
     justify-content: center;
     max-width: 1500px;
@@ -63,7 +64,7 @@
 }
 
 .landing-navbar {
-    padding: 0px 20px;
+    padding: 0 20px;
     height: 96px;
     display: flex;
     justify-content: space-between;
@@ -74,7 +75,7 @@
 }
 
 .sign-up-btn {
-    padding: 0px 10px;
+    padding: 0 10px;
     height: 46px;
     width: 120px;
     font-size: 20px;
@@ -117,7 +118,7 @@
 }
 
 .use-btn:hover {
-    box-shadow: 0px 1px 20px 2px rgba(8, 222, 149, 0.55);
+    box-shadow: 0 1px 20px 2px rgba(8, 222, 149, 0.55);
     cursor: pointer;
 }
 
@@ -128,7 +129,7 @@
 .hero-con-head {
     font-family: PolySans Median;
     font-size: 96px;
-    text-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+    text-shadow: 0 0 16px rgba(0, 0, 0, 0.25);
 }
 
 .hero-desc {
@@ -247,7 +248,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     justify-content: center;
     color: var(--secondary-color);
     font-family: PolySans Median;
-    background-color: none;
+    background-color: transparent;
     border: 2px solid #00FFA8;
     border-radius: 14px;
     font-family: PolySans Median;
@@ -259,7 +260,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 
 .join-btn:hover {
     cursor: pointer;
-    box-shadow: 0px 1px 20px 2px rgba(8, 222, 149, 0.55);
+    box-shadow: 0 1px 20px 2px rgba(8, 222, 149, 0.55);
 }
 
 .join-btn:active {
@@ -268,14 +269,14 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 
 .landing-left {
     position: absolute;
-    left: 0px;
-    bottom: 0px;
+    left: 0;
+    bottom: 0;
 }
 
 .landing-right {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    right: 0;
+    bottom: 0;
 }
 
 .joinus-con {
@@ -322,7 +323,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 
 
 .landing-con .footer-con {
-    padding: 10px 0px;
+    padding: 10px 0;
     margin-top: 5em;
     width: 100%;
     display: flex;
@@ -332,6 +333,12 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     color: #DCDCDC;
     background-color: #121916;
     z-index: 200;
+}
+
+.landing-con .socials-con{
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .landing-con .footer-con img {
@@ -484,7 +491,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     #spcl .landing-center {
         width: 70vw;
         height:80% ;
-        top: 0px;
+        top: 0;
 
     }
 
@@ -542,7 +549,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 
     #spcl .landing-center {
         width: 100vw;
-        top: 0px;
+        top: 0;
     }
 
     .hero-con-head {

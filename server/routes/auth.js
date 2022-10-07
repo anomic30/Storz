@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const authMiddleware = require("../middlewares/authMiddleware");
+const AppError = require('./../util/appError')
+
 const { Magic } = require('@magic-sdk/admin');
 const { v4: uuidv4 } = require('uuid');
 const User = require('../models/user')
 
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
-router.post('/api/user/login', async (req, res) => {
+router.post('/api/user/login', async (req, res, next) => {
     try {
         console.log("called")
         const didToken = req.headers.authorization.substring(7);
@@ -14,18 +16,18 @@ router.post('/api/user/login', async (req, res) => {
         return res.status(200).json({ authenticated: true });
     } catch (error) {
         console.log("user is not authenticated");
-        return res.status(500).json({ error: error.message });
+        return next( new AppError(error.message , 500));
     }
 });
 
-router.post('/api/user/create', authMiddleware, async (req, res) => {
+router.post('/api/user/create', authMiddleware, async (req, res, next) => {
     const magic_id = req.body.magic_id;
     const user_name = req.body.user_name;
     const email = req.body.email;
     const didToken = req.headers.authorization.substring(7);
 
     if (!user_name || !magic_id || !email) {
-        return res.status(400).json({ error: "Missing required fields" });
+        return next( new AppError("Missing required fields", 400));
     }
 
     const count = await User.count();
@@ -68,7 +70,7 @@ router.post('/api/user/create', authMiddleware, async (req, res) => {
                 await user.save();
                 return res.status(200).json({ message: "User created successfully" });
             } catch (err) {
-                return res.status(500).json({ error: err.message });
+                return next( new AppError(err.message , 500));
             }
         }
     }

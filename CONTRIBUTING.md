@@ -5,7 +5,7 @@
 
 # Welcome to Hacktoberfest !!!
 
-Hello coders! this year, we are proud to open-source our hackathon project. We welcome everyone to join our quest and contribute in this next-gen web3 project. Join our [Discord](https://discord.gg/Z9hbT8RGNG) server for all the latest updates regarding the contributions
+Hello coders! this year, we are proud to open-source our hackathon project. We welcome everyone to join our quest and contribute in this next-gen web3 project. Join our [Discord](https://discord.gg/Z9hbT8RGNG) server for all the latest updates regarding the contributions.
 
 
 ### Also, get yourself free goodies after a successful pull/merge request!
@@ -38,6 +38,8 @@ You can get your own fork/copy of this project [Storz](https://github.com/anomic
 
 Once you have completed these steps, you are ready to start contributing
 by checking our [issues tab](https://github.com/anomic30/Storz/issues) and creating [pull requests](https://github.com/anomic30/Storz/pulls).
+
+### For no-code/low-code contributions, we would soon update you all in our [Discord](https://discord.gg/Z9hbT8RGNG) server.
 
 
 # Steps to make changes and contribute using GIT!
@@ -89,7 +91,44 @@ At this point, you can now modify existing files or add new files to the project
 
 #### Make Changes Locally
 
-Once you have modified existing files or added new files to the project, you can add them to your local repository, which you can do with the `git add` command. Let’s add the `-A` flag to add all changes that we have made:
+Once you have modified existing files or added new files to the project:
+##### Lint and Format
+Before you stage or before you perform your final commit, your need to lint and format your changes.
+The following steps assumes you have installed this projects dependence for the first time. If not run `npm install`.
+
+To format and/or lint your changes use any of the following:
+```bash
+# This command is preferred as it lint and format your changes
+npm run lint:format
+
+# To lint only, fix fixable problems
+npm run lint
+
+# To format only
+npm run format
+
+# To lint a single file named "index.js" on the root directory
+npx eslint ./index.js
+
+# To format a single file named 'user.js' and on directory path say routes/
+npx prettier ./routes/user.js
+```
+Note that some changes may not be fix automatically, as a result you are required to fix the problem manually.
+On vscode, you can fix problem(s) automatically by:
+1. Hovering on it and click on `Quick fix` OR
+2. Click on the line that has the problem or warning then `CTRL + .` 
+In both cases use one the available options like `fix all auto-fixable problems` or `fix this prettier/prettier` to fix the error(s)
+
+Most of the linting rules ( or code quality) follows eslint rule and the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript). Read the guide
+
+Read [eslint](https://eslint.org/docs/latest/rules/) and [prettier](https://prettier.io/docs/en/options.html) docs, and also learn how to install and integrate them with your text editor (or IDE).
+
+To use with vscode, install [prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and [eslint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+*Always lint:format, and manually fix lint, or code format problems before staging ... pushing your commits*
+
+##### Staging, Committing and Pushing Change
+Given that you have linted and formatted your changes, you can add now add the changes to your local repository, which you can do with the `git add` command. Let’s add the `-A` flag to add all changes that we have made:
 
 ```
 git add -A
