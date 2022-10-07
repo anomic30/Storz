@@ -1,17 +1,17 @@
 import React, { useContext, useState } from 'react';
-import "./Navbar.css";
-import { NavLink, useNavigate } from "react-router-dom";
-import app_logo from "../../assets/icons/app-logo.png";
-import home_icon from "../../assets/icons/home.png";
-import files_icon from "../../assets/icons/files.png";
-import shared_icon from "../../assets/icons/shared.png";
-import logout_icon from "../../assets/icons/logout.png";
-import { UserContext } from "../../utils/UserContext";
-import { magic } from "../../utils/magic";
-import Cookies from "universal-cookie";
-import Axios from "axios";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
+import './Navbar.css';
+import { NavLink, useNavigate } from 'react-router-dom';
+import app_logo from '../../assets/icons/app-logo.png';
+import home_icon from '../../assets/icons/home.png';
+import files_icon from '../../assets/icons/files.png';
+import shared_icon from '../../assets/icons/shared.png';
+import logout_icon from '../../assets/icons/logout.png';
+import { UserContext } from '../../utils/UserContext';
+import { magic } from '../../utils/magic';
+import Cookies from 'universal-cookie';
+import Axios from 'axios';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 function Navbar({ setLogoutModal, logoutModal }) {
   const navigate = useNavigate();
