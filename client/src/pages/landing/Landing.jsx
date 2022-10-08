@@ -12,12 +12,12 @@ import sheild_gif from '../../assets/images/security.gif'
 import cube_gif from '../../assets/images/fragments.gif'
 import landing_left from '../../assets/images/landing-left.png'
 import landing_right from '../../assets/images/landing-right.png'
+import arrowup from '../../assets/icons/arrowup.svg'
 import globe from '../../assets/images/new-globe.png'
 import map from '../../assets/images/map.png'
 import discord_logo from '../../assets/icons/discord.png'
 import github_logo from '../../assets/icons/github.svg'
 import { motion } from 'framer-motion'
-import { FaArrowUp } from "react-icons/fa";
 
 
 
@@ -58,8 +58,7 @@ function Landing() {
         <>
         {isVisible && (
         <div className="top-btn" onClick={goToBtn}>
-            <FaArrowUp className="uparrow"></FaArrowUp>
-          {/* <h1>Button here!!</h1> */}
+            <img src={arrowup} className='arrowup'/>
         </div>
         )}
         <motion.div className='landing-con' 
