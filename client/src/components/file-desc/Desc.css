@@ -10,7 +10,7 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 1064px;
-    color:white;
+    color:rgb(238, 231, 231);
     font-size: var(--font-size-lg);
     display: flex;
     justify-content: flex-start;
@@ -63,7 +63,7 @@
 }
 
 .verify-ipfs{
-    max-width: 150px;
+    max-width: 152px;
     color: white;
     font-family: PolySans Slim;
     font-size: 18px;

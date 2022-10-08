@@ -69,7 +69,7 @@ router.patch("/api/user/deleteFile/:cid", authMiddleware, async (req, res, next)
 router.get("/api/user/getName/:id", async (req, res, next) => {
     const magic_id = req.params.id;
     if (!magic_id) {
-        return next( new AppError("Missing required fields" , 400));
+        return next( new AppError("Missing required fields." , 400));
 
     }
     try {

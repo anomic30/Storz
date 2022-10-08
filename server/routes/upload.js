@@ -70,7 +70,7 @@ router.post("/", authMiddleware, async (req, res, next) => {
                     return res.status(500).json({ error: err.message });
                 }
                 
-                console.log("encrypting file started");
+                console.log("encrypting file started.");
                 try {
                     jscrypt.encryptFile(
                         filePath,

@@ -9,13 +9,13 @@ const User = require('../models/user')
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 router.post('/api/user/login', async (req, res, next) => {
     try {
-        console.log("called")
+        console.log("called already")
         const didToken = req.headers.authorization.substring(7);
         await magic.token.validate(didToken);
-        console.log("user is authenticated");
+        console.log("user is authenticated!");
         return res.status(200).json({ authenticated: true });
     } catch (error) {
-        console.log("user is not authenticated");
+        console.log("Oops! user is not authenticated");
         return next( new AppError(error.message , 500));
     }
 });
@@ -43,7 +43,7 @@ router.post('/api/user/create', authMiddleware, async (req, res, next) => {
         })
         console.log("saving user")
         await user.save();
-        return res.status(200).json({ message: "User created successfully" });
+        return res.status(200).json({ message: "User created successfully!" });
     }
     else {
         console.log("finding user if exists")

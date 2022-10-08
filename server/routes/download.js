@@ -11,7 +11,7 @@ const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
 const projectId = process.env.INFURA_PROJECT_ID;
 const projectSecret = process.env.INFURA_PROJECT_SECRET;
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+const auth = 'Basic ' + Buffer.from(projectId + ':=' + projectSecret).toString('base64');
 
 
 async function ipfsClient() {
