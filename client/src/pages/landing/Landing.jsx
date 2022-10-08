@@ -17,7 +17,7 @@ import map from '../../assets/images/map.png'
 import discord_logo from '../../assets/icons/discord.png'
 import github_logo from '../../assets/icons/github.svg'
 import { motion } from 'framer-motion'
-import { FaArrowUp } from "react-icons/fa";
+import { IoIosArrowUp } from "react-icons/io";
 
 
 
@@ -25,7 +25,7 @@ function Landing() {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
     const [isVisible, setIsVisible] = useState(false);
-  
+
     useEffect(()=>{
         Aos.init({duration:1000})
     },[]);
@@ -58,8 +58,7 @@ function Landing() {
         <>
         {isVisible && (
         <div className="top-btn" onClick={goToBtn}>
-            <FaArrowUp className="uparrow"></FaArrowUp>
-          {/* <h1>Button here!!</h1> */}
+            <IoIosArrowUp className="uparrow"></IoIosArrowUp>
         </div>
         )}
         <motion.div className='landing-con' 
