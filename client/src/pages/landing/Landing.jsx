@@ -18,6 +18,7 @@ import map from '../../assets/images/map.png'
 import discord_logo from '../../assets/icons/discord.png'
 import github_logo from '../../assets/icons/github.svg'
 import { motion } from 'framer-motion'
+import Globe from '../../components/globe/Globe'
 
 
 
@@ -97,7 +98,8 @@ function Landing() {
                     </div>
                 </div>
                 <div className="right-con">
-                    <img src={globe} alt="Globe" />
+                    {/* <img src={globe} alt="Globe" /> */}
+                    <Globe />
                 </div>
             </div>
 
