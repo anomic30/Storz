@@ -564,20 +564,12 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     }
 
     .top-btn{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        position: fixed;
         right: 2rem;
         bottom: 5rem;
         border-radius: 12px;
-        color: #000000;
-        background-color: #00ffa8;
         height: 3rem;
         width: 3rem;
         font-size: 2.4rem;
-        z-index: 9999;
     }
 
     .arrowup{
