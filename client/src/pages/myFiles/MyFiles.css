@@ -115,20 +115,13 @@ tbody .visible{
 .search-con{
     display:flex;
     align-items: center;
-    /* justify-content: center; */
-    /* width: 100%; */
     width: 80%;
-    /* height: 50px; */
     margin: 50px auto 0 auto;
-    /* margin-top: 50px; */
-    /* display: flex;
-    justify-content: center; */
 }
 
 .search-inp{
     display: flex;
     align-items: center;
-    /* width: 80%; */
     margin-right: 5px;
     flex: 1;
     height: 40px;
@@ -144,7 +137,6 @@ tbody .visible{
     outline: none;
     color: rgb(222, 222, 222);
     font-size: 20px;
-    /* width:550px; */
     width:50px;
     flex: 1;
     margin-left: 10px;
