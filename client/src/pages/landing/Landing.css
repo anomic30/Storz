@@ -77,7 +77,6 @@
 .sign-up-btn {
     padding: 0 10px;
     height: 46px;
-    width: 120px;
     font-size: 20px;
     font-family: PolySans Median;
     display: flex;
@@ -427,7 +426,7 @@ text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
 
     .landing-center {
         width: 70vw;
-    
+
     }
 
     .rings {
