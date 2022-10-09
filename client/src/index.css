@@ -1,33 +1,30 @@
-@font-face {
-  font-family: PolySans Bulky;
-  src: url("./assets/fonts/PolySans\ Bulky.ttf")
+@font-face{
+   font-family: PolySans Bulky;
+   src:url("./assets/fonts/PolySans\ Bulky.ttf")
+}
+@font-face{
+   font-family: PolySans Median;
+   src:url("./assets/fonts/PolySans\ Median.ttf")
+}
+@font-face{
+   font-family: PolySans Neutral;
+   src:url("./assets/fonts/PolySans\ Neutral.ttf")
+}
+@font-face{
+   font-family: PolySans Slim;
+   src:url("./assets/fonts/PolySans\ Slim.ttf")
 }
 
-@font-face {
-  font-family: PolySans Median;
-  src: url("./assets/fonts/PolySans\ Median.ttf")
-}
-
-@font-face {
-  font-family: PolySans Neutral;
-  src: url("./assets/fonts/PolySans\ Neutral.ttf")
-}
-
-@font-face {
-  font-family: PolySans Slim;
-  src: url("./assets/fonts/PolySans\ Slim.ttf")
-}
-
-:root {
-  --primary-color: #00C39A;
-  --primary-color-dark: #019978;
-  --secondary-color: #00ffa8;
+:root{
+  --primary-color:#00C39A;
+  --primary-color-dark:#019978;
+  --secondary-color:#00ffa8;
   --font-size-lg: 20px;
   --font-size-md: 16px;
   --font-size-sm: 13px;
 }
 
-* {
+*{
   margin: 0;
   padding: 0;
 }
@@ -42,7 +39,7 @@ img {
 
 ::selection {
   color: black;
-  background: #00ffa8;
+  background:#00ffa8;
 }
 
 body {
@@ -60,11 +57,11 @@ code {
     monospace;
 }
 
-button {
+button{
   transition: 0.3s;
 }
 
-button:hover {
+button:hover{
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 1px 20px 2px rgba(8, 222, 149, 0.55);
@@ -80,13 +77,11 @@ button:active {
   height: 8px;
 
 }
-
 ::-webkit-scrollbar-track {
-  background-color: #121916;
+  background-color:  #121916;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: rgb(0, 212, 134);
-  background: linear-gradient(184deg, rgba(0, 212, 134, 1) 0%, rgba(0, 255, 189, 1) 73%);
+  background: rgb(0,212,134);
+  background: linear-gradient(184deg, rgba(0,212,134,1) 0%, rgba(0,255,189,1) 73%);
   border-radius: 10px;
 }
