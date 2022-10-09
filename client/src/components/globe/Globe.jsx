@@ -11,7 +11,7 @@ function Globe() {
     // config
     const showLabelText = false
     const labelSize = showLabelText ? 1.5 : 0
-    const labelResolution = showLabelText ? 3 : 0
+    const labelResolution = showLabelText ? 3 : 1
     const maxNumArcs = 12
     const arcRelativeLength = 0.6 // relative to whole arc
     const arcFlightTime = 3000 // ms
