@@ -1,7 +1,7 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-router.get('/', (req,res)=>{
-    res.send('Welcome to Storz API v1.0!');
-})
+router.get('/', (req, res) => {
+  res.send('Welcome to Storz API v1.0!');
+});
 
-module.exports = router
+module.exports = router;
