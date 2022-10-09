@@ -40,9 +40,8 @@ function Globe() {
     // logic
     const [arcsData, setArcsData] = useState([])
     const [ringsData, setRingsData] = useState([])
-    const [arcsCount, setArcsCount] = useState(0)
 
-    const emitArc = useCallback(() => {
+    const spawnArc = useCallback(() => {
         // random source and destination
         const srcIdx = Math.floor(Math.random() * labelsData.length)
         let destIdx
@@ -65,7 +64,6 @@ function Globe() {
         setArcsData(curArcsData => [...curArcsData, arc])
         setTimeout(() => {
             setArcsData(curArcsData => curArcsData.filter(d => d !== arc))
-            setArcsCount(arcsCount - 1)
         }, arcFlightTime * 2)
 
         // add and remove destination rings
@@ -76,21 +74,19 @@ function Globe() {
                 setRingsData(curRingsData => curRingsData.filter(r => r !== destRing))
             }, arcFlightTime * arcRelativeLength)
         }, arcFlightTime)
-
-        setArcsCount(arcsCount + 1)
     }, [])
 
     // spawn arcs regularly
     useEffect(() => {
-        if (arcsCount < maxNumArcs) {
+        if (arcsData.length < maxNumArcs) {
             const id = setTimeout(() => {
-                emitArc()
+                spawnArc()
             }, arcSpawnInterval)
             return () => {
                 clearTimeout(id)
             }
         }
-    }, [arcsCount])
+    }, [arcsData])
 
     return (
         <ReactGlobe
