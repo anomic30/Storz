@@ -21,9 +21,10 @@ function Globe() {
     const ringPropagationSpeed = 2 // deg/sec
     const ringRepeatPeriod = (arcFlightTime * arcRelativeLength) / numRings
 
+    const backgroundColor = '#121916' // should sync with background-color in "src/pages/landing/Landing.css"
     // transparent globe
     const globeMaterial = new MeshBasicMaterial({
-        color: '#121916', // should sync with background-color in "src/pages/landing/Landing.css"
+        color: backgroundColor,
         opacity: 0.6,
         transparent: true
     })
@@ -95,7 +96,7 @@ function Globe() {
         <ReactGlobe
             width={525}
             height={525}
-            backgroundColor={'rgba(0,0,0,0)'}
+            backgroundColor={`${backgroundColor}00`}
             globeMaterial={globeMaterial}
             atmosphereAltitude={0.1}
             hexPolygonsData={countriesData}
