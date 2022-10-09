@@ -22,6 +22,12 @@
     cursor: pointer;
 }
 
+.butter-bar p:not(#back){
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .glass-desc-con{
     width: 100%;
     height: 100%;
@@ -53,6 +59,9 @@
     font-family:PolySans Neutral;
     font-size: 30px;
     color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -120,8 +129,17 @@
     margin: 15px;
 }
 
+.outline-desc-desc{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .key-desc{
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color:white;
     margin: 15px 0;
 }
@@ -276,10 +294,4 @@
         box-sizing: border-box;
     }
 
-}
-
-@media screen and (max-width: 1440px) {
-    .file-name{
-        word-break: break-all;
-    }
 }

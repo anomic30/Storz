@@ -68,6 +68,9 @@
 
 #first-col{
     width: 70%;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal;
 }
 
 tbody img{

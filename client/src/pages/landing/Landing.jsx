@@ -1,4 +1,4 @@
-import React, { useContext,useEffect } from 'react'
+import React, { useContext,useEffect,useState } from 'react'
 import './Landing.css'
 import landing_gradient from '../../assets/images/landing-gradient2.png'
 import feature_gradient from '../../assets/images/landing-center.png'
@@ -12,17 +12,20 @@ import sheild_gif from '../../assets/images/security.gif'
 import cube_gif from '../../assets/images/fragments.gif'
 import landing_left from '../../assets/images/landing-left.png'
 import landing_right from '../../assets/images/landing-right.png'
+import arrowup from '../../assets/icons/arrowup.svg'
 import globe from '../../assets/images/new-globe.png'
 import map from '../../assets/images/map.png'
 import discord_logo from '../../assets/icons/discord.png'
 import github_logo from '../../assets/icons/github.svg'
 import { motion } from 'framer-motion'
+import Globe from '../../components/globe/Globe'
 
 
 
 function Landing() {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
+    const [isVisible, setIsVisible] = useState(false);
   
     useEffect(()=>{
         Aos.init({duration:1000})
@@ -32,7 +35,33 @@ function Landing() {
         event.target.style.cursor = 'default'
     }
 
+    const goToBtn = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+
+    const listentoScroll = () => {
+        let heightToHidden = 25;
+        const winScroll =
+            document.body.scrollTop || document.documentElement.scrollTop;
+        if (winScroll > heightToHidden) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", listentoScroll);
+        return () => window.removeEventListener("scroll", listentoScroll);
+    }, []);
+
     return (
+        <>
+        {isVisible && (
+        <div className="top-btn" onClick={goToBtn}>
+            <img src={arrowup} className='arrowup'/>
+        </div>
+        )}
         <motion.div className='landing-con' 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -69,7 +98,8 @@ function Landing() {
                     </div>
                 </div>
                 <div className="right-con">
-                    <img src={globe} alt="Globe" />
+                    {/* <img src={globe} alt="Globe" /> */}
+                    <Globe />
                 </div>
             </div>
 
@@ -124,6 +154,7 @@ function Landing() {
                     
             </div>
         </motion.div>
+        </>
     )
 }
 
