@@ -78,7 +78,7 @@ function Globe() {
         }, arcFlightTime)
 
         setArcsCount(arcsCount + 1)
-    })
+    }, [])
 
     // spawn arcs regularly
     useEffect(() => {
@@ -103,15 +103,15 @@ function Globe() {
             hexPolygonAltitude={0.02}
             hexPolygonResolution={2}
             hexPolygonMargin={0.85}
-            hexPolygonColor={useCallback(() => '#00ffa8')}
+            hexPolygonColor={useCallback(() => '#00ffa8', [])}
             hexPolygonCurvatureResolution={0}
             labelsData={labelsData}
-            labelLat={useCallback(d => d.properties.LABEL_Y)}
-            labelLng={useCallback(d => d.properties.LABEL_X)}
-            labelText={useCallback(d => d.properties.NAME)}
+            labelLat={useCallback(d => d.properties.LABEL_Y, [])}
+            labelLng={useCallback(d => d.properties.LABEL_X, [])}
+            labelText={useCallback(d => d.properties.NAME, [])}
             labelSize={labelSize}
             labelDotRadius={0.8}
-            labelColor={useCallback(() => '#ffffff')}
+            labelColor={useCallback(() => '#ffffff', [])}
             labelAltitude={0.03}
             labelResolution={labelResolution}
             arcsData={arcsData}
@@ -119,14 +119,14 @@ function Globe() {
             arcDashGap={2}
             arcDashInitialGap={1}
             arcDashAnimateTime={arcFlightTime}
-            arcColor={useCallback(() => '#ffffff')}
+            arcColor={useCallback(() => '#ffffff', [])}
             arcAltitudeAutoScale={0.3}
             arcsTransitionDuration={0}
             ringsData={ringsData}
             ringMaxRadius={ringMaxRadius}
             ringPropagationSpeed={ringPropagationSpeed}
             ringRepeatPeriod={ringRepeatPeriod}
-            ringColor={useCallback(() => t => `rgba(255,255,255,${1-t})`)}
+            ringColor={useCallback(() => t => `rgba(255,255,255,${1-t})`, [])}
             ringAltitude={0.03}
             waitForGlobeReady={false}
             animateIn={false}
