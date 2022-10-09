@@ -193,6 +193,7 @@ tbody .visible{
     border-radius: 3px;
     border: none;
     background-color: rgba(255, 255, 255, 0.25);
+    color: white;
     outline: none;
 }
 
