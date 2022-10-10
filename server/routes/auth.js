@@ -24,6 +24,7 @@ router.post('/api/user/create', authMiddleware, async (req, res, next) => {
     const magic_id = req.body.magic_id;
     const user_name = req.body.user_name;
     const email = req.body.email;
+    const didToken = req.headers.authorization.substring(7);
 
     if (!user_name || !magic_id || !email) {
         return next( new AppError("Missing required fields", 400));
@@ -43,6 +44,7 @@ router.post('/api/user/create', authMiddleware, async (req, res, next) => {
         })
         console.log("saving user")
         await user.save();
+        res.cookie('didToken',didToken,{httpOnly:true})
         return res.status(200).json({ message: "User created successfully" });
     }
     else {

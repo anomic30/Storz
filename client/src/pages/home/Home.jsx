@@ -47,9 +47,9 @@ function Home() {
 
     //upload files to server
     Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/upload`, formData, {
+      withCredentials:true,
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': 'Bearer ' + window.localStorage.getItem("didToken")
       }
     })
       .then(res => {
