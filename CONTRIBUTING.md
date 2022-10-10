@@ -206,4 +206,6 @@ You should navigate to your forked repository, and press the “New pull request
 
 Don't forget to join our [Discord](https://discord.gg/Z9hbT8RGNG) server as we will be posting important updates regarding the contributions. Have fun and make new friends in the server and happy coding to everyone!
 
+⚠️ We are not assigning issues to anyone. Only the first PR related to the issue will be considered.
+
 # Hurray!! You just got closer to complete your hacktoberfest challenge.
