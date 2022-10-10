@@ -9,7 +9,7 @@ import spinner from '../../assets/images/loading.svg'
 import eye_icon from '../../assets/icons/eye.png'
 import { useNavigate } from 'react-router-dom'
 import { formatBytes } from '../../utils/formatBytes'
-import { formatDates } from '../../utils/formatDates';
+import { formatDateAndTime } from '../../utils/formatDates';
 import { motion } from 'framer-motion'
 
 const tableHeaders = [
@@ -81,7 +81,7 @@ function MyFiles() {
                       <td id='first-col'>{val.file_name ? val.file_name : "test.png"}</td>
                       <td>{val.public ? <Tippy content="Public" placement='left'><img className="visible" src={eye_icon} alt="public" /></Tippy> : ''}</td>
                       <td id='size-col'>{val.file_size ? formatBytes(val.file_size) : "69"}</td>
-                      <td>{val.file_creationDate ? formatDates(val.file_creationDate) : "2045/08/30"}</td>
+                      <td>{val.file_creationDate ? formatDateAndTime(val.file_creationDate, { dateStyle: 'medium' }) : "2045/08/30"}</td>
                     </tr>
                   })}
                 </tbody>
