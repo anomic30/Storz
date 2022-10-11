@@ -172,9 +172,12 @@ tbody .visible{
     justify-content: center;
 }
 .active-page{
-    color: beige;
-    background-color: var(--primary-color-dark);
+    margin: 5px;
+    color: black;
+    background-color: #00ffa8;
     border-radius: 4px;
+    height: 25px;
+    width: 25px;
 }
 .prevarrow{
     margin-right: 10px;
