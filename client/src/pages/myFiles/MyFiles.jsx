@@ -66,7 +66,7 @@ function MyFiles() {
             files={files} 
             owner={owner} 
             search={search} 
-            itemsPerPage={2}
+            itemsPerPage={8}
           />
         }
       </div>
