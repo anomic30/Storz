@@ -43,6 +43,9 @@ by checking our [issues tab](https://github.com/anomic30/Storz/issues) and creat
 
 
 # Steps to make changes and contribute using GIT!
+⚠️ Before you proceed make sure you have these installed : 
+- [NodeJS](https://nodejs.org/) version 16+ 
+- [NPM](https://npmjs.com/) version 8+
 
 To make your own local copy of the repository you would like to contribute to, let’s first open up a terminal window.
 
