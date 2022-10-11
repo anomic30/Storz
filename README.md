@@ -110,11 +110,12 @@ Here is a sneak peek of the application and it's visuals 😍:
 
 To get started with having your own instance of Storz, follow the steps described in the following section
 
-## 💯 Prerequisites
+## 💯 Prerequisites ( Important )
 
 You will need these to be already installed:
 
-- [NodeJS](https://nodejs.org/) 16+ and [NPM](https://npmjs.com/)
+- [NodeJS](https://nodejs.org/) version 16+ 
+- [NPM](https://npmjs.com/) version 8+
 
 And that's it
 
