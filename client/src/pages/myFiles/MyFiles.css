@@ -181,12 +181,22 @@ tbody .visible{
     width: 25px;
 }
 .prevarrow{
+    background-image: url(../../assets/icons/arrow.png);
+    width: 20px;
+    background-repeat: no-repeat;
+    height: 20px;
     outline: none;
-    margin-right: 10px;
+    transform: rotate(180deg) scale(0.8);
+    margin-right:8px ;
 }
-.nxtarrow{
+.nextarrow{
+    background-image: url(../../assets/icons/arrow.png);
+    width: 20px;
+    background-repeat: no-repeat;
+    height: 20px;
     outline: none;
-    margin-left: 10px;
+    margin-left:8px ;
+    transform: scale(0.8);
 }
 
 @media screen and (max-width: 800px) {
