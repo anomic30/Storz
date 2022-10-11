@@ -12,7 +12,6 @@ import { formatBytes } from '../../utils/formatBytes'
 import { formatDates } from '../../utils/formatDates';
 import ReactPaginate from "react-paginate";
 import { motion } from 'framer-motion'
-import arrow_icon from '../../assets/icons/arrow.png'
 
 const tableHeaders = [
   '', 'Name', '', 'Size', 'Date'
@@ -120,17 +119,17 @@ const PagignatedFiles = ({ files, owner, search, itemsPerPage }) => {
         {files.length > 8 &&
           <ReactPaginate
             breakLabel="..."
+            nextLabel=">"
             onPageChange={handlePageClick}
             pageRangeDisplayed={files.length}
             pageCount={pageCount}
+            previousLabel="<"
             renderOnZeroPageCount={null}
             className="pagignation"
             pageClassName="li"
             activeClassName="active-page"
-            previousLabel={'ㅤ'}
-            nextLabel = {'ㅤ'}
-            previousClassName = {'prevarrow'}
-            nextClassName = {'nextarrow'}
+            previousClassName='prevarrow'
+            nextClassName='nxtarrow'
           />
         }
       </div>
