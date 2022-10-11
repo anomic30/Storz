@@ -23,18 +23,22 @@ function MyFiles() {
   const [search, setSearch] = useState("");
   const [owner, setOwner] = useState("");
 
-  useEffect(() => {
-    setIsLoading(true);
-    Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/files`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
-      console.log(res.data.files);
+  const fetchFiles = async () => {
+    try {
+      setIsLoading(true);
+      const res = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/files`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } });
       setOwner(res.data.owner);
       setFiles(res.data.files);
       setIsLoading(false);
-    }).catch(err => {
+    } catch (err) {
       setIsLoading(false);
       console.log(err);
-    })
-  }, []);
+    }
+  }
+
+  useEffect(() => {
+    fetchFiles();
+  }, [])
 
   return (
     <motion.div className='MyFiles'

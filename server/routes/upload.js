@@ -1,6 +1,7 @@
 const authMiddleware = require("../middlewares/authMiddleware");
 const { Magic } = require('@magic-sdk/admin');
 const User = require('../models/user')
+const AppError = require('./../util/appError')
 const router = require("express").Router();
 const { fs, readFileSync, createWriteStream, unlink, readdirSync, rmSync, unlinkSync } = require('fs');
 
@@ -38,7 +39,7 @@ const addFile = async (fileName, filePath) => {
     return fileAdded;
 }
 
-router.post("/api/upload", authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res, next) => {
     const metadata = await magic.users.getMetadataByToken(req.headers.authorization.substring(7));
     const user = await User.findOne({ magic_id: metadata.issuer }, { encryption_key: 1 });
     console.log(user);
@@ -56,7 +57,10 @@ router.post("/api/upload", authMiddleware, async (req, res) => {
         //iterate req.files and move it to test folder
         for (let file of files) {
             // const file = files[i];
-            const fileName = file.name;
+            let fileName = file.name.normalize('NFD').replace(/\p{Diacritic}/gu, "");
+            if(file.name !== fileName) {
+                fileName = Buffer.from(file.name, 'latin1').toString('utf8')
+            }
             const filePath = '../server/private/' + fileName;
             const encryptedPath = '../server/encrypted/' + fileName;
 
@@ -112,13 +116,15 @@ router.post("/api/upload", authMiddleware, async (req, res) => {
                     );
                 } catch (error) {
                     console.log(error);
-                    return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
+                    // return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
+                    return next( new AppError("Couldn't upload your files at this moment" , 500));
                 }
             })
         }
         return res.status(200).json({ message: "Files uploaded successfully", uploadList: uploadList });
     } catch (error) {
-        return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
+        // return res.status(500).json({ error: error.message, message: "Couldn't upload your files at this moment" });
+        return next( new AppError("Couldn't upload your files at this moment" , 500));
     }
 })
 
