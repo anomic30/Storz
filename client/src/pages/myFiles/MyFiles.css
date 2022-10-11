@@ -172,6 +172,7 @@ tbody .visible{
     justify-content: center;
 }
 .active-page{
+    outline: none;
     margin: 5px;
     color: black;
     background-color: #00ffa8;
@@ -180,11 +181,14 @@ tbody .visible{
     width: 25px;
 }
 .prevarrow{
+    outline: none;
     margin-right: 10px;
 }
 .nxtarrow{
+    outline: none;
     margin-left: 10px;
 }
+
 @media screen and (max-width: 800px) {
     .tablr-con{
         width: calc(100% - 2rem);
