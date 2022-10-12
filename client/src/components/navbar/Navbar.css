@@ -137,10 +137,10 @@
 
 /* Ipad */
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 460px) {
     .logout{
        width: 280px;
-       height: 125px;
+       height: 150px;
     }
 
     .logout >p{
