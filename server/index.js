@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
-const {SanitizeMongoData , RemoveHTMLTags} = require('./middlewares/dataSantizationMiddleware')
+const { SanitizeMongoData, RemoveHTMLTags } = require('./middlewares/dataSantizationMiddleware')
 const AppError = require('./util/appError')
 const errorController = require('./controller/errorController')
 const Main = require('./routes/main')
@@ -22,11 +22,16 @@ const morgan = require('morgan')
 */
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:3000", "https://storz.pages.dev/"
+    ],
+    credentials: true
+}));
 app.use(morgan('dev'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(fileUpload()); 
+app.use(fileUpload());
 app.use(limiter);
 
 //Data sanitisation against NOSQL query injection and XSS
@@ -41,8 +46,9 @@ app.use(RemoveHTMLTags);    // -> remove the html tags from the input data
 
 const dburl = process.env.MONGODB_URI;
 mongoose.connect(dburl)
-    .then(() => { 
-        logger.info('Connected to StorzDB') })
+    .then(() => {
+        logger.info('Connected to StorzDB')
+    })
     .catch((err) => {
         logger.error(err)
     })
@@ -51,17 +57,17 @@ const PORT = process.env.PORT || 8080;
 
 app.use('/', Main)
 app.use('/test', Test);
-app.use('/api/upload',Upload);
+app.use('/api/upload', Upload);
 app.use('/api/download', Download);
 app.use(User);
 app.use(Auth);
 
-app.use('*' , (req, res, next)=>{
-    next( new AppError('could not find that route' , 404))
+app.use('*', (req, res, next) => {
+    next(new AppError('could not find that route', 404))
 })
 
 //Global error handler
-app.use( errorController)
+app.use(errorController)
 
 app.listen(PORT, () => {
     logger.info(`Server is running on port ${PORT}`);
