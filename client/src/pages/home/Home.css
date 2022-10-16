@@ -224,6 +224,12 @@
     background-color: var(--primary-color-dark);
 }
 
+.confirmation-btn{
+    margin: unset;
+    margin-left: 1rem;
+    width: auto;
+}
+
 @media screen and (max-width: 1350px ){
     .gradient-triangle{
         display: none;
