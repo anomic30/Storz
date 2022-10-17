@@ -53,9 +53,10 @@ router.post('/', authMiddleware, async (req, res, next) => {
   );
   const user = await User.findOne(
     { magic_id: metadata.issuer },
-    { encryption_key: 1 }
+    { encryption_key: 1, files:1 }
   );
   console.log(user);
+  const updatedFiles = user.files;
   if (metadata.issuer === '') {
     return res.status(500).json({ error: 'User is not authenticated' });
   }
@@ -107,9 +108,15 @@ router.post('/', authMiddleware, async (req, res, next) => {
                   file_size: fileAdded.size
                 };
                 uploadList.push(upData);
+                
+                const duplicateFileIndex = updatedFiles.findIndex(file=>file.file_name===upData.file_name);
+
+                if(duplicateFileIndex>=0) updatedFiles[duplicateFileIndex] = upData
+                else updatedFiles.push(upData);
+
                 await User.updateOne(
                   { magic_id: metadata.issuer },
-                  { $push: { files: upData } }
+                  { $set: { files: updatedFiles } }
                 );
 
                 unlink(filePath, (err) => {
