@@ -284,6 +284,50 @@ tbody .visible{
     cursor: pointer;
 }
 
+.pagignation{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    cursor: pointer;
+}
+.li{
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.active-page{
+    outline: none;
+    margin: 2px;
+    color: black;
+    background-color: #00ffa8;
+    border-radius: 4px;
+    height: 25px;
+    width: 25px;
+}
+.prevarrow{
+    background-image: url(../../assets/icons/arrow.png);
+    width: 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    outline: none;
+    transform: rotate(180deg) scale(0.8);
+    margin-right:8px ;
+}
+.nextarrow{
+    background-image: url(../../assets/icons/arrow.png);
+    width: 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    outline: none;
+    margin-left:8px ;
+    transform: scale(0.8);
+}
 
 @media screen and (max-width: 800px) {
 

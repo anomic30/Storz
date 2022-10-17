@@ -10,6 +10,7 @@ import eye_icon from "../../assets/icons/eye.png";
 import { useNavigate } from "react-router-dom";
 import { formatBytes } from "../../utils/formatBytes";
 import { formatDates } from "../../utils/formatDates";
+import ReactPaginate from "react-paginate";
 import { motion } from "framer-motion";
 
 import { BiSort } from "react-icons/bi";
@@ -29,11 +30,10 @@ const sortOrders = [
 const tableHeaders = ["", "Name", "", "Size", "Date"];
 
 function MyFiles() {
-  const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [owner, setOwner] = useState("");
   const [search, setSearch] = useState("");
+  const [owner, setOwner] = useState("");
   const [filterOpen, setFilterOpen] = useState(false);
   const [type, setType] = useState("");
   const [types, setTypes] = useState([]);
@@ -244,71 +244,108 @@ function MyFiles() {
             <img src={spinner} alt="Loading..." />
           </div>
         ) : (
-          <div className="table-con">
-            <div className="table-glass">
-              <table>
-                <thead>
-                  <tr>
-                    {tableHeaders.map((val, idx) => {
-                      return (
-                        <th className="file-row" key={idx}>
-                          {val}
-                        </th>
-                      );
-                    })}
-                  </tr>
-                </thead>
-                <tbody>
-                  {files.length > 0 &&
-                    files.map((val, idx) => {
-                      return (
-                        <tr
-                          className="file-row"
-                          key={idx}
-                          onClick={() =>
-                            navigate("/app/myFiles/desc", {
-                              state: { val, owner },
-                            })
-                          }
-                        >
-                          <td>
-                            <img src={file_icon} alt="file-marker" />
-                          </td>
-                          <td id="first-col">
-                            {val.file_name ? val.file_name : "test.png"}
-                          </td>
-                          <td>
-                            {val.public ? (
-                              <Tippy content="Public" placement="left">
-                                <img
-                                  className="visible"
-                                  src={eye_icon}
-                                  alt="public"
-                                />
-                              </Tippy>
-                            ) : (
-                              ""
-                            )}
-                          </td>
-                          <td id="size-col">
-                            {val.file_size ? formatBytes(val.file_size) : "69"}
-                          </td>
-                          <td>
-                            {val.file_creationDate
-                              ? formatDates(val.file_creationDate)
-                              : "2045/08/30"}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <PagignatedFiles
+            files={files}
+            owner={owner}
+            search={search}
+            itemsPerPage={8}
+          />
         )}
       </div>
     </motion.div>
   );
 }
+const PagignatedFiles = ({ files, owner, search, itemsPerPage }) => {
+  const navigate = useNavigate();
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(files.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(files.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage]);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % files.length;
+    setItemOffset(newOffset);
+  };
+
+  return (
+    <div className="table-con">
+      <div className="table-glass">
+        <table>
+          <thead>
+            <tr>
+              {tableHeaders.map((val, idx) => {
+                return (
+                  <th className="file-row" key={idx}>
+                    {val}
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {currentItems.length > 0 &&
+              currentItems.map((val, idx) => {
+                return (
+                  <tr
+                    className="file-row"
+                    key={idx}
+                    onClick={() =>
+                      navigate("/app/myFiles/desc", { state: { val, owner } })
+                    }
+                  >
+                    <td>
+                      <img src={file_icon} alt="" />
+                    </td>
+                    <td id="first-col">
+                      {val.file_name ? val.file_name : "test.png"}
+                    </td>
+                    <td>
+                      {val.public ? (
+                        <Tippy content="Public" placement="left">
+                          <img
+                            className="visible"
+                            src={eye_icon}
+                            alt="public"
+                          />
+                        </Tippy>
+                      ) : (
+                        ""
+                      )}
+                    </td>
+                    <td>{val.file_size ? formatBytes(val.file_size) : "69"}</td>
+                    <td>
+                      {val.file_creationDate
+                        ? formatDates(val.file_creationDate)
+                        : "2045/08/30"}
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+        {files.length > 8 && (
+          <ReactPaginate
+            breakLabel="..."
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={files.length}
+            pageCount={pageCount}
+            renderOnZeroPageCount={null}
+            className="pagignation"
+            pageClassName="li"
+            activeClassName="active-page"
+            previousLabel={"ㅤ"}
+            nextLabel={"ㅤ"}
+            previousClassName={"prevarrow"}
+            nextClassName={"nextarrow"}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default MyFiles;

@@ -43,6 +43,9 @@ by checking our [issues tab](https://github.com/anomic30/Storz/issues) and creat
 
 
 # Steps to make changes and contribute using GIT!
+⚠️ Before you proceed make sure you have these installed : 
+- [NodeJS](https://nodejs.org/) version 16+ 
+- [NPM](https://npmjs.com/) version 8+
 
 To make your own local copy of the repository you would like to contribute to, let’s first open up a terminal window.
 
@@ -205,5 +208,7 @@ At this point, you are ready to make a pull request to the original repository �
 You should navigate to your forked repository, and press the “New pull request” button on your left-hand side of the page. 
 
 Don't forget to join our [Discord](https://discord.gg/Z9hbT8RGNG) server as we will be posting important updates regarding the contributions. Have fun and make new friends in the server and happy coding to everyone!
+
+⚠️ We are not assigning issues to anyone. Only the first PR related to the issue will be considered.
 
 # Hurray!! You just got closer to complete your hacktoberfest challenge.

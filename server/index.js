@@ -24,7 +24,12 @@ const limiter = require('./middlewares/rateLimiter');
 */
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'https://storz.pages.dev/'],
+    credentials: true
+  })
+);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
