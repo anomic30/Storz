@@ -22,7 +22,48 @@ router.post('/api/user/files', authMiddleware, async (req, res, next) => {
     req.headers.authorization.substring(7)
   );
   const magic_id = metadata.issuer;
-  const user = await User.findOne({ magic_id });
+
+  const { search, types, privateStatus, publicStatus, sortField, sortOrder } =
+    req.body;
+
+  // matching files based on the search text and file type
+  const fileFilters = {
+    'files.file_name': new RegExp(`.*${search}.*(${types.join('|')})$`, 'i')
+  };
+
+  // matching based on the file status (public or private)
+  if (!privateStatus && publicStatus) fileFilters['files.public'] = true;
+  else if (!publicStatus && privateStatus) fileFilters['files.public'] = false;
+
+  const result = await User.aggregate([
+    {
+      $match: {
+        magic_id
+      }
+    },
+    {
+      $unwind: '$files'
+    },
+    {
+      $match: fileFilters
+    },
+    {
+      $sort: {
+        [`files.${sortField}`]: sortOrder
+      }
+    },
+    {
+      $group: {
+        _id: '$_id',
+        files: {
+          $push: '$files'
+        },
+        user_name: { $first: '$user_name' }
+      }
+    }
+  ]);
+  const user = result[0];
+
   if (!user) {
     return next(new AppError('user_not_found', 400));
   }
