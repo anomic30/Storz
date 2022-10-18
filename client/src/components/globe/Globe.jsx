@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { MeshBasicMaterial } from 'three'
 import { default as ReactGlobe } from 'react-globe.gl'
 import countries from '../../assets/datasets/ne_110m_admin_0_countries.json'
@@ -12,12 +12,12 @@ function Globe() {
     const showLabelText = false
     const labelSize = showLabelText ? 1.5 : 0
     const labelResolution = showLabelText ? 3 : 1
-    const maxNumArcs = 12
-    const arcRelativeLength = 0.6 // relative to whole arc
+    const maxNumArcs = 8
+    const arcRelativeLength = 0.5 // relative to whole arc
     const arcFlightTime = 3000 // ms
     const arcSpawnInterval = arcFlightTime / maxNumArcs
-    const numRings = 3
-    const ringMaxRadius = 5 // deg
+    const numRings = 2
+    const ringMaxRadius = 3 // deg
     const ringPropagationSpeed = 2 // deg/sec
     const ringRepeatPeriod = (arcFlightTime * arcRelativeLength) / numRings
 
@@ -38,10 +38,17 @@ function Globe() {
     }
 
     // logic
+    const globeRef = useRef()
     const [arcsData, setArcsData] = useState([])
     const [ringsData, setRingsData] = useState([])
 
-    const spawnArc = useCallback(() => {
+    const spawnArc = () => {
+        if (arcsData.length >= maxNumArcs) {
+            return
+        }
+
+        cleanup()
+
         // random source and destination
         const srcIdx = Math.floor(Math.random() * labelsData.length)
         let destIdx
@@ -74,22 +81,25 @@ function Globe() {
                 setRingsData(curRingsData => curRingsData.filter(r => r !== destRing))
             }, arcFlightTime * arcRelativeLength)
         }, arcFlightTime)
-    }, [])
+    }
+
+    const cleanup = useCallback(() => {
+        globeRef.current.renderer().dispose()
+    }, [globeRef.current])
 
     // spawn arcs regularly
     useEffect(() => {
-        if (arcsData.length < maxNumArcs) {
-            const id = setTimeout(() => {
-                spawnArc()
-            }, arcSpawnInterval)
-            return () => {
-                clearTimeout(id)
-            }
+        const id = setInterval(() => {
+            spawnArc()
+        }, arcSpawnInterval)
+        return () => {
+            clearInterval(id)
         }
-    }, [arcsData])
+    }, [])
 
     return (
         <ReactGlobe
+            ref={globeRef}
             width={525}
             height={525}
             backgroundColor={`${backgroundColor}00`}
