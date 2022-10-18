@@ -42,7 +42,11 @@ function Globe() {
     const [arcsData, setArcsData] = useState([])
     const [ringsData, setRingsData] = useState([])
 
-    const spawnArc = () => {
+    const cleanup = useCallback(() => {
+        globeRef.current.renderer().dispose()
+    }, [])
+
+    const spawnArc = useCallback(() => {
         if (arcsData.length >= maxNumArcs) {
             return
         }
@@ -81,11 +85,7 @@ function Globe() {
                 setRingsData(curRingsData => curRingsData.filter(r => r !== destRing))
             }, arcFlightTime * arcRelativeLength)
         }, arcFlightTime)
-    }
-
-    const cleanup = useCallback(() => {
-        globeRef.current.renderer().dispose()
-    }, [globeRef.current])
+    }, [labelsData, arcsData.length, cleanup])
 
     // spawn arcs regularly
     useEffect(() => {
@@ -95,7 +95,7 @@ function Globe() {
         return () => {
             clearInterval(id)
         }
-    }, [])
+    }, [arcSpawnInterval, spawnArc])
 
     return (
         <ReactGlobe
