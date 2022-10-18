@@ -115,24 +115,21 @@ tbody .visible{
 .search-con{
     display:flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 50px;
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
+    width: 80%;
+    margin: 50px auto 0 auto;
 }
 
 .search-inp{
     display: flex;
     align-items: center;
-    width: 80%;
+    margin-right: 5px;
+    flex: 1;
     height: 40px;
     background: rgba(18, 20, 24, 0.54);
     outline: none;
     border: none;
     border-radius: 10px;
-    padding-left: 20px;   
+    padding-left: 20px;
 }
 .search-inp input{
     background: none;
@@ -140,7 +137,8 @@ tbody .visible{
     outline: none;
     color: rgb(222, 222, 222);
     font-size: 20px;
-    width:550px;
+    width:50px;
+    flex: 1;
     margin-left: 10px;
     font-family:PolySans Slim;
 }
@@ -150,12 +148,198 @@ tbody .visible{
     height: 30px;
 }
 
+.filter-div, .sort-div{
+    position: relative;
+    margin: 0 5px;
+}
+
+.filter-button, .sort-button{
+    background-color: var(--secondary-color);
+    color: black;
+    border: none;
+    font-size: var(--font-size-lg);
+    padding: 8px;
+    border-radius: 10px;
+    display: flex;
+}
+
+.filter-options, .sort-options{
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 100%;
+    margin-top: 6px;
+    width: 165px;
+    background-color: rgba(0,0,0,0.90);
+    color: white;
+    z-index: 9999;
+    border-radius: 5px;
+}
+
+.filter-file-type{
+    padding: 6px;
+    border-bottom: 1px solid lightslategray;
+}
+
+.filter-file-type input{
+    display: block;
+    width: 100%;
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: white;
+    outline: none;
+}
+
+.filter-file-type input::placeholder{
+    color: white;
+}
+
+.filter-file-type input:focus{
+    outline: none;
+}
+
+.filter-file-type .choice-chips {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-file-type .choice-chips button{
+    padding: 2px 5px;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 3px;
+}
+
+.filter-file-status{
+    padding: 6px;
+    user-select: none;
+}
+
+
+.filter-file-status label{
+    margin: 10px auto;
+    display: block;
+}
+.filter-file-status input{
+    display: none;
+}
+
+.filter-file-status span:before{
+    content: "✔️";
+    margin-right: 5px;
+    font-size: var(--font-size-sm);
+    color: transparent;
+    padding: 1px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 3px;
+}
+
+.filter-file-status input:checked + span:before{
+    color: black;
+    background-color: var(--secondary-color);
+}
+
+.sort-options{
+    padding: 6px 0;
+    width: 120px;
+}
+
+
+.sort-options button[isactive="true"], .sort-options button:hover{
+    background-color: var(--secondary-color);
+    color: black;
+}
+
+.sort-fields p, .sort-orders p{
+    font-family: PolySans Median;
+    padding: 0 10px;
+    border-bottom: 1px solid lightslategray;
+}
+
+.sort-fields p{
+    padding-bottom: 3px;
+}
+
+.sort-orders p{
+    margin-top: 5px;
+    padding-bottom: 3px;
+}
+
+.sort-fields button , .sort-orders button{
+    text-align: start;
+    color: white;
+    font-size: var(--font-size-md);
+    padding: 4px 10px;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    transition: 0s;
+}
+
 .file-row:hover{
     cursor: pointer;
 }
 
+.pagignation{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    cursor: pointer;
+}
+.li{
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.active-page{
+    outline: none;
+    margin: 2px;
+    color: black;
+    background-color: #00ffa8;
+    border-radius: 4px;
+    height: 25px;
+    width: 25px;
+}
+.prevarrow{
+    background-image: url(../../assets/icons/arrow.png);
+    width: 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    outline: none;
+    transform: rotate(180deg) scale(0.8);
+    margin-right:8px ;
+}
+.nextarrow{
+    background-image: url(../../assets/icons/arrow.png);
+    width: 20px;
+    background-repeat: no-repeat;
+    height: 20px;
+    outline: none;
+    margin-left:8px ;
+    transform: scale(0.8);
+}
 
 @media screen and (max-width: 800px) {
+
+    .search-con{
+        width: 95%;
+    }
+
+    .sort-options{
+        left: auto;
+        right: 0;
+    }
+
     .tablr-con{
         width: calc(100% - 2rem);
 		text-overflow: ellipsis;
