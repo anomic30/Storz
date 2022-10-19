@@ -20,6 +20,7 @@ function Globe() {
     const ringMaxRadius = 3 // deg
     const ringPropagationSpeed = 2 // deg/sec
     const ringRepeatPeriod = (arcFlightTime * arcRelativeLength) / numRings
+    const autoRotate = true
 
     const backgroundColor = '#121916' // should sync with background-color in "src/pages/landing/Landing.css"
     // transparent globe
@@ -105,7 +106,9 @@ function Globe() {
         }
 
         globeRef.current.pointOfView(initialCoordinates)
-    }, [])
+        globeRef.current.controls().autoRotateSpeed = 0.5
+        globeRef.current.controls().autoRotate = autoRotate
+    }, [autoRotate])
 
     return (
         <ReactGlobe
