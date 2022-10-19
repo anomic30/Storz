@@ -20,6 +20,8 @@ function Globe() {
     const ringMaxRadius = 3 // deg
     const ringPropagationSpeed = 2 // deg/sec
     const ringRepeatPeriod = (arcFlightTime * arcRelativeLength) / numRings
+    const autoRotate = true
+    const enableZoom = false
 
     const backgroundColor = '#121916' // should sync with background-color in "src/pages/landing/Landing.css"
     // transparent globe
@@ -96,6 +98,23 @@ function Globe() {
             clearInterval(id)
         }
     }, [arcSpawnInterval, spawnArc])
+
+    useEffect(() => {
+        const initialCoordinates = {
+            lat: 16.8001,
+            lng: 48.9264,
+            altitude: 2.25        
+        }
+
+        globeRef.current.pointOfView(initialCoordinates)
+        globeRef.current.controls().autoRotateSpeed = 0.5
+        globeRef.current.controls().autoRotate = autoRotate
+        globeRef.current.controls().enableZoom = enableZoom
+
+        const currentPolarAngle = globeRef.current.controls().getPolarAngle()
+        globeRef.current.controls().minPolarAngle = currentPolarAngle - 0.7
+        globeRef.current.controls().maxPolarAngle = currentPolarAngle + 0.1
+    }, [autoRotate, enableZoom])
 
     return (
         <ReactGlobe
