@@ -97,6 +97,16 @@ function Globe() {
         }
     }, [arcSpawnInterval, spawnArc])
 
+    useEffect(() => {
+        const initialCoordinates = {
+            lat: 16.8001,
+            lng: 48.9264,
+            altitude: 2.25        
+        }
+
+        globeRef.current.pointOfView(initialCoordinates)
+    }, [])
+
     return (
         <ReactGlobe
             ref={globeRef}
