@@ -21,6 +21,7 @@ function Globe() {
     const ringPropagationSpeed = 2 // deg/sec
     const ringRepeatPeriod = (arcFlightTime * arcRelativeLength) / numRings
     const autoRotate = true
+    const enableZoom = false
 
     const backgroundColor = '#121916' // should sync with background-color in "src/pages/landing/Landing.css"
     // transparent globe
@@ -108,7 +109,8 @@ function Globe() {
         globeRef.current.pointOfView(initialCoordinates)
         globeRef.current.controls().autoRotateSpeed = 0.5
         globeRef.current.controls().autoRotate = autoRotate
-    }, [autoRotate])
+        globeRef.current.controls().enableZoom = enableZoom
+    }, [autoRotate, enableZoom])
 
     return (
         <ReactGlobe
