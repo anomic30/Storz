@@ -110,6 +110,10 @@ function Globe() {
         globeRef.current.controls().autoRotateSpeed = 0.5
         globeRef.current.controls().autoRotate = autoRotate
         globeRef.current.controls().enableZoom = enableZoom
+
+        const currentPolarAngle = globeRef.current.controls().getPolarAngle()
+        globeRef.current.controls().minPolarAngle = currentPolarAngle - 0.7
+        globeRef.current.controls().maxPolarAngle = currentPolarAngle + 0.1
     }, [autoRotate, enableZoom])
 
     return (
