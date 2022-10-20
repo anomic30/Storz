@@ -99,7 +99,12 @@ function Landing() {
                 </div>
                 <div className="right-con">
                     {/* <img src={globe} alt="Globe" /> */}
-                    <Globe />
+                    <Globe
+                        width={525}
+                        height={525}
+                        backgroundColor={'#121916'}
+                        dotColor={'#00ffa8'}
+                    />
                 </div>
             </div>
 
