@@ -81,7 +81,7 @@ function Home() {
   async function checkExistingFiles(){
     setIsUploading(true);
     try {
-      const res = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/files`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } });
+      const res = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/checkFiles`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } });
       const existingFiles = res.data.files;
       const existingFileNames = existingFiles.map(file=>file.file_name);
       let duplicateFiles=[];
