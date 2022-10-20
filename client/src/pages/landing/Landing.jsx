@@ -1,4 +1,4 @@
-import React, { useContext,useEffect,useState } from 'react'
+import React, { useContext,useEffect,useRef,useState } from 'react'
 import './Landing.css'
 import landing_gradient from '../../assets/images/landing-gradient2.png'
 import feature_gradient from '../../assets/images/landing-center.png'
@@ -25,7 +25,9 @@ import Globe from '../../components/globe/Globe'
 function Landing() {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
+    const globeContainerRef = useRef();
     const [isVisible, setIsVisible] = useState(false);
+    const [globeSize, setGlobeSize] = useState({ width: 0, height: 0 });
   
     useEffect(()=>{
         Aos.init({duration:1000})
@@ -54,6 +56,21 @@ function Landing() {
         window.addEventListener("scroll", listentoScroll);
         return () => window.removeEventListener("scroll", listentoScroll);
     }, []);
+
+    const resizeGlobe = () => {
+        const width = globeContainerRef.current?.clientWidth * 1.2 ?? 0;
+        const height = width;
+        setGlobeSize({ width, height });
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", resizeGlobe);
+        return () => window.removeEventListener("resize", resizeGlobe);
+    }, []);
+
+    useEffect(() => {
+        resizeGlobe();
+    }, [globeContainerRef]);
 
     return (
         <>
@@ -97,11 +114,11 @@ function Landing() {
                         </div>
                     </div>
                 </div>
-                <div className="right-con">
+                <div className="right-con" ref={globeContainerRef}>
                     {/* <img src={globe} alt="Globe" /> */}
                     <Globe
-                        width={525}
-                        height={525}
+                        width={globeSize.width}
+                        height={globeSize.height}
                         backgroundColor={'#121916'}
                         dotColor={'#00ffa8'}
                     />

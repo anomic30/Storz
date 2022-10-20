@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { MeshBasicMaterial } from 'three'
 import { default as ReactGlobe } from 'react-globe.gl'
 import countries from '../../assets/datasets/ne_110m_admin_0_countries.json'
@@ -159,4 +159,4 @@ function Globe({width, height, backgroundColor, dotColor}) {
     )
 }
 
-export default Globe
+export default memo(Globe)
