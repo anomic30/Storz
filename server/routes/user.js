@@ -17,6 +17,19 @@ router.post('/api/user/check', async (req, res, next) => {
   return next(new AppError('user_not_found', 200));
 });
 
+router.post('/api/user/checkFiles', authMiddleware, async (req, res, next) => {
+  const metadata = await magic.users.getMetadataByToken(
+    req.headers.authorization.substring(7)
+  );
+  const magic_id = metadata.issuer;
+  const user = await User.findOne({ magic_id });
+  if (!user) {
+    return next(new AppError('user_not_found', 400));
+  }
+  const { files } = user;
+  return res.status(200).json({ files, owner: user.user_name });
+});
+
 router.post('/api/user/files', authMiddleware, async (req, res, next) => {
   const metadata = await magic.users.getMetadataByToken(
     req.headers.authorization.substring(7)
