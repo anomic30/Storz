@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { MeshBasicMaterial } from 'three'
 import { default as ReactGlobe } from 'react-globe.gl'
 import countries from '../../assets/datasets/ne_110m_admin_0_countries.json'
 
-function Globe() {
+function Globe({width, height, backgroundColor, dotColor}) {
     // data
     const countriesData = countries.features
     const labelsData = countriesData.filter(d => d.properties.POP_RANK >= 15)
@@ -23,7 +23,6 @@ function Globe() {
     const autoRotate = true
     const enableZoom = false
 
-    const backgroundColor = '#121916' // should sync with background-color in "src/pages/landing/Landing.css"
     // transparent globe
     const globeMaterial = new MeshBasicMaterial({
         color: backgroundColor,
@@ -119,8 +118,8 @@ function Globe() {
     return (
         <ReactGlobe
             ref={globeRef}
-            width={525}
-            height={525}
+            width={width}
+            height={height}
             backgroundColor={`${backgroundColor}00`}
             globeMaterial={globeMaterial}
             atmosphereAltitude={0.1}
@@ -128,7 +127,7 @@ function Globe() {
             hexPolygonAltitude={0.02}
             hexPolygonResolution={2}
             hexPolygonMargin={0.85}
-            hexPolygonColor={useCallback(() => '#00ffa8', [])}
+            hexPolygonColor={useCallback(() => dotColor, [])}
             hexPolygonCurvatureResolution={0}
             labelsData={labelsData}
             labelLat={useCallback(d => d.properties.LABEL_Y, [])}
@@ -160,4 +159,4 @@ function Globe() {
     )
 }
 
-export default Globe
+export default memo(Globe)
