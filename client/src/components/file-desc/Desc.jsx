@@ -199,13 +199,13 @@ function Desc() {
           <div className="outline-head">
             <div>File Information</div>
             <div className='file-actions'>
-              <Tippy content="Share">
+              <Tippy content="Share"  arrow="" >
                 <button onClick={() => makePublic()}> <img src={share_icon} alt="" /> </button>
               </Tippy>
-              <Tippy content="Download">
+              <Tippy content="Download" arrow="">
                 <button onClick={() => downloadFile()}><img src={download_icon} alt="" /></button>
               </Tippy >
-              <Tippy content="Delete">
+              <Tippy content="Delete" arrow="">
                 <button onClick={() => deletePrompt()}><img src={delete_icon} alt="" /></button>
               </Tippy>
             </div>
