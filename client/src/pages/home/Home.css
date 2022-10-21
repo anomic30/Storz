@@ -224,10 +224,13 @@
     background-color: var(--primary-color-dark);
 }
 
-.confirmation-btn{
+.confirmation-btn{ 
     margin: unset;
     margin-left: 1rem;
     width: auto;
+    padding: auto;
+    border-radius: 8px;
+    font-size: var(--font-size-md);
 }
 
 @media screen and (max-width: 1350px ){
