@@ -1,4 +1,4 @@
-.modal-dialog{
+.modal-dialog {
     max-width: 500px;
     margin: 0 auto;
     z-index: 1000;
@@ -9,8 +9,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.175);
+    background-color: #010F0E;
+    border: 1px solid #00ffa8;
     border-radius: .5rem;
     outline: 0;
 }
@@ -21,10 +21,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    border-bottom: 1px solid #dee2e6;
 }
 
 .modal-dialog .modal-content .body {
+    font-family: PolySans Median;
+    font-size: var(--font-size-md);
+    color: white;
     position: relative;
     flex: 1 1 auto;
     padding: 1rem;
@@ -36,9 +38,9 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    padding: .5rem;
-    border-top: 1px solid #dee2e6;
+    padding: .8rem;
 }
+
 .modal-backdrop {
     position: fixed;
     top: 0;
