@@ -127,7 +127,7 @@ function Globe({width, height, backgroundColor, dotColor}) {
             hexPolygonAltitude={0.02}
             hexPolygonResolution={2}
             hexPolygonMargin={0.85}
-            hexPolygonColor={useCallback(() => dotColor, [])}
+            hexPolygonColor={useCallback(() => dotColor, [dotColor])}
             hexPolygonCurvatureResolution={0}
             labelsData={labelsData}
             labelLat={useCallback(d => d.properties.LABEL_Y, [])}
