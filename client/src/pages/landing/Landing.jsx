@@ -58,7 +58,8 @@ function Landing() {
     }, []);
 
     const resizeGlobe = () => {
-        const width = globeContainerRef.current?.clientWidth * 1.2 ?? 0;
+        // hide globe when screen width is smaller than 1320px, should sync with the media query in Landing.css
+        const width = (window.innerWidth >= 1320) ? globeContainerRef.current?.clientWidth * 1.2 ?? 0 : 0;
         const height = width;
         setGlobeSize({ width, height });
     };
@@ -116,12 +117,14 @@ function Landing() {
                 </div>
                 <div className="right-con" ref={globeContainerRef}>
                     {/* <img src={globe} alt="Globe" /> */}
+                    {globeSize.width > 0 && (
                     <Globe
                         width={globeSize.width}
                         height={globeSize.height}
                         backgroundColor={'#121916'}
                         dotColor={'#00ffa8'}
                     />
+                    )}
                 </div>
             </div>
 
