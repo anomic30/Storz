@@ -106,7 +106,7 @@ function Globe({width, height, backgroundColor, dotColor}) {
         }
 
         globeRef.current.pointOfView(initialCoordinates)
-        globeRef.current.controls().autoRotateSpeed = 0.5
+        globeRef.current.controls().autoRotateSpeed = 1
         globeRef.current.controls().autoRotate = autoRotate
         globeRef.current.controls().enableZoom = enableZoom
 
