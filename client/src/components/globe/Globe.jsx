@@ -102,7 +102,7 @@ function Globe({width, height, backgroundColor, dotColor}) {
         const initialCoordinates = {
             lat: 16.8001,
             lng: 48.9264,
-            altitude: 2.25        
+            altitude: 1.85
         }
 
         globeRef.current.pointOfView(initialCoordinates)
