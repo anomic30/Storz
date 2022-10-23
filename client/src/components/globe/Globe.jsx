@@ -102,11 +102,11 @@ function Globe({width, height, backgroundColor, dotColor}) {
         const initialCoordinates = {
             lat: 16.8001,
             lng: 48.9264,
-            altitude: 2.25        
+            altitude: 1.85
         }
 
         globeRef.current.pointOfView(initialCoordinates)
-        globeRef.current.controls().autoRotateSpeed = 0.5
+        globeRef.current.controls().autoRotateSpeed = 1
         globeRef.current.controls().autoRotate = autoRotate
         globeRef.current.controls().enableZoom = enableZoom
 
@@ -127,7 +127,7 @@ function Globe({width, height, backgroundColor, dotColor}) {
             hexPolygonAltitude={0.02}
             hexPolygonResolution={2}
             hexPolygonMargin={0.85}
-            hexPolygonColor={useCallback(() => dotColor, [])}
+            hexPolygonColor={useCallback(() => dotColor, [dotColor])}
             hexPolygonCurvatureResolution={0}
             labelsData={labelsData}
             labelLat={useCallback(d => d.properties.LABEL_Y, [])}
