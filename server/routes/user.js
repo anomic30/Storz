@@ -113,7 +113,7 @@ router.patch(
 );
 
 router.patch(
-  '/api/user/deleteFile/:cid',
+  '/api/user/deleteFile/:id',
   authMiddleware,
   async (req, res, next) => {
     console.log('Delete route called!');
@@ -121,14 +121,14 @@ router.patch(
       req.headers.authorization.substring(7)
     );
     const magic_id = metadata.issuer;
-    const { cid } = req.params;
-    if (!magic_id || !cid) {
+    const { id:_id } = req.params;
+    if (!magic_id || !_id) {
       return next(new AppError('Missing required fields', 400));
     }
     try {
       await User.updateOne(
-        { magic_id, files: { $elemMatch: { cid } } },
-        { $pull: { files: { cid } } }
+        { magic_id, files: { $elemMatch: { _id } } },
+        { $pull: { files: { _id } } }
       );
       return res.status(200).json({ message: 'File deleted successfully!' });
     } catch (err) {

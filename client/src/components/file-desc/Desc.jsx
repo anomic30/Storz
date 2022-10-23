@@ -86,7 +86,7 @@ function Desc() {
 
   function deleteFile(t) {
     toast.dismiss(t.id);
-    Axios.patch(`${process.env.REACT_APP_SERVER_URL}/api/user/deleteFile/${file?.cid}`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
+    Axios.patch(`${process.env.REACT_APP_SERVER_URL}/api/user/deleteFile/${file?._id}`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } }).then(res => {
       console.log(res.data.message);
       toast(res.data.message, {
         icon: '✅',
