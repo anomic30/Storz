@@ -1,12 +1,12 @@
-import { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { MeshBasicMaterial } from 'three'
 import { default as ReactGlobe } from 'react-globe.gl'
 import countries from '../../assets/datasets/ne_110m_admin_0_countries.json'
 
 function Globe({width, height, backgroundColor, dotColor}) {
     // data
-    const countriesData = countries.features
-    const labelsData = countriesData.filter(d => d.properties.POP_RANK >= 15)
+    const countriesData = useMemo(() => countries.features, [])
+    const labelsData = useMemo(() => countriesData.filter(d => d.properties.POP_RANK >= 15), [countriesData])
 
     // config
     const showLabelText = false
@@ -24,19 +24,19 @@ function Globe({width, height, backgroundColor, dotColor}) {
     const enableZoom = false
 
     // transparent globe
-    const globeMaterial = new MeshBasicMaterial({
+    const globeMaterial = useMemo(() => new MeshBasicMaterial({
         color: backgroundColor,
         opacity: 0.6,
         transparent: true
-    })
+    }), [backgroundColor])
 
     // improve performance
-    const rendererConfig = {
+    const rendererConfig = useMemo(() => ({
         antialias: false,
         alpha: false,
         precision: 'lowp',
         powerPreference: 'low-power'
-    }
+    }), [])
 
     // logic
     const globeRef = useRef()
@@ -159,4 +159,4 @@ function Globe({width, height, backgroundColor, dotColor}) {
     )
 }
 
-export default memo(Globe)
+export default Globe
