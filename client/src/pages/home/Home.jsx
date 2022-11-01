@@ -14,7 +14,7 @@ import right_gradient_triangle from '../../assets/images/right-gradient-triangle
 import glass_triangle from '../../assets/images/glass-triangle.svg'
 import right_glass_triangle from '../../assets/images/right-glass-triangle.svg'
 import toast, { Toaster } from 'react-hot-toast';
-
+import Modal from '../../components/modal/Modal'
 
 function Home({logoutModal}) {
   const userName = window.localStorage.getItem('userName');
@@ -22,7 +22,9 @@ function Home({logoutModal}) {
   const [files, setFiles] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const [success, setSuccess] = useState(false);
- 
+  const [duplicateFileNames, setDuplicateFileNames] = useState([]);
+  const [uniqueFiles, setUniqueFiles] = useState([]);
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: (acceptedFiles) => {
       setFiles(acceptedFiles);
@@ -76,6 +78,43 @@ function Home({logoutModal}) {
       })
   }
 
+  async function checkExistingFiles(){
+    setIsUploading(true);
+    try {
+      const res = await Axios.post(`${process.env.REACT_APP_SERVER_URL}/api/user/checkFiles`, {}, { headers: { Authorization: 'Bearer ' + window.localStorage.getItem("didToken") } });
+      const existingFiles = res.data.files;
+      const existingFileNames = existingFiles.map(file=>file.file_name);
+      let duplicateFiles=[];
+      let uniqueFilesArr = [];
+      files.forEach(file=>{
+        if(existingFileNames.includes(file.name)) duplicateFiles.push(file.name);
+        else uniqueFilesArr.push(file);
+      });
+      
+      if(!duplicateFiles.length) createFormData(files);
+      else{
+        setUniqueFiles(uniqueFilesArr);
+        setDuplicateFileNames(duplicateFiles);
+        setIsUploading(false);
+      }
+    } catch (err) {
+      setIsUploading(false);
+      console.log(err);
+    }
+  }
+
+  function overrideFiles(){
+    createFormData(files);
+    setUniqueFiles([]);
+    setDuplicateFileNames([]);
+  }
+
+  function skipDuplicates(){
+    if(uniqueFiles.length) createFormData(uniqueFiles);
+    setUniqueFiles([]);
+    setDuplicateFileNames([]);
+  }
+
   return (
     <motion.div className={`Home ${logoutModal ? 'bg-blur':'bg-opaque'}`}
       transition={{ duration: 0.2 }}>
@@ -94,7 +133,16 @@ function Home({logoutModal}) {
               : "Upload your files securely to our IPFS network"}
         </div>
       </div>
-
+      {!isUploading && duplicateFileNames.length ? <Modal
+        body = {duplicateFileNames.length>1 ?
+          `Files with names ${duplicateFileNames.join(", ")} already exists. Do you want to override it?`
+          :`A file with name "${duplicateFileNames[0]}" already exists. Do you want to override it?`
+        }
+        footer = {<>
+        <div className='upload-btn confirmation-btn' onClick={()=>overrideFiles()}>Yes</div> 
+        <div className='upload-btn confirmation-btn' onClick={()=>skipDuplicates()}>No</div>
+        </>}
+       />:''}
       {!isUploading && !success ? <div className="upload-box-con">
         <div className="upload-box" {...getRootProps()}>
           <input {...getInputProps()} />
@@ -130,7 +178,7 @@ function Home({logoutModal}) {
       }
 
 
-      {!isUploading && !success && files && files.length > 0 ? <div className="upload-btn" onClick={() => createFormData(files)}>
+      {!isUploading && !success && files && files.length > 0 ? <div className="upload-btn" onClick={() => checkExistingFiles()}>
         <p>Upload</p>
       </div> : <></>}
 

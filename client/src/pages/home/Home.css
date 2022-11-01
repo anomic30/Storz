@@ -195,8 +195,12 @@
     transform: scale(0.5);
 }
 
+.glass-row .right .cross:hover {
+    cursor: pointer;
+}
+
 .upload-btn {
-    margin: auto;
+    margin: 50px auto;
     border-radius: 10px;
     padding: 0.6rem 1.5rem;
     width: 200px;
@@ -230,6 +234,14 @@
 
 .bg-opaque{
     opacity: 1;
+    
+.confirmation-btn{ 
+    margin: unset;
+    margin-left: 1rem;
+    width: auto;
+    padding: auto;
+    border-radius: 8px;
+    font-size: var(--font-size-md);
 }
 
 @media screen and (max-width: 1350px ){
