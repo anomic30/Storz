@@ -65,17 +65,24 @@ function Desc() {
 
   function deletePrompt() {
     toast((t) => (
-      <span>
-        Deleting this file will remove it <b>permanently.</b>
-        <button className='toast-button' onClick={() => { deleteFile(t) }}>
-          Delete
-        </button>
-        <button className='toast-button' onClick={() => { toast.dismiss(t.id) }}>
-          Cancel
-        </button>
-      </span>
+      <div>
+        <div className='delete-prompt-body'>
+          <span className='delete-prompt-body__icon'>⚠️</span>
+          <h4 className='delete-prompt-body__title'>Are you sure?</h4>
+          <p className='delete-prompt-body__description'>
+            Deleting this file will remove it <b>permanently.</b>
+          </p>
+        </div>
+        <div className='delete-prompt-action'>
+          <button className='btn-toast btn-toast__secondary' onClick={() => { toast.dismiss(t.id) }}>
+            Cancel
+          </button>
+          <button className='btn-toast btn-toast__danger' onClick={() => { deleteFile(t) }}>
+            Delete File
+          </button>
+        </div>
+      </div>
     ), {
-      icon: '⚠️',
       style: {
         borderRadius: '5px',
         background: '#333',

@@ -247,20 +247,52 @@
     cursor: pointer;
 }
 
-.toast-button{
-    width: 60px;
-    height: 30px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--secondary-color);
-    color: rgb(0, 0, 0);
-    font-family: PolySans Neutral;
-    font-size: 15px;
+.delete-prompt-body {
+  text-align: center;
+  padding-top: 16px;
+}
+.delete-prompt-body__icon {
+  font-size: 120px;
+  color: orange;
+}
+.delete-prompt-body__title {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.delete-prompt-body__description {
+  font-size: 18px;
+  line-height: 28px;
+}
+.delete-prompt-body__description b {
+  color: var(--secondary-color)
 }
 
-.toast-button:hover{
-    box-shadow: none;
+.delete-prompt-action {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 48px 0 24px;
+}
+
+.btn-toast {
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-family: PolySans Neutral;
+  font-size: 15px;
+}
+.btn-toast__secondary {
+  background-color: transparent;
+  border: 2px solid #c8c8c8;
+  color: #c8c8c8;
+}
+.btn-toast__danger {
+  background-color: #ff5151;
+  border: none;
+  color: white;
+}
+
+.btn-toast:hover{
+  box-shadow: none;
 }
 
 @media screen and (max-width: 450px){
