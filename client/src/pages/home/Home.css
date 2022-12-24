@@ -228,6 +228,13 @@
     background-color: var(--primary-color-dark);
 }
 
+.bg-blur {
+    opacity: 0.4;
+}
+
+.bg-opaque{
+    opacity: 1;
+    
 .confirmation-btn{ 
     margin: unset;
     margin-left: 1rem;
