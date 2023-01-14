@@ -18,7 +18,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.1",
-    "react-globe.gl": "^2.22.4",
+    "react-globe.gl": "^2.22.10",
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.2.0",
     "react-icons": "^4.4.0",
