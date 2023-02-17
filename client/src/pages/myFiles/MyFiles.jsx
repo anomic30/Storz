@@ -29,7 +29,7 @@ const sortOrders = [
 
 const tableHeaders = ["", "Name", "", "Size", "Date"];
 
-function MyFiles() {
+function MyFiles({logoutModal}) {
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -125,6 +125,8 @@ function MyFiles() {
   ]);
 
   return (
+    <motion.div className={`MyFiles ${logoutModal ? 'bg-blur':'bg-opaque'}`}
+      transition={{ duration: 0.2 }}>
     <motion.div
       className="MyFiles"
       initial={{ opacity: 0 }}

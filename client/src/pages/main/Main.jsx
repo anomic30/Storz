@@ -5,22 +5,22 @@ import Navbar from '../../components/navbar/Navbar'
 import { UserContext } from '../../utils/UserContext'
 import { useEffect } from 'react'
 
-function Main() {
-    const navigate = useNavigate();
-    const [user] = useContext(UserContext);
+function Main({ setLogoutModal, logoutModal }) {
+  const navigate = useNavigate();
+  const [user] = useContext(UserContext);
 
-    useEffect(() => {
-        if (!user) {
-            navigate('/signin');
-        }
-    }, [navigate, user])
+  useEffect(() => {
+    if (!user) {
+      navigate("/signin");
+    }
+  }, [navigate, user]);
 
-    return (
-        <div className='Main'>
-            <Navbar />
-            <Outlet />
-        </div>
-    )
+  return (
+    <div className="Main">
+      <Navbar setLogoutModal={setLogoutModal} logoutModal={logoutModal} />
+      <Outlet />
+    </div>
+  );
 }
 
 export default Main

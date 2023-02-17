@@ -16,7 +16,7 @@ import right_glass_triangle from '../../assets/images/right-glass-triangle.svg'
 import toast, { Toaster } from 'react-hot-toast';
 import Modal from '../../components/modal/Modal'
 
-function Home() {
+function Home({logoutModal}) {
   const userName = window.localStorage.getItem('userName');
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
@@ -116,8 +116,7 @@ function Home() {
   }
 
   return (
-    <motion.div className='Home' initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+    <motion.div className={`Home ${logoutModal ? 'bg-blur':'bg-opaque'}`}
       transition={{ duration: 0.2 }}>
       <Toaster/>
       <img src={gradient_triangle} alt="" className='gradient-triangle' />
